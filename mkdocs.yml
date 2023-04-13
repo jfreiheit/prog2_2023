@@ -67,7 +67,10 @@ markdown_extensions:
 nav:
     - Home: index.md
     - Wiederholung: wiederholung.md
+    - Aufzählungstypen: enum.md 
     - Einstieg: einstieg.md
+    - Wrapper-Klassen: wrapper.md 
+    - Exceptions: exceptions.md 
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
 
