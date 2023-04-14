@@ -42,26 +42,27 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 |-|-------|--------------------|-------|-----------------|------------------|
 | 1. | 10.-14.04.2023 | [Organisatorisches](#), [Wiederholung](./wiederholung/#datentypen), [Aufzählungstypen](./enum/#aufzahlungstypen-enum), [Einstieg](./einstieg/#einstieg) | - | - | - | 
 | 1. | 17.-21.04.2023 | [Wrapper-Klassen (boxing und unboxing)](./wrapper/#wrapper-klassen)| [Übung 1](./uebungen/#ubung-1-wiederholung-und-codereview) |[Aufgabe 1](./aufgaben/#aufgabe-1-wurfelspiel) | 25.04.2023 | 
-| 2. | 24.-28.04.2023 | Exceptions I | [Übung 2](./uebungen/#ubung-2-string-und-algorithmisches-denken) |[Aufgabe 2](./aufgaben/#aufgabe-2-myinteger) | 02.05.2023 | 
-| 3. | 01.-05.05.2023 | Aufgabe 2 besprochen | [Übung 3](./uebungen/#ubung-3-exceptions) |Aufgabe 3 | 16.05.2023 | 
-| 4. | 08.-12.05.2023 | Exceptions II | [Übung 4](./uebungen/#ubung-4-string) |Aufgabe 4 | 23.05.2023 | 
-| 5. | 15.-19.05.2023 | Collections (List und Set) | [Übung 5](./uebungen/#ubung-5-enum-und-zweidimensionale-arrays) |Aufgabe 5 | 30.05.2023 | 
-| 6. | 22.-26.05.2023 | Collections (Map) | [Übung 6](./uebungen/#ubung-6-listen-und-mengen) |Aufgabe 6 | - | 
-| 7. | 29.-02.06.2023 | Abstrakte Klassen | [Übung 7](./uebungen/#ubung-7-maps) |Aufgabe 7 | 06.06.2023 | 
-| 8. | 05.-09.06.2023 | Interfaces | [Übung 8](./uebungen/#ubung-8-interfaces) |Aufgabe 8 | 20.06.2023 | 
-| 9. | 12.-16.06.2023 | GUI Einführung  | - |Aufgabe 9 | 27.06.2023 | 
-| 10. | 19.-23.06.2023 | JUnit und <br/>Layout-Manager | [Übung 10](./uebungen/#ubung-10-junit) [Übung 9](./uebungen/#ubung-9-gui)|Aufgabe 10 | 04.07.2023 | 
-| 12. | 26.-30.06.2023 | GUI Ereignisse | [Übung 11](./uebungen/#ubung-11-ereignisbehandlung-actionlistener) | - | - |
-| 13. | 03.-07.07.2023 | ActionListener | [Übung 12](./uebungen/#ubung-12-zeichnen) | - | - |
-| 14. | 10.-14.07.2023 | Mausereignisse | [Übung 13](./uebungen/#ubung-13-mausereignisse) | - | - |
+| 2. | 24.-28.04.2023 | Exceptions I | Übung 2 |[Aufgabe 2](./aufgaben/#aufgabe-2-myinteger) | 02.05.2023 | 
+| 3. | 01.-05.05.2023 | Exceptions II | Übung 3 |Aufgabe 3 | 16.05.2023 | 
+| 4. | 08.-12.05.2023 | Collections (List und Set) | Übung 4 |Aufgabe 4 | 23.05.2023 | 
+| 5. | 15.-19.05.2023 | - | - | - | - | 
+| 6. | 22.-26.05.2023 | Collections (Map) | Übung 5 |Aufgabe 5 | 30.05.2023 | 
+| 7. | 29.-02.06.2023 | Abstrakte Klassen | Übung 6 |Aufgabe 6 | 06.06.2023 | 
+| 8. | 05.-09.06.2023 | Interfaces | Übung 7 |Aufgabe 7 | 20.06.2023 | 
+| 9. | 12.-16.06.2023 | GUI Einführung  | Übung 8 |Aufgabe 8 | 27.06.2023 | 
+| 10. | 19.-23.06.2023 | JUnit und <br/>Layout-Manager | Übung 9|Aufgabe 9 | 04.07.2023 | 
+| 12. | 26.-30.06.2023 | GUI Ereignisse | Übung 10 | Aufgabe 10 | 11.07.2023 |
+| 13. | 03.-07.07.2023 | ActionListener | Übung 11 | - | - |
+| 14. | 10.-14.07.2023 | Mausereignisse | Übung 12 | - | - |
 |  | 28.07.2023 14:00 Uhr| Klausur 1.PZ | Labore 6. Etage C-Gebäude| - | - |
 |  | 29.09.2023 14:00 Uhr| Klausur 2.PZ | Labore 6. Etage C-Gebäude| - | - |
 
 ### Inhalte
 
 
-??? question "14.04.2023 - Einführung und Organisatorisches + Wiederholung"
+??? question "14.04.2023 - Einführung und Organisatorisches + Wiederholung + enum + Einstieg"
 	- siehe [**Organisatorisches**](./#organisatorisches)
 	- siehe [**Wiederholung**](./wiederholung/#wiederholung)
+	- siehe [**Aufzählungstypen**](./enum/#aufzahlungstypen-enum)
 	- siehe [**Einstieg**](./einstieg/#einstieg)
 	- siehe [**Aufgabe 1**](./aufgaben/#aufgabe-1-wurfelspiel)
