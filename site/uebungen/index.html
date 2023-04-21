@@ -345,6 +345,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ubung-2-string-und-algorithmisches-denken" class="md-nav__link">
+    Übung 2 (String und algorithmisches Denken)
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -397,6 +404,13 @@
         <li class="md-nav__item">
   <a href="#ubung-1-codereview-und-static" class="md-nav__link">
     Übung 1 (Codereview und static)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-2-string-und-algorithmisches-denken" class="md-nav__link">
+    Übung 2 (String und algorithmisches Denken)
   </a>
   
 </li>
@@ -455,6 +469,108 @@
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
+</details>
+<details class="success">
+<summary>Eine mögliche Lösung für Übung 1</summary>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">uebungen.uebung1</span><span class="p">;</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm"> * °C = (°F - 32) * 5/9 (von Fahrenheit in Celsius)</span>
+<span class="cm"> * °F = °C * 1,8 + 32 (von Celsius nach Fahrenheit)</span>
+<span class="cm"> */</span><span class="w"></span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Konvertierung</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">Konvertierung</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">celsiusToFahrenheit</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">celsius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">FACTOR_CELSIUS_TO_FAHRENHEIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.8</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">DIFFERENCE_CELSIUS_TO_FAHRENHEIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">fahrenheit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">celsius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FACTOR_CELSIUS_TO_FAHRENHEIT</span><span class="w"> </span>
+<span class="w">                </span><span class="o">+</span><span class="w"> </span><span class="n">DIFFERENCE_CELSIUS_TO_FAHRENHEIT</span><span class="p">;</span><span class="w"> </span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">fahrenheit</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">fahrenheitToCelsius</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fahrenheit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">FACTOR_FAHRENHEIT_TO_CELSIUS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.0</span><span class="o">/</span><span class="mf">9.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">DIFFERENCE_FAHRENHEIT_TO_CELSIUS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">celsius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">fahrenheit</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DIFFERENCE_FAHRENHEIT_TO_CELSIUS</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FACTOR_FAHRENHEIT_TO_CELSIUS</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">celsius</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+</details>
+<h5 id="ubung-2-string-und-algorithmisches-denken">Übung 2 (String und algorithmisches Denken)<a class="headerlink" href="#ubung-2-string-und-algorithmisches-denken" title="Permanent link">&para;</a></h5>
+<details>
+<summary>Übung 2</summary>
+<ol>
+<li>
+<p>Erstellen Sie im Paket <code>uebungen.uebung2</code> eine Java-Klasse <code>Uebung2</code> mit <code>main()</code>-Methode. In diese Klasse implementieren wir statische Methoden. Öffnen Sie zum Lösen der Übung am besten die JavaDoc-Dokumentation der Klasse <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a>. Überlegen Sie sich, bevor Sie jeweils anfangen zu implementieren, genau, wie Sie vorgehen möchten.</p>
+</li>
+<li>
+<p>Implementieren Sie eine Methode <code>static boolean isBinaryNumber(String s)</code>. Diese Methode überprüft, ob der <code>String s</code> einer Binärzahl entspricht, d.h. ob er nur <code>0</code> und <code>1</code> enthält. </p>
+</li>
+<li>
+<p>Testen Sie die Methode <code>isBinaryNumber(String s)</code> z.B. mit den folgenden Aufrufen:
+<div class="highlight"><pre><span></span><code><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">isBinaryNumber</span><span class="p">(</span><span class="s">&quot;101101&quot;</span><span class="p">));</span><span class="w">   </span><span class="c1">// true</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">isBinaryNumber</span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="p">));</span><span class="w">        </span><span class="c1">// true</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">isBinaryNumber</span><span class="p">(</span><span class="s">&quot;101a01&quot;</span><span class="p">));</span><span class="w">   </span><span class="c1">// false</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">isBinaryNumber</span><span class="p">(</span><span class="s">&quot;101201&quot;</span><span class="p">));</span><span class="w">   </span><span class="c1">// false</span><span class="w"></span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Implementieren Sie eine Methode <code>static int binaryToDecimal(String s)</code>. Diese Methode wandelt den <code>String s</code> in eine Dezimalzahl um, wenn <code>s</code> einer Binärzahl entspricht. Wenn <code>s</code> keiner Binärzahl entspricht, wird <code>-1</code> zurückgegeben. </p>
+</li>
+<li>
+<p>Testen Sie die Methode <code>binaryToDecimal(String s)</code> z.B. mit den folgenden Aufrufen:
+<div class="highlight"><pre><span></span><code><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">binaryToDecimal</span><span class="p">(</span><span class="s">&quot;101101&quot;</span><span class="p">));</span><span class="w">  </span><span class="c1">// 45</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">binaryToDecimal</span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="p">));</span><span class="w">       </span><span class="c1">// 0</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">binaryToDecimal</span><span class="p">(</span><span class="s">&quot;000001&quot;</span><span class="p">));</span><span class="w">  </span><span class="c1">// 1</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">binaryToDecimal</span><span class="p">(</span><span class="s">&quot;100000&quot;</span><span class="p">));</span><span class="w">  </span><span class="c1">// 32</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">binaryToDecimal</span><span class="p">(</span><span class="s">&quot;101a01&quot;</span><span class="p">));</span><span class="w">  </span><span class="c1">// -1</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">binaryToDecimal</span><span class="p">(</span><span class="s">&quot;101201&quot;</span><span class="p">));</span><span class="w">  </span><span class="c1">// -1</span><span class="w"></span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Implementieren Sie eine Methode <code>static String toLowerCase(String input)</code>. Diese Methode wandelt alle Großbuchstaben ('A'...'Z') in Kleinbuchstaben um (und nur diese - alle anderen Zeichen bleiben erhalten). Schauen Sie sich dazu auch nochmal die <a href="https://freiheit.f4.htw-berlin.de/prog1/variablen/#char">ASCII-Tabelle</a> an.</p>
+</li>
+<li>
+<p>Testen Sie die Methode <code>toLowerCase(String input)</code> z.B. mit den folgenden Aufrufen:
+<div class="highlight"><pre><span></span><code><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">toLowerCase</span><span class="p">(</span><span class="s">&quot;abcdEFG&quot;</span><span class="p">));</span><span class="w">     </span><span class="c1">// abcdefg</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">toLowerCase</span><span class="p">(</span><span class="s">&quot;abcd123EFG&quot;</span><span class="p">));</span><span class="w">  </span><span class="c1">// abcd123efg</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">toLowerCase</span><span class="p">(</span><span class="s">&quot;ABC XYZ !%&quot;</span><span class="p">));</span><span class="w">  </span><span class="c1">// abc xyz !%</span><span class="w"></span>
+</code></pre></div></p>
+</li>
+</ol>
+<p><strong>Zusatz:</strong></p>
+<ol>
+<li>
+<p>Implementieren Sie eine Methode <code>static boolean isPalindrome(String input)</code>. Diese Methode prüft, ob es sich bei <code>input</code> um ein Palindrom handelt (also von vorne nach hinten genauso gelesen werden kann, wie von hinten nach vorne). Groß- und Kleinschreibung wird nicht berücksichtigt! Die Methode <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html#substring(int,int)">substring(int,int)</a> aus <code>String</code> ist dabei wahrscheinlich nützlich!</p>
+</li>
+<li>
+<p>Testen Sie die Methode <code>isPalindrome(String input)</code> z.B. mit den folgenden Aufrufen:
+<div class="highlight"><pre><span></span><code><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">isPalindrome</span><span class="p">(</span><span class="s">&quot;Otto&quot;</span><span class="p">));</span><span class="w">       </span><span class="c1">// true</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">isPalindrome</span><span class="p">(</span><span class="s">&quot;abc_CBA&quot;</span><span class="p">));</span><span class="w">    </span><span class="c1">// true</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">isPalindrome</span><span class="p">(</span><span class="s">&quot;abc_-CBA&quot;</span><span class="p">));</span><span class="w">   </span><span class="c1">// false</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">isPalindrome</span><span class="p">(</span><span class="s">&quot;-&quot;</span><span class="p">));</span><span class="w">          </span><span class="c1">// true</span><span class="w"></span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">isPalindrome</span><span class="p">(</span><span class="s">&quot;Dreh mal am Herd&quot;</span><span class="p">));</span><span class="w">   </span><span class="c1">// false </span><span class="w"></span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Angenommen, Sie sollen für einen gegebenen <code>String</code> angeben, ob er korrekt geklammerte Ausdrücke enthält (nur die Klammern betrachten). Wie würden Sie vorgehen? Nicht implementieren, nur nachdenken. Folgende Beispiele:
+<div class="highlight"><pre><span></span><code>((()))()(())        // korrekt
+((())               // nicht korrekt
+(()))               // nicht korrekt
+())(                // nicht korrekt
+</code></pre></div></p>
+</li>
+</ol>
 </details>
 
 

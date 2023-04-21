@@ -66,3 +66,152 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 	- siehe [**Aufzählungstypen**](./enum/#aufzahlungstypen-enum)
 	- siehe [**Einstieg**](./einstieg/#einstieg)
 	- siehe [**Aufgabe 1**](./aufgaben/#aufgabe-1-wurfelspiel)
+
+??? "Code aus der Vorlesung"
+
+	=== "Programmklasse.java"
+		```java
+		package vorlesungen.vorlesung0414;
+
+		import javax.swing.JOptionPane;
+
+		public class Programmklasse {
+			
+			public static void printIrgendwas(String ausgabe) {
+				System.out.println(ausgabe);
+			}
+			
+			public static void printDay(int day) {
+				switch(day) {
+					case 0 -> System.out.println("Montag");
+					case 1 -> System.out.println("Dienstag");
+					case 2 -> System.out.println("Mittwoch");
+					case 3 -> System.out.println("Donnerstag");
+					case 4 -> System.out.println("Freitag");
+					case 5 -> System.out.println("Samstag");
+					case 6 -> System.out.println("Sonntag");
+					default -> System.out.println("kein Tag");
+				}
+			}
+			
+			
+			public static void printDay(String day) {
+				switch(day) {
+					case "Mo" -> System.out.println("Montag");
+					case "Di" -> System.out.println("Dienstag");
+					case "Mi" -> System.out.println("Mittwoch");
+					case "Do" -> System.out.println("Donnerstag");
+					case "Fr" -> System.out.println("Freitag");
+					case "Sa" -> System.out.println("Samstag");
+					case "So" -> System.out.println("Sonntag");
+					default -> System.out.println("kein Tag");
+				}
+			}
+			
+			
+			public static void printDay(Weekday day) {
+				switch(day) {
+					case MO -> System.out.println("Montag");
+					case DI -> System.out.println("Dienstag");
+					case MI -> System.out.println("Mittwoch");
+					case DO -> System.out.println("Donnerstag");
+					case FR -> System.out.println("Freitag");
+					case SA -> System.out.println("Samstag");
+					case SO -> System.out.println("Sonntag");
+				}
+			}
+
+			public static void main(String[] args) {
+				printIrgendwas("Endlich wieder Programmieren!");
+				
+				StaticLesson.print();
+				
+				Math.abs(-5);
+				
+				System.out.println(StaticLesson.PI);
+				
+				Konto k1 = new Konto();
+				Konto k2 = new Konto();
+				Konto k3 = new Konto();
+				Konto k4 = new Konto();
+				System.out.println(k4.knr);
+				
+				Konto[] konten = new Konto[5];
+				for(int i = 0; i < konten.length; i++) {
+					konten[i] = new Konto();
+				}
+				
+				for(Konto element : konten) {
+					System.out.println(element.knr);
+				}
+				
+				for(int i = 0; i < konten.length; i++) {
+					System.out.println(konten[i].knr);
+				}
+				
+		/*
+				int result = JOptionPane.showConfirmDialog(null, "Wirklich beenden?", "Mein Titel", JOptionPane.YES_NO_CANCEL_OPTION);
+				if(result == JOptionPane.NO_OPTION) {
+					System.out.println("Nein geklickt");
+				} else if(result == JOptionPane.YES_OPTION) {
+					System.out.println("Ja geklickt");
+				} else if(result == JOptionPane.CANCEL_OPTION) {
+					System.out.println("Abbrechen geklickt");
+				}
+				
+				String eingabe = JOptionPane.showInputDialog("Geben Sie eine Zahl :");
+				System.out.println("Sie haben " + eingabe + " eingegeben");
+		*/
+				
+				printDay(5);
+				printDay("hallo");
+				
+				printDay(Weekday.FR);
+				
+				Weekday day = Weekday.FR;
+			}
+
+		}
+		```
+
+	=== "StaticLesson.java"
+		```java
+		package vorlesungen.vorlesung0414;
+
+		public class StaticLesson {
+			
+			public static final double PI = 3.14;
+			
+			public static void print() {
+				System.out.println("Hallo FIW");
+			}
+
+		}
+		```
+
+	=== "Weekday.java"
+		```java
+		package vorlesungen.vorlesung0414;
+
+		public enum Weekday {
+			MO, DI, MI, DO, FR, SA, SO
+		}
+		```
+
+
+	=== "Konto.java"
+		```java
+		package vorlesungen.vorlesung0414;
+
+		public class Konto {
+			
+			int knr;
+			static int anzKonten = 0;
+			
+			Konto() {
+				this.knr = anzKonten++;
+			}
+
+		}
+		```
+
