@@ -41,17 +41,17 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 | | Woche | Themen (Vorlesung) | Übung | Aufgabe | Abgabe Aufgabe bis | 
 |-|-------|--------------------|-------|-----------------|------------------|
 | 1. | 10.-14.04.2023 | [Organisatorisches](#), [Wiederholung](./wiederholung/#datentypen), [Aufzählungstypen](./enum/#aufzahlungstypen-enum), [Einstieg](./einstieg/#einstieg) | - | - | - | 
-| 1. | 17.-21.04.2023 | [Wrapper-Klassen (boxing und unboxing)](./wrapper/#wrapper-klassen)| [Übung 1](./uebungen/#ubung-1-wiederholung-und-codereview) |[Aufgabe 1](./aufgaben/#aufgabe-1-wurfelspiel) | 25.04.2023 | 
-| 2. | 24.-28.04.2023 | Exceptions I | Übung 2 |[Aufgabe 2](./aufgaben/#aufgabe-2-myinteger) | 02.05.2023 | 
-| 3. | 01.-05.05.2023 | Exceptions II | Übung 3 |Aufgabe 3 | 16.05.2023 | 
-| 4. | 08.-12.05.2023 | Collections (List und Set) | Übung 4 |Aufgabe 4 | 23.05.2023 | 
+| 1. | 17.-21.04.2023 | [Wrapper-Klassen (boxing und unboxing)](./wrapper/#wrapper-klassen)| [Übung 1](./uebungen/#ubung-1-wiederholung-und-codereview) |[Aufgabe 1](./aufgaben/#aufgabe-1-wurfelspiel) | 27.04.2023 | 
+| 2. | 24.-28.04.2023 | Exceptions I | Übung 2 |[Aufgabe 2](./aufgaben/#aufgabe-2-myinteger) | 04.05.2023 | 
+| 3. | 01.-05.05.2023 | Exceptions II | Übung 3 |Aufgabe 3 | 18.05.2023 | 
+| 4. | 08.-12.05.2023 | Collections (List und Set) | Übung 4 |Aufgabe 4 | 25.05.2023 | 
 | 5. | 15.-19.05.2023 | - | - | - | - | 
-| 6. | 22.-26.05.2023 | Collections (Map) | Übung 5 |Aufgabe 5 | 30.05.2023 | 
-| 7. | 29.-02.06.2023 | Abstrakte Klassen | Übung 6 |Aufgabe 6 | 06.06.2023 | 
-| 8. | 05.-09.06.2023 | Interfaces | Übung 7 |Aufgabe 7 | 20.06.2023 | 
-| 9. | 12.-16.06.2023 | GUI Einführung  | Übung 8 |Aufgabe 8 | 27.06.2023 | 
-| 10. | 19.-23.06.2023 | JUnit und <br/>Layout-Manager | Übung 9|Aufgabe 9 | 04.07.2023 | 
-| 12. | 26.-30.06.2023 | GUI Ereignisse | Übung 10 | Aufgabe 10 | 11.07.2023 |
+| 6. | 22.-26.05.2023 | Collections (Map) | Übung 5 |Aufgabe 5 | 01.06.2023 | 
+| 7. | 29.-02.06.2023 | Abstrakte Klassen | Übung 6 |Aufgabe 6 | 08.06.2023 | 
+| 8. | 05.-09.06.2023 | Interfaces | Übung 7 |Aufgabe 7 | 15.06.2023 | 
+| 9. | 12.-16.06.2023 | GUI Einführung  | Übung 8 |Aufgabe 8 | 22.06.2023 | 
+| 10. | 19.-23.06.2023 | JUnit und <br/>Layout-Manager | Übung 9|Aufgabe 9 | 29.06.2023 | 
+| 12. | 26.-30.06.2023 | GUI Ereignisse | Übung 10 | Aufgabe 10 | 06.07.2023 |
 | 13. | 03.-07.07.2023 | ActionListener | Übung 11 | - | - |
 | 14. | 10.-14.07.2023 | Mausereignisse | Übung 12 | - | - |
 |  | 28.07.2023 14:00 Uhr| Klausur 1.PZ | Labore 6. Etage C-Gebäude| - | - |
