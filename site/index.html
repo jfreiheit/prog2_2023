@@ -513,7 +513,7 @@
 <tr>
 <td>1.</td>
 <td>17.-21.04.2023</td>
-<td><a href="./wrapper/#wrapper-klassen">Wrapper-Klassen (boxing und unboxing)</a></td>
+<td><a href="./wrapper/#wrapper-klassen">Wrapper-Klassen (boxing und unboxing)</a><br/><a href="./exceptions/#exceptions">Exceptions I</a></td>
 <td><a href="./uebungen/#ubung-1-wiederholung-und-codereview">Übung 1</a></td>
 <td><a href="./aufgaben/#aufgabe-1-wurfelspiel">Aufgabe 1</a></td>
 <td>27.04.2023</td>
@@ -521,7 +521,7 @@
 <tr>
 <td>2.</td>
 <td>24.-28.04.2023</td>
-<td>Exceptions I</td>
+<td>Exceptions II</td>
 <td>Übung 2</td>
 <td><a href="./aufgaben/#aufgabe-2-myinteger">Aufgabe 2</a></td>
 <td>04.05.2023</td>
@@ -529,7 +529,7 @@
 <tr>
 <td>3.</td>
 <td>01.-05.05.2023</td>
-<td>Exceptions II</td>
+<td>Collections (List und Set)</td>
 <td>Übung 3</td>
 <td>Aufgabe 3</td>
 <td>18.05.2023</td>
@@ -537,7 +537,7 @@
 <tr>
 <td>4.</td>
 <td>08.-12.05.2023</td>
-<td>Collections (List und Set)</td>
+<td>Collections (Map)</td>
 <td>Übung 4</td>
 <td>Aufgabe 4</td>
 <td>25.05.2023</td>
@@ -553,7 +553,7 @@
 <tr>
 <td>6.</td>
 <td>22.-26.05.2023</td>
-<td>Collections (Map)</td>
+<td>Abstrakte Klassen</td>
 <td>Übung 5</td>
 <td>Aufgabe 5</td>
 <td>01.06.2023</td>
@@ -561,7 +561,7 @@
 <tr>
 <td>7.</td>
 <td>29.-02.06.2023</td>
-<td>Abstrakte Klassen</td>
+<td>Interfaces</td>
 <td>Übung 6</td>
 <td>Aufgabe 6</td>
 <td>08.06.2023</td>
@@ -569,7 +569,7 @@
 <tr>
 <td>8.</td>
 <td>05.-09.06.2023</td>
-<td>Interfaces</td>
+<td>GUI Einführung</td>
 <td>Übung 7</td>
 <td>Aufgabe 7</td>
 <td>15.06.2023</td>
@@ -577,7 +577,7 @@
 <tr>
 <td>9.</td>
 <td>12.-16.06.2023</td>
-<td>GUI Einführung</td>
+<td>JUnit</td>
 <td>Übung 8</td>
 <td>Aufgabe 8</td>
 <td>22.06.2023</td>
@@ -585,7 +585,7 @@
 <tr>
 <td>10.</td>
 <td>19.-23.06.2023</td>
-<td>JUnit und <br/>Layout-Manager</td>
+<td>Layout-Manager</td>
 <td>Übung 9</td>
 <td>Aufgabe 9</td>
 <td>29.06.2023</td>
@@ -790,6 +790,108 @@
 </div>
 </div>
 </div>
+</details>
+<details class="question">
+<summary>21.04.2023 - Wrapper-Klassen und Exceptions I</summary>
+<ul>
+<li>siehe <a href="./wrapper/#wrapper-klassen"><strong>Wrapper-Klassen</strong></a></li>
+<li>siehe <a href="./exceptions/#exceptions"><strong>Exceptions I</strong></a></li>
+<li>siehe <a href="./aufgaben/#aufgabe-2-myinteger"><strong>Aufgabe 2</strong></a></li>
+</ul>
+</details>
+<details>
+<summary>Code aus der Vorlesung</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">WrapperKlassen.java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">vorlesungen.vorlesung0421</span><span class="p">;</span><span class="w"></span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JOptionPane</span><span class="p">;</span><span class="w"></span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WrapperKlassen</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+
+<span class="w">        </span><span class="c1">// Wertetyp --&gt; Referenztyp</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Kontruktoren deprecated -- nicht verwenden!</span><span class="w"></span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Integer</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Integer</span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Double</span><span class="w"> </span><span class="n">d1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Double</span><span class="p">(</span><span class="mf">5.5</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Double</span><span class="w"> </span><span class="n">d2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Double</span><span class="p">(</span><span class="s">&quot;5.5&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// erste Moeglichkeit zur Objekterzeugung</span><span class="w"></span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="mi">101</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="s">&quot;101&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Character</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Character</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//Character c2 = Character.valueOf(&quot;a&quot;);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Boolean</span><span class="w"> </span><span class="n">b1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Boolean</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Boolean</span><span class="w"> </span><span class="n">b2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Boolean</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="s">&quot;true&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// zweite Moeglichkeit - Auto-Boxing</span><span class="w"></span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5000</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5000</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5001</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Integer i6 = &quot;5000&quot;;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Boolean</span><span class="w"> </span><span class="n">b3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="w">        </span><span class="c1">// Referenztyp --&gt; Wertetyp</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// erste Moeglichkeit xxxValue()</span><span class="w"></span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">i10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i3</span><span class="p">.</span><span class="na">intValue</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">b10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b1</span><span class="p">.</span><span class="na">booleanValue</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// zweite Moeglichkeit Auto-Unboxing</span><span class="w"></span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">i11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i5</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i6</span><span class="p">);</span><span class="w">   </span><span class="c1">// false wegen Referenzvergleich</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i7</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">i6</span><span class="p">);</span><span class="w">    </span><span class="c1">// true wegen Auto-Unboxing</span><span class="w"></span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">eingabeOk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Geben Sie eine Zahl ein : &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">eingabeOk</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">eingabe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showInputDialog</span><span class="p">(</span><span class="n">message</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Sie haben &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">eingabe</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; eingegeben.&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="c1">//double nr2 = Double.parseDouble(eingabe);</span><span class="w"></span>
+<span class="w">                </span><span class="c1">//System.out.println(&quot;double-Zahl &quot; + nr2);</span><span class="w"></span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">eingabe</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">nr1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nr1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">number</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">nr1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">eingabeOk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span>
+<span class="w">            </span><span class="k">catch</span><span class="p">(</span><span class="n">NumberFormatException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Eingabe war keine Zahl!&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">catch</span><span class="p">(</span><span class="n">ArithmeticException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Durch 0 kann nicht dividiert werden!&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Ende&quot;</span><span class="p">);</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+<details>
+<summary>Video der Vorlesung</summary>
+<p><iframe src="https://mediathek.htw-berlin.de/media/embed?key=8714b42eb279497aace846671686cf37&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=8714b42eb279497aace846671686cf37&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Prog2_Wrapper_und_Exceptions" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe></p>
 </details>
 
 

@@ -41,16 +41,16 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 | | Woche | Themen (Vorlesung) | Übung | Aufgabe | Abgabe Aufgabe bis | 
 |-|-------|--------------------|-------|-----------------|------------------|
 | 1. | 10.-14.04.2023 | [Organisatorisches](#), [Wiederholung](./wiederholung/#datentypen), [Aufzählungstypen](./enum/#aufzahlungstypen-enum), [Einstieg](./einstieg/#einstieg) | - | - | - | 
-| 1. | 17.-21.04.2023 | [Wrapper-Klassen (boxing und unboxing)](./wrapper/#wrapper-klassen)| [Übung 1](./uebungen/#ubung-1-wiederholung-und-codereview) |[Aufgabe 1](./aufgaben/#aufgabe-1-wurfelspiel) | 27.04.2023 | 
-| 2. | 24.-28.04.2023 | Exceptions I | Übung 2 |[Aufgabe 2](./aufgaben/#aufgabe-2-myinteger) | 04.05.2023 | 
-| 3. | 01.-05.05.2023 | Exceptions II | Übung 3 |Aufgabe 3 | 18.05.2023 | 
-| 4. | 08.-12.05.2023 | Collections (List und Set) | Übung 4 |Aufgabe 4 | 25.05.2023 | 
+| 1. | 17.-21.04.2023 | [Wrapper-Klassen (boxing und unboxing)](./wrapper/#wrapper-klassen)<br/>[Exceptions I](./exceptions/#exceptions)| [Übung 1](./uebungen/#ubung-1-wiederholung-und-codereview) |[Aufgabe 1](./aufgaben/#aufgabe-1-wurfelspiel) | 27.04.2023 | 
+| 2. | 24.-28.04.2023 | Exceptions II | Übung 2 |[Aufgabe 2](./aufgaben/#aufgabe-2-myinteger) | 04.05.2023 | 
+| 3. | 01.-05.05.2023 | Collections (List und Set) | Übung 3 |Aufgabe 3 | 18.05.2023 | 
+| 4. | 08.-12.05.2023 | Collections (Map) | Übung 4 |Aufgabe 4 | 25.05.2023 | 
 | 5. | 15.-19.05.2023 | - | - | - | - | 
-| 6. | 22.-26.05.2023 | Collections (Map) | Übung 5 |Aufgabe 5 | 01.06.2023 | 
-| 7. | 29.-02.06.2023 | Abstrakte Klassen | Übung 6 |Aufgabe 6 | 08.06.2023 | 
-| 8. | 05.-09.06.2023 | Interfaces | Übung 7 |Aufgabe 7 | 15.06.2023 | 
-| 9. | 12.-16.06.2023 | GUI Einführung  | Übung 8 |Aufgabe 8 | 22.06.2023 | 
-| 10. | 19.-23.06.2023 | JUnit und <br/>Layout-Manager | Übung 9|Aufgabe 9 | 29.06.2023 | 
+| 6. | 22.-26.05.2023 | Abstrakte Klassen | Übung 5 |Aufgabe 5 | 01.06.2023 | 
+| 7. | 29.-02.06.2023 | Interfaces | Übung 6 |Aufgabe 6 | 08.06.2023 | 
+| 8. | 05.-09.06.2023 | GUI Einführung | Übung 7 |Aufgabe 7 | 15.06.2023 | 
+| 9. | 12.-16.06.2023 | JUnit  | Übung 8 |Aufgabe 8 | 22.06.2023 | 
+| 10. | 19.-23.06.2023 | Layout-Manager | Übung 9|Aufgabe 9 | 29.06.2023 | 
 | 12. | 26.-30.06.2023 | GUI Ereignisse | Übung 10 | Aufgabe 10 | 06.07.2023 |
 | 13. | 03.-07.07.2023 | ActionListener | Übung 11 | - | - |
 | 14. | 10.-14.07.2023 | Mausereignisse | Übung 12 | - | - |
@@ -215,3 +215,99 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 		}
 		```
 
+
+??? question "21.04.2023 - Wrapper-Klassen und Exceptions I"
+	- siehe [**Wrapper-Klassen**](./wrapper/#wrapper-klassen)
+	- siehe [**Exceptions I**](./exceptions/#exceptions)
+	- siehe [**Aufgabe 2**](./aufgaben/#aufgabe-2-myinteger)
+
+
+??? "Code aus der Vorlesung"
+
+	=== "WrapperKlassen.java"
+		```java
+		package vorlesungen.vorlesung0421;
+
+		import javax.swing.JOptionPane;
+
+		public class WrapperKlassen {
+
+			public static void main(String[] args) {
+
+
+				// Wertetyp --> Referenztyp
+
+				// Kontruktoren deprecated -- nicht verwenden!
+				Integer i1 = new Integer(100);
+				Integer i2 = new Integer("100");
+
+				Double d1 = new Double(5.5);
+				Double d2 = new Double("5.5");
+
+				// erste Moeglichkeit zur Objekterzeugung
+				Integer i3 = Integer.valueOf(101);
+				Integer i4 = Integer.valueOf("101");
+
+				Character c1 = Character.valueOf('a');
+				//Character c2 = Character.valueOf("a");
+
+				Boolean b1 = Boolean.valueOf(true);
+				Boolean b2 = Boolean.valueOf("true");
+
+				// zweite Moeglichkeit - Auto-Boxing
+				Integer i5 = 5000;
+				Integer i6 = 5000;
+				Integer i7 = 5001;
+				// Integer i6 = "5000";
+
+				Boolean b3 = true;
+
+
+				// Referenztyp --> Wertetyp
+
+				// erste Moeglichkeit xxxValue()
+
+				int i10 = i3.intValue();
+				boolean b10 = b1.booleanValue();
+
+				// zweite Moeglichkeit Auto-Unboxing
+
+				int i11 = i5;
+				System.out.println(i5 == i6);	// false wegen Referenzvergleich
+				System.out.println(i7 > i6);	// true wegen Auto-Unboxing
+				boolean eingabeOk = false;
+				String message = "Geben Sie eine Zahl ein : ";
+				while(!eingabeOk) {
+					
+					String eingabe = JOptionPane.showInputDialog(message);
+					System.out.println("Sie haben " + eingabe + " eingegeben.");
+
+					try {
+						//double nr2 = Double.parseDouble(eingabe);
+						//System.out.println("double-Zahl " + nr2);
+						int number = Integer.parseInt(eingabe);
+						int nr1 = 5;
+						int result = nr1 / number;
+						System.out.println(nr1 + "/" + number + " = " + result);
+						eingabeOk = true;
+					} 
+					catch(NumberFormatException e) {
+						message = "Eingabe war keine Zahl!";
+					}
+					catch(ArithmeticException e) {
+						message = "Durch 0 kann nicht dividiert werden!";
+					}
+
+				}
+
+				System.out.println("Ende");
+
+
+			}
+
+		}
+		```
+
+??? "Video der Vorlesung"
+
+	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=8714b42eb279497aace846671686cf37&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=8714b42eb279497aace846671686cf37&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Prog2_Wrapper_und_Exceptions" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
