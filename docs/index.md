@@ -311,3 +311,221 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 ??? "Video der Vorlesung"
 
 	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=8714b42eb279497aace846671686cf37&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=8714b42eb279497aace846671686cf37&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Prog2_Wrapper_und_Exceptions" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
+
+
+??? question "28.04.2023 - Exceptions II"
+	- siehe [**Exceptions II**](./exceptions/#exceptions)
+	- siehe [**Aufgabe 3**](./aufgaben/#aufgabe-3-solitaire)
+
+
+??? "Code aus der Vorlesung"
+
+	=== "Ausnahmen.java"
+		```java
+		package vorlesungen.vorlesung0428;
+
+		public class Ausnahmen {
+			
+			static int getValueAtIndex(int[] field, int index) throws ArrayIndexOutOfBoundsException
+			{
+				return field[index];
+			}
+			
+			static char getValueAtIndex(String input, int index) throws StringIndexOutOfBoundsException
+			{
+			    return input.charAt(index);
+			}
+
+			public static void main(String[] args) 
+			{
+				String[] basen = {"2", "8", "10", "Hi"};
+			    double result= 0;
+			    
+			    for(int index = 0; index <= basen.length; index++) 
+			    {
+
+			    	try {
+				    	String basisString = basen[index];
+				    	
+			    		int basis = Integer.parseInt(basisString);
+			    		
+				        for(int exp = 0; exp<6; exp++) {
+				            result = Math.pow(basis, exp);
+				            System.out.printf("%d ^ %d = %.0f %n", basis, exp, result);
+				        }
+				        
+			    	}catch(NumberFormatException e)
+			    	{
+			    		System.out.println("keine Zahl!");
+			    	}catch(ArrayIndexOutOfBoundsException e)
+			    	{
+			    		System.out.println("kein korrekter Index!");
+			    	}
+			    
+			    }
+			    
+			    int[] arr = {1, 2, 3, 4, 5 };
+
+			    try {
+					getValueAtIndex(arr, 5);
+				} catch (ArrayIndexOutOfBoundsException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
+			    
+			    Triangle t1 = new Triangle(0, 4, 3);
+				System.out.println(t1.area());
+
+			    
+			    System.out.println("Ende");
+			}
+		}
+		```
+
+	=== "Triangle.java"
+		```java
+		package vorlesungen.vorlesung0428;
+
+		public class Triangle {
+			private int a;
+		    private int b;
+		    private int c;
+
+		    public Triangle(int a, int b, int c) throws IllegalSideLengthException, IllegalTriangleException
+		    {
+		    	if(a <= 0 || b<= 0 || c <= 0) 
+		    	{
+		    		throw new IllegalSideLengthException();
+		    	} else if(a >= (b+c) || b >= (a+c) || c >= (a+b)) 
+		    	{
+		    		throw new IllegalTriangleException();
+		    	}
+		    	else {
+			        this.a = a;
+			        this.b = b;
+			        this.c = c;
+		    	}
+		    }
+
+		    public int circumference()
+		    {
+		        return this.a + this.b + this.c;
+		    }
+
+		    public double area()
+		    {
+		        double area = 0.0;
+		        double s = 0.5 * (this.a+this.b+this.c);
+		        area = Math.sqrt(s * (s-this.a) * (s-this.b) * (s-this.c));
+		        return area;
+		    }
+
+		    public boolean equilateral()
+		    {
+		        return this.a==this.b && this.b==this.c;
+		    }
+
+		    public boolean isosceles()
+		    {
+		        return this.a==this.b || this.b==this.c || this.c==this.a;
+		    }
+
+		    public void print()
+		    {
+		        System.out.println("Seiten          : a=" + this.a + ", b=" + this.b + ", c=" + this.c);
+		        System.out.println("Umfang          : " + this.circumference());
+		        System.out.println("Flaecheninhalt  : " + this.area());
+		        if(this.equilateral())
+		        {
+		            System.out.println("Das Dreieck ist gleichseitig.");
+		        }
+		        else
+		        {
+		            if(this.isosceles())
+		            {
+		                System.out.println("Das Dreieck ist gleichschenklig.");
+		            }
+		            else
+		            {
+		                System.out.println("Das Dreieck ist unregelmaessig.");
+		            }
+		        }
+		        if(this.isRightAngled())
+		        {
+		            System.out.println("Das Dreieck ist rechtwinklig.");
+		        }
+		        else
+		        {
+		            System.out.println("Das Dreieck ist nicht rechtwinklig.");
+		        }
+		        System.out.println();
+		    }
+
+		    public boolean sameCircumference(Triangle t)
+		    {
+		        return this.circumference()==t.circumference();
+		    }
+
+		    public boolean sidesAreEqual(Triangle t)
+		    {
+		        return (this.a==t.a && this.b==t.b && this.c==t.c) ||
+		                (this.a==t.b && this.b==t.c && this.c==t.a) ||
+		                (this.a==t.c && this.b==t.a && this.c==t.b);
+		    }
+
+		    public boolean isRightAngled()
+		    {
+		        return ((this.a*this.a == (this.b*this.b + this.c*this.c)) ||
+		                (this.b*this.b == (this.a*this.a + this.c*this.c)) ||
+		                (this.c*this.c == (this.b*this.b + this.a*this.a)));
+		    }
+
+		    public boolean isSmaller(Triangle t)
+		    {
+		        return this.area() < t.area();
+		    }
+
+		    public boolean isBigger(Triangle t)
+		    {
+		        return this.area() > t.area();
+		    }
+
+		}
+		```
+
+	=== "IllegalSideLengthException.java"
+		```java
+		package vorlesungen.vorlesung0428;
+
+		public class IllegalSideLengthException extends RuntimeException
+		{
+			public IllegalSideLengthException(String s)
+			{
+				super(s);
+			}
+			
+			public IllegalSideLengthException()
+			{
+				super("All sides must be greater than zero!");
+			}
+		}
+		```
+
+	=== "IllegalTriangleException.java"
+		```java
+		package vorlesungen.vorlesung0428;
+
+		public class IllegalTriangleException extends RuntimeException
+		{
+			public IllegalTriangleException(String s)
+			{
+				super(s);
+			}
+			
+			public IllegalTriangleException()
+			{
+				super("No side greater than the sum of the other sides!");
+			}
+		}
+		```
+
