@@ -269,7 +269,7 @@
 
 ??? "Übung 3"
 
-	1. Schreiben Sie ein Programm zur Eingabe von zwei Zahlen mithilfe der Klasse `JOptionPane` aus dem und deren Division! Fangen Sie folgende Ausnahmen ab:
+	1. Schreiben Sie ein Programm zur Eingabe von zwei Zahlen mithilfe der Klasse `JOptionPane` und deren Division! Fangen Sie folgende Ausnahmen ab:
 		- Falls die Eingabe keiner Zahl entspricht.
 		- Falls die zweite Zahl eine 0 ist.
 
