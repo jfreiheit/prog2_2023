@@ -42,9 +42,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 |-|-------|--------------------|-------|-----------------|------------------|
 | 1. | 10.-14.04.2023 | [Organisatorisches](#), [Wiederholung](./wiederholung/#datentypen), [Aufzählungstypen](./enum/#aufzahlungstypen-enum), [Einstieg](./einstieg/#einstieg) | - | - | - | 
 | 1. | 17.-21.04.2023 | [Wrapper-Klassen (boxing und unboxing)](./wrapper/#wrapper-klassen)<br/>[Exceptions I](./exceptions/#exceptions)| [Übung 1](./uebungen/#ubung-1-wiederholung-und-codereview) |[Aufgabe 1](./aufgaben/#aufgabe-1-wurfelspiel) | 27.04.2023 | 
-| 2. | 24.-28.04.2023 | Exceptions II | Übung 2 |[Aufgabe 2](./aufgaben/#aufgabe-2-myinteger) | 04.05.2023 | 
-| 3. | 01.-05.05.2023 | Collections (List und Set) | Übung 3 |Aufgabe 3 | 18.05.2023 | 
-| 4. | 08.-12.05.2023 | Collections (Map) | Übung 4 |Aufgabe 4 | 25.05.2023 | 
+| 2. | 24.-28.04.2023 | [Exceptions II](./exceptions/#die-vererbungshierarchie-der-klasse-exception) | [Übung 2](./uebungen/#ubung-2-string-und-algorithmisches-denken) |[Aufgabe 2](./aufgaben/#aufgabe-2-myinteger) | 04.05.2023 | 
+| 3. | 01.-05.05.2023 | [Collections (List und Set)](./collections/#collections) | [Übung 3](./#ubung-3-exceptions) |[Aufgabe 3](./aufgaben/#aufgabe-3-solitaire) | 18.05.2023 | 
+| 4. | 08.-12.05.2023 | [Collections (Map)](./maps/#maps) | [Übung 4](./uebungen/#ubung-4-listen-und-mengen) |[Aufgabe 4](./aufgaben/#aufgabe-4-operationen-uber-mengen) | 25.05.2023 | 
 | 5. | 15.-19.05.2023 | - | - | - | - | 
 | 6. | 22.-26.05.2023 | Abstrakte Klassen | Übung 5 |Aufgabe 5 | 01.06.2023 | 
 | 7. | 29.-02.06.2023 | Interfaces | Übung 6 |Aufgabe 6 | 08.06.2023 | 

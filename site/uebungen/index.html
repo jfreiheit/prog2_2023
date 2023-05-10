@@ -15,7 +15,7 @@
         <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/prog2/uebungen/">
       
       
-        <link rel="prev" href="../collections/">
+        <link rel="prev" href="../maps/">
       
       
         <link rel="next" href="../aufgaben/">
@@ -323,6 +323,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../maps/" class="md-nav__link">
+        Maps
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -375,6 +390,13 @@
         <li class="md-nav__item">
   <a href="#ubung-3-exceptions" class="md-nav__link">
     Übung 3 (Exceptions)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-4-listen-und-mengen" class="md-nav__link">
+    Übung 4 (Listen und Mengen)
   </a>
   
 </li>
@@ -445,6 +467,13 @@
         <li class="md-nav__item">
   <a href="#ubung-3-exceptions" class="md-nav__link">
     Übung 3 (Exceptions)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-4-listen-und-mengen" class="md-nav__link">
+    Übung 4 (Listen und Mengen)
   </a>
   
 </li>
@@ -783,6 +812,309 @@
 </li>
 </ol>
 <p><strong>Viel Spaß!</strong></p>
+</details>
+<details class="success">
+<summary>Eine mögliche Lösung für Übung 3</summary>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">uebungen.uebung3.loesung</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JOptionPane</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Uebung3</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">inputInt</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">notANumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">notANumber</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showInputDialog</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+
+<span class="w">            </span><span class="k">try</span><span class="w"> </span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="w">                </span><span class="n">notANumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span>
+<span class="w">            </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">NumberFormatException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ihre Eingabe war keine Zahl!&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">number</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">inputInt</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">notANumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">notANumber</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showInputDialog</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+
+<span class="w">            </span><span class="k">try</span><span class="w"> </span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">number</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">max</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">notANumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">else</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Zahl nicht zwischen &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; und &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">+</span><span class="s">&quot; !&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span>
+<span class="w">            </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">NumberFormatException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ihre Eingabe war keine Zahl!&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">number</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printDivide</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">number1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputInt</span><span class="p">(</span><span class="s">&quot;Zahl 1:&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">number2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isZero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Zahl 2:&quot;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">isZero</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">number2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputInt</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+
+<span class="w">            </span><span class="k">try</span><span class="w"> </span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">number2</span><span class="p">;</span>
+<span class="w">                </span><span class="n">isZero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span>
+<span class="w">            </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">ArithmeticException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Zahl darf nicht 0 sein&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; / &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">number2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printReverse</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputInt</span><span class="p">(</span><span class="s">&quot;Zahl : &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">copyNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number</span><span class="p">;</span><span class="w">        </span><span class="c1">// fuer spaetere Ausgabe</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">number</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span>
+<span class="w">            </span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">last</span><span class="p">;</span>
+<span class="w">            </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">   </span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copyNumber</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; --&gt; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">reverse</span><span class="p">;</span>
+<span class="w">        </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printChecksum</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputInt</span><span class="p">(</span><span class="s">&quot;Zahl : &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">copyNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number</span><span class="p">;</span><span class="w">        </span><span class="c1">// fuer spaetere Ausgabe</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">checksum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">number</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span>
+<span class="w">            </span><span class="n">checksum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">checksum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">last</span><span class="p">;</span>
+<span class="w">            </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">   </span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Die Quersumme von &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">copyNumber</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; ist &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">checksum</span><span class="p">;</span>
+<span class="w">        </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showMessageDialog</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">          </span><span class="kt">int</span><span class="w"> </span><span class="n">number1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputInt</span><span class="p">(</span><span class="s">&quot;Geben Sie eine Zahl ein :&quot;</span><span class="p">);</span>
+<span class="w">          </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">number1</span><span class="p">);</span>
+
+<span class="w">          </span><span class="kt">int</span><span class="w"> </span><span class="n">choice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">showConfirmDialog</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Wollen Sie weiterspielen?&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s">&quot;Abfrage&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">YES_NO_OPTION</span><span class="p">);</span><span class="w"> </span>
+<span class="w">          </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">choice</span><span class="p">);</span>
+
+<span class="w">          </span><span class="k">if</span><span class="p">(</span><span class="n">choice</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">YES_OPTION</span><span class="p">)</span><span class="w"> </span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span>
+<span class="w">              </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;yes geklickt&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="k">if</span><span class="p">(</span><span class="n">choice</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">NO_OPTION</span><span class="p">)</span><span class="w"> </span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span>
+<span class="w">              </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;no geklickt&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="k">if</span><span class="p">(</span><span class="n">choice</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">JOptionPane</span><span class="p">.</span><span class="na">CANCEL_OPTION</span><span class="p">)</span><span class="w"> </span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span>
+<span class="w">              </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;no geklickt&quot;</span><span class="p">);</span>
+<span class="w">          </span><span class="p">}</span>
+
+<span class="w">          </span><span class="n">printDivide</span><span class="p">();</span>
+
+<span class="w">          </span><span class="n">printReverse</span><span class="p">();</span>
+
+<span class="w">          </span><span class="n">printChecksum</span><span class="p">();</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h5 id="ubung-4-listen-und-mengen">Übung 4 (Listen und Mengen)<a class="headerlink" href="#ubung-4-listen-und-mengen" title="Permanent link">&para;</a></h5>
+<details>
+<summary>Übung 4</summary>
+<ol>
+<li>Erstellen Sie eine Klasse <code>Uebung4</code> mit <code>main()</code>-Methode.</li>
+<li>Definieren Sie in der <code>main()</code>-Methode eine Variable <code>words</code> vom Typ <code>String[]</code> und weisen Sie dieser Variablen folgende Werte zu:
+    <div class="highlight"><pre><span></span><code><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Linux&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Apple&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Facebook&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Amazon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;IBM&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Lenovo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Google&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;IBM&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Microsoft&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Apple&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Google&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Twitter&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Skype&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Chrome&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Linux&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Firefox&quot;</span><span class="p">};</span>
+</code></pre></div></li>
+</ol>
+<p><strong>A. Listen (<code>List</code>)</strong></p>
+<ol>
+<li>Erstellen Sie eine Methode <code>public static List&lt;String&gt; createArrayList(String[] words)</code>. In dieser Methode soll eine <code>ArrayList</code> erstellt werden. Alle Elemente in dieser Liste sind vom Typ <code>String</code>. Befüllen Sie diese Liste mit allen Wörtern aus dem <code>words</code>-Array. Die Methode gibt die befüllte Liste (<code>List</code>) zurück. </li>
+<li>Erstellen Sie eine Methode <code>public static void printList(List&lt;String&gt; list)</code>. Diese Methode gibt alle Elemente der Liste <code>list</code> auf der Konsole aus. Geben Sie auch die Anzahl der Elemente der Liste aus. </li>
+<li>Erstellen Sie in der <code>main()</code>-Methode mithilfe der Methode <code>createArrayList(words)</code> eine Liste und speichern Sie diese Liste in einer Variablen vom Typ <code>List&lt;String&gt;</code>. Geben Sie alle Elemente dieser Liste mithilfe der Methode <code>printList()</code> auf der Konsole aus. </li>
+<li>
+<p>Studieren Sie alle Methoden für <code>List</code> unter <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html">https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html</a>.</p>
+<ul>
+<li>
+<p>Ermitteln Sie den Index in der Liste, in der <code>"Apple"</code> das <strong>erste</strong> Mal auftaucht. Erzeugen Sie folgende Ausgabe: 
+    <div class="highlight"><pre><span></span><code>Index<span class="w"> </span>des<span class="w"> </span>ersten<span class="w"> </span>Auftretens<span class="w"> </span>von<span class="w"> </span>Apple<span class="w">  </span>:<span class="w"> </span><span class="m">1</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Ermitteln Sie den Index in der Liste, in der <code>"Apple"</code> das <strong>letzte</strong> Mal auftaucht. Erzeugen Sie folgende Ausgabe: 
+    <div class="highlight"><pre><span></span><code>Index<span class="w"> </span>des<span class="w"> </span>letzten<span class="w"> </span>Auftretens<span class="w"> </span>von<span class="w"> </span>Apple<span class="w"> </span>:<span class="w"> </span><span class="m">9</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Geben Sie den Wert des <strong>ersten</strong> Elementes der Liste aus. Erzeugen Sie folgende Ausgabe: 
+    <div class="highlight"><pre><span></span><code>erstes<span class="w"> </span>Element<span class="w"> </span>der<span class="w"> </span>Liste<span class="w"> </span>:<span class="w"> </span>Linux
+</code></pre></div></p>
+</li>
+<li>
+<p>Geben Sie den Wert des <strong>letzten</strong> Elementes der Liste aus. Erzeugen Sie folgende Ausgabe: 
+    <div class="highlight"><pre><span></span><code>letztes<span class="w"> </span>Element<span class="w"> </span>der<span class="w"> </span>Liste<span class="w"> </span>:<span class="w"> </span>Firefox
+</code></pre></div></p>
+</li>
+<li>
+<p>Löschen Sie die Werte <code>"Apple"</code>, <code>"Google"</code> und <code>"Facebook"</code>. Geben Sie die Liste erneut mithilfe der <code>printList(list)</code>-Methode aus.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>B. Mengen (<code>Set</code>)</strong></p>
+<ol>
+<li>Erstellen Sie eine Methode <code>public static Set&lt;String&gt; createHashSet(String[] words)</code>. In dieser Methode soll eine <code>HashSet</code> erstellt werden. Alle Elemente in dieser Liste sind vom Typ <code>String</code>. Befüllen Sie diese Liste mit allen Wörtern aus dem <code>words</code>-Array. Die Methode gibt die befüllte Menge (<code>Set</code>) zurück. </li>
+<li>Erstellen Sie eine Methode <code>public static void printSet(Set&lt;String&gt; set)</code>. Diese Methode gibt alle Elemente der Menge <code>set</code> auf der Konsole aus. Geben Sie auch die Anzahl der Elemente der Menge aus. </li>
+<li>Erstellen Sie in der <code>main()</code>-Methode mithilfe der Methode <code>createHashSet(words)</code> eine Menge und speichern Sie diese Menge in einer Variablen vom Typ <code>Set&lt;String&gt;</code>. Geben Sie alle Elemente dieser Menge mithilfe der Methode <code>printSet()</code> auf der Konsole aus. Was beobachten Sie in Bezug auf die Anzahl der Elemente im Vergleich zur Anzahl der Elemente in der Liste? Warum ist das so?</li>
+<li>Erstellen Sie eine Methode <code>public static Set&lt;String&gt; createTreeSet(String[] words)</code>. In dieser Methode soll eine <code>TreeSet</code> erstellt werden. Alle Elemente in dieser Liste sind vom Typ <code>String</code>. Befüllen Sie diese Menge (<code>Set</code>) mit allen Wörtern aus dem <code>words</code>-Array. Die Methode gibt die befüllte Menge (<code>Set</code>) zurück. </li>
+<li>Erstellen Sie in der <code>main()</code>-Methode mithilfe der Methode <code>createTreeSet(words)</code> eine Menge und speichern Sie diese Menge in einer Variablen. Geben Sie alle Elemente dieser Menge mithilfe der Methode <code>printSet()</code> auf der Konsole aus. Was beobachten Sie in Bezug auf die Sortierung der Elemente im Vergleich zur <code>HashSet</code>?</li>
+</ol>
+<p><strong>Zusatz</strong></p>
+<ol>
+<li>Erstellen Sie für die Liste eine Methode <code>public static List&lt;String&gt; findDoublets(List&lt;String&gt; list)</code>. Diese Methode erstellt eine Liste, in der alle Elemente enthalten sind, die in <code>list</code> doppelt vorkommen. Diese Elemente werden dann auch doppelt in die Resultat-Liste übernommen. Geben Sie diese Liste mithilfe der <code>printList()</code>-Methode in der <code>main()</code>-Methode aus.</li>
+</ol>
+<details>
+<summary>Mögliche Ausgabe (je nach Reihenfolge des Aufrufs der Methoden)</summary>
+<div class="highlight"><pre><span></span><code>Liste<span class="w"> </span>mit<span class="w"> </span><span class="m">16</span><span class="w"> </span>Elementen<span class="w"> </span>:
+--------------------------
+Linux
+Apple
+Facebook
+Amazon
+IBM
+Lenovo
+Google
+IBM
+Microsoft
+Apple
+Google
+Twitter
+Skype
+Chrome
+Linux
+Firefox
+Index<span class="w"> </span>des<span class="w"> </span>ersten<span class="w"> </span>Auftretens<span class="w"> </span>von<span class="w"> </span>Apple<span class="w">  </span>:<span class="w"> </span><span class="m">1</span>
+Index<span class="w"> </span>des<span class="w"> </span>letzten<span class="w"> </span>Auftretens<span class="w"> </span>von<span class="w"> </span>Apple<span class="w"> </span>:<span class="w"> </span><span class="m">9</span>
+erstes<span class="w"> </span>Element<span class="w"> </span><span class="k">in</span><span class="w"> </span>der<span class="w"> </span>Liste<span class="w">  </span>:<span class="w"> </span>Linux
+letztes<span class="w"> </span>Element<span class="w"> </span><span class="k">in</span><span class="w"> </span>der<span class="w"> </span>Liste<span class="w"> </span>:<span class="w"> </span>Firefox
+
+Liste<span class="w"> </span>mit<span class="w"> </span><span class="m">13</span><span class="w"> </span>Elementen<span class="w"> </span>:
+--------------------------
+Linux
+Amazon
+IBM
+Lenovo
+IBM
+Microsoft
+Apple
+Google
+Twitter
+Skype
+Chrome
+Linux
+Firefox
+
+Doublets-
+Liste<span class="w"> </span>mit<span class="w"> </span><span class="m">4</span><span class="w"> </span>Elementen<span class="w"> </span>:
+--------------------------
+Linux
+IBM
+IBM
+Linux
+
+ohne<span class="w"> </span>Doublets-
+Liste<span class="w"> </span>mit<span class="w"> </span><span class="m">9</span><span class="w"> </span>Elementen<span class="w"> </span>:
+--------------------------
+Amazon
+Lenovo
+Microsoft
+Apple
+Google
+Twitter
+Skype
+Chrome
+Firefox
+
+Menge<span class="w"> </span>mit<span class="w"> </span><span class="m">12</span><span class="w"> </span>Elementen<span class="w"> </span>:
+--------------------------
+Lenovo
+Google
+Apple
+Skype
+Linux
+IBM
+Twitter
+Chrome
+Microsoft
+Amazon
+Facebook
+Firefox
+
+Menge<span class="w"> </span>mit<span class="w"> </span><span class="m">12</span><span class="w"> </span>Elementen<span class="w"> </span>:
+--------------------------
+Amazon
+Apple
+Chrome
+Facebook
+Firefox
+Google
+IBM
+Lenovo
+Linux
+Microsoft
+Skype
+Twitter
+</code></pre></div>
+</details>
 </details>
 
 
