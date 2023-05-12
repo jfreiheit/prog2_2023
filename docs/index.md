@@ -44,16 +44,16 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 | 1. | 17.-21.04.2023 | [Wrapper-Klassen (boxing und unboxing)](./wrapper/#wrapper-klassen)<br/>[Exceptions I](./exceptions/#exceptions)| [Übung 1](./uebungen/#ubung-1-wiederholung-und-codereview) |[Aufgabe 1](./aufgaben/#aufgabe-1-wurfelspiel) | 27.04.2023 | 
 | 2. | 24.-28.04.2023 | [Exceptions II](./exceptions/#die-vererbungshierarchie-der-klasse-exception) | [Übung 2](./uebungen/#ubung-2-string-und-algorithmisches-denken) |[Aufgabe 2](./aufgaben/#aufgabe-2-myinteger) | 04.05.2023 | 
 | 3. | 01.-05.05.2023 | [Collections (List und Set)](./collections/#collections) | [Übung 3](./#ubung-3-exceptions) |[Aufgabe 3](./aufgaben/#aufgabe-3-solitaire) | 18.05.2023 | 
-| 4. | 08.-12.05.2023 | [Collections (Map)](./maps/#maps) | [Übung 4](./uebungen/#ubung-4-listen-und-mengen) |[Aufgabe 4](./aufgaben/#aufgabe-4-operationen-uber-mengen) | 25.05.2023 | 
+| 4. | 08.-12.05.2023 | [Collections (Map)](./maps/#maps) und [Abstrakte Klassen](./abstrakt/#abstrakte-klassen)| [Übung 4](./uebungen/#ubung-4-listen-und-mengen) |[Aufgabe 4](./aufgaben/#aufgabe-4-operationen-uber-mengen) | 25.05.2023 | 
 | 5. | 15.-19.05.2023 | - | - | - | - | 
-| 6. | 22.-26.05.2023 | Abstrakte Klassen | Übung 5 |Aufgabe 5 | 01.06.2023 | 
-| 7. | 29.-02.06.2023 | Interfaces | Übung 6 |Aufgabe 6 | 08.06.2023 | 
-| 8. | 05.-09.06.2023 | GUI Einführung | Übung 7 |Aufgabe 7 | 15.06.2023 | 
-| 9. | 12.-16.06.2023 | JUnit  | Übung 8 |Aufgabe 8 | 22.06.2023 | 
-| 10. | 19.-23.06.2023 | Layout-Manager | Übung 9|Aufgabe 9 | 29.06.2023 | 
-| 12. | 26.-30.06.2023 | GUI Ereignisse | Übung 10 | Aufgabe 10 | 06.07.2023 |
-| 13. | 03.-07.07.2023 | ActionListener | Übung 11 | - | - |
-| 14. | 10.-14.07.2023 | Mausereignisse | Übung 12 | - | - |
+| 6. | 22.-26.05.2023 | Interfaces | Übung 5 |Aufgabe 5 | 01.06.2023 | 
+| 7. | 29.-02.06.2023 | GUI Einführung | Übung 6 |Aufgabe 6 | 08.06.2023 | 
+| 8. | 05.-09.06.2023 | Layout-Manager | Übung 7 |Aufgabe 7 | 15.06.2023 | 
+| 9. | 12.-16.06.2023 | GUI Ereignisse  | Übung 8 |Aufgabe 8 | 22.06.2023 | 
+| 10. | 19.-23.06.2023 | ActionListener | Übung 9|Aufgabe 9 | 29.06.2023 | 
+| 12. | 26.-30.06.2023 | Mausereignisse | Übung 10 | Aufgabe 10 | 06.07.2023 |
+| 13. | 03.-07.07.2023 | JUnit | Übung 11 | - | - |
+| 14. | 10.-14.07.2023 | REST-API mit SpringBoot| Übung 12 | - | - |
 |  | 28.07.2023 14:00 Uhr| Klausur 1.PZ | Labore 6. Etage C-Gebäude| - | - |
 |  | 29.09.2023 14:00 Uhr| Klausur 2.PZ | Labore 6. Etage C-Gebäude| - | - |
 
@@ -527,5 +527,146 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 				super("No side greater than the sum of the other sides!");
 			}
 		}
+		```
+
+
+??? question "12.05.2023 - Maps und Abstrakte Klassen"
+	- siehe [**Collections (Map)**](./maps/#maps)
+	- siehe [**Abstrakte Klassen**](./abstrakt/#abstrakte-klassen)
+	- siehe [**Aufgabe 5**](./aufgaben/#aufgabe-5-maps)
+
+
+??? "Code aus der Vorlesung"
+
+	=== "Maps.java"
+		```java
+		package vorlesungen.vorlesung0512;
+
+		import java.util.*;
+
+
+		public class Maps 
+		{
+			public static void printShape(Shape s)
+			{
+				System.out.println("Area      : " + s.area());
+				System.out.println("Perimeter : " + s.perimeter());
+			}
+
+			public static void main(String[] args) 
+			{
+				Map<Integer, String> table = new HashMap<>();
+				table.put(12459, "Berlin");
+				table.put(10435, "Berlin");
+				table.put(18055, "Rostock");
+				table.put(15711, "KW");
+				table.put(15711, "Koenigs Wusterhausen");
+				
+				System.out.printf("%n%n--------- alle keys ---------%n%n");
+				
+				Set<Integer> keys = table.keySet();
+				for(Integer key : keys)
+				{
+					System.out.println(key);
+				}
+				
+				System.out.printf("%n%n--------- alle values ---------%n%n");
+				
+				Collection<String> values = table.values();
+				for(String value : values)
+				{
+					System.out.println(value);
+				}
+				
+				System.out.printf("%n%n--------- alle entries ---------%n%n");
+				Set<Map.Entry<Integer, String>> entries = table.entrySet();
+				for(Map.Entry<Integer, String> entry : entries)
+				{
+					System.out.println("PLZ: " + entry.getKey() + " Ort : " + entry.getValue());
+				}
+				
+				System.out.printf("%n%n--------- Shape ---------%n%n");
+				Shape s1 = new Rectangle(10, 20);
+				System.out.println("Area      : " + s1.area());
+				System.out.println("Perimeter : " + s1.perimeter());
+				
+				Shape s2 = new Circle(5.0);
+				printShape(s1);
+				printShape(s2);
+				
+			}
+
+		}
+		```
+
+	=== "Shape.java"
+		```java
+		package vorlesungen.vorlesung0512;
+
+		public abstract class Shape {
+			
+			public abstract double perimeter();
+			public abstract double area();
+
+		}
+		```
+
+	=== "Rectangle.java"
+		```java
+		package vorlesungen.vorlesung0512;
+
+		public class Rectangle extends Shape
+		{
+			private int width, height;
+			
+
+			public Rectangle(int width, int height) 
+			{
+				this.width = width;
+				this.height = height;
+			}
+
+			@Override
+			public double perimeter() 
+			{
+				return 2 * (this.width + this.height);
+			}
+
+			@Override
+			public double area() 
+			{
+				return this.width * this.height;
+			}
+
+		}
+		```
+
+	=== "Circle.java"
+		```java
+		package vorlesungen.vorlesung0512;
+
+		public class Circle extends Shape
+		{
+			private double radius;
+			
+			public Circle(double radius)
+			{
+				this.radius = radius;
+			}
+			
+			@Override
+			public double perimeter() 
+			{
+				return Math.PI * 2 * this.radius;
+			}
+
+			@Override
+			public double area() 
+			{
+				return Math.PI * this.radius * this.radius;
+			}
+
+		}
+
 		```
 

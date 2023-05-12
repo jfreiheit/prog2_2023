@@ -338,6 +338,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../abstrakt/" class="md-nav__link">
+        Abstrakte Klassen
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../uebungen/" class="md-nav__link">
         Übungen
       </a>
@@ -2741,7 +2756,7 @@ Gestalten Sie die Ausgabe so, dass die drei Mengen <code>numbers1</code>, <code>
 <p>Die Zahl π ist eine irrationale Zahl, d.h. sie kann nicht als Bruch dargestellt werden. Außerdem ist sie nicht periodisch, d.h. es gibt keine immer wiederkehrende Folge von Ziffern im Nachkommabereich. Die Zahl π hat unendlich viele Nachkommastellen und da sie nicht periodisch ist, kommen alle möglichen Ziffernfolge in π vor. Beispielsweise kommt die Ziffernfolge <code>123456</code> allein in den ersten 200 Millionen Nachkommastellen 208 Mal vor.</p>
 </li>
 <li>
-<p>Erstellen Sie eine <code>HashMap</code>, in der die Schlüssel vom Typ <code>String</code> und die Werte vom Typ <code>Intger</code> sind. Als Schlüssel nutzen Sie alle 4-stelligen Zifferkombinationen <code>"0000"</code>, <code>"0001"</code> bis <code>"9999"</code>. Als Werte sollen dazu jeweils die Anzahl der Vorkommen dieser Ziffernkombinationen in dem obigen <code>String PI</code> gespeichert werden. </p>
+<p>Erstellen Sie eine <code>TreeMap</code>, in der die Schlüssel vom Typ <code>String</code> und die Werte vom Typ <code>Intger</code> sind. Als Schlüssel nutzen Sie alle 4-stelligen Zifferkombinationen <code>"0000"</code>, <code>"0001"</code> bis <code>"9999"</code>. Als Werte sollen dazu jeweils die Anzahl der Vorkommen dieser Ziffernkombinationen in dem obigen <code>String PI</code> gespeichert werden. </p>
 </li>
 <li>
 <p>Erstellen Sie eine <code>ArrayList</code>, in der die Ziffernkombinationen gespeichert sind, die am häufigsten in dem obigen <code>String PI</code> gespeichert sind. Wieviele und welche Ziffernkombinationen sind das?</p>
@@ -2752,7 +2767,7 @@ Gestalten Sie die Ausgabe so, dass die drei Mengen <code>numbers1</code>, <code>
 <p>Schauen Sie sich dazu die Klasse <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> genauer an!</p>
 </li>
 <li>
-<p>Überlegen Sie sich, wie Sie am besten alle möglichen Kombinationen aus 4-stelligen Zahlen als String erzeugen können (also <code>"0000", "0001", "0002", ... "9999"</code>)</p>
+<p>Überlegen Sie sich, wie Sie am besten alle möglichen Kombinationen aus 4-stelligen Zahlen als String erzeugen können (also <code>"0000", "0001", "0002", ... "9999"</code>).  </p>
 </li>
 <li>
 <p>Schreiben Sie sich eine Methode <code>int nrOfOccurences(String sub, String str)</code>, die die Anzahl des Vorkommens von <code>sub</code> in <code>str</code> zählt. Sie können diese Methode z.B. testen, indem Sie <code>sub="0000"</code> setzen und <code>str=pi</code> &rarr; <code>"0000"</code> kommt 9 Mal in <code>pi</code> vor. Testen Sie auch <code>sub="2541"</code> und <code>str=pi</code>, denn <code>"2541"</code> ist der allerletzte <code>substring</code> in unserem <code>pi</code> und kommt 8 Mal vor. </p>

@@ -73,6 +73,7 @@ nav:
     - Exceptions: exceptions.md 
     - Collections: collections.md 
     - Maps: maps.md
+    - Abstrakte Klassen: abstrakt.md 
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
 
