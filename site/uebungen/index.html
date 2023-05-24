@@ -15,7 +15,7 @@
         <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/prog2/uebungen/">
       
       
-        <link rel="prev" href="../abstrakt/">
+        <link rel="prev" href="../interfaces/">
       
       
         <link rel="next" href="../aufgaben/">
@@ -353,6 +353,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../interfaces/" class="md-nav__link">
+        Interfaces
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -412,6 +427,13 @@
         <li class="md-nav__item">
   <a href="#ubung-4-listen-und-mengen" class="md-nav__link">
     Übung 4 (Listen und Mengen)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-5-maps" class="md-nav__link">
+    Übung 5 (Maps)
   </a>
   
 </li>
@@ -489,6 +511,13 @@
         <li class="md-nav__item">
   <a href="#ubung-4-listen-und-mengen" class="md-nav__link">
     Übung 4 (Listen und Mengen)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-5-maps" class="md-nav__link">
+    Übung 5 (Maps)
   </a>
   
 </li>
@@ -1549,6 +1578,114 @@ Twitter
 </div>
 </div>
 </div>
+</details>
+<h5 id="ubung-5-maps">Übung 5 (Maps)<a class="headerlink" href="#ubung-5-maps" title="Permanent link">&para;</a></h5>
+<details>
+<summary>Übung 5</summary>
+<ol>
+<li>
+<p>Erstellen Sie eine Klasse <code>Stadt</code> mit folgenden Objektvariablen:</p>
+<ul>
+<li><code>String name;</code></li>
+<li><code>List&lt;Integer&gt; bevoelkerung;</code></li>
+<li><code>float flaeche;</code></li>
+</ul>
+</li>
+<li>
+<p>Erstellen Sie für die Klasse <code>Stadt</code> einen parametrisierten Konstruktor <code>public Stadt(String name, List&lt;Integer&gt; bevoelkerung, float flaeche)</code>, der die Objektvariablen initialisiert.</p>
+</li>
+<li>Erstellen Sie für die Klasse <code>Stadt</code> eine <code>print()</code>-Methode, so dass eine Ausgabe auf der Konsole in folgender Form erscheint (Bsp.):
+    <div class="highlight"><pre><span></span><code>Berlin<span class="w">             </span><span class="m">891</span>,68<span class="w"> </span>km2<span class="w">    </span><span class="m">3</span>.382.169<span class="w">   </span><span class="m">3</span>.460.725<span class="w">   </span><span class="m">3</span>.574.830
+</code></pre></div></li>
+<li>Erstellen Sie eine Klasse <code>StadtTest</code> mit <code>main()</code>-Methode. Kopieren Sie in die Klasse die Methode <code>public static Stadt[] staedte()</code> hinein:
+    <div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Stadt</span><span class="o">[]</span><span class="w"> </span><span class="nf">staedte</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Stadt</span><span class="o">[]</span><span class="w"> </span><span class="n">staedte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stadt</span><span class="o">[</span><span class="mi">6</span><span class="o">]</span><span class="p">;</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">berlinBevoelkerung</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3382169</span><span class="p">);</span><span class="w">    </span>
+<span class="w">    </span><span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3460725</span><span class="p">);</span><span class="w">    </span>
+<span class="w">    </span><span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3574830</span><span class="p">);</span>
+<span class="w">    </span><span class="n">staedte</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Berlin&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">berlinBevoelkerung</span><span class="p">,</span><span class="w"> </span><span class="mf">891.68f</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hamburgBevoelkerung</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">hamburgBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1715392</span><span class="p">);</span><span class="w">   </span>
+<span class="w">    </span><span class="n">hamburgBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1786448</span><span class="p">);</span><span class="w">   </span>
+<span class="w">    </span><span class="n">hamburgBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1810438</span><span class="p">);</span><span class="w">   </span>
+<span class="w">    </span><span class="n">staedte</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Hamburg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">hamburgBevoelkerung</span><span class="p">,</span><span class="w"> </span><span class="mf">755.22f</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">muenchenBevoelkerung</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">muenchenBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1210223</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="n">muenchenBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1353186</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="n">muenchenBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1464301</span><span class="p">);</span>
+<span class="w">    </span><span class="n">staedte</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Muenchen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">muenchenBevoelkerung</span><span class="p">,</span><span class="w"> </span><span class="mf">310.70f</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">koelnBevoelkerung</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">koelnBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">962884</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="n">koelnBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1007119</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">koelnBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1075935</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">staedte</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Koeln&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">koelnBevoelkerung</span><span class="p">,</span><span class="w"> </span><span class="mf">405.02f</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">frankfurtBevoelkerung</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">frankfurtBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">648550</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="n">frankfurtBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">679664</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="n">frankfurtBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">736414</span><span class="p">);</span>
+<span class="w">    </span><span class="n">staedte</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Frankfurt/Main&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">frankfurtBevoelkerung</span><span class="p">,</span><span class="w"> </span><span class="mf">248.31f</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">berlinBevoelkerung</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3382169</span><span class="p">);</span><span class="w">    </span>
+<span class="w">    </span><span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3460725</span><span class="p">);</span><span class="w">    </span>
+<span class="w">    </span><span class="n">berlinBevoelkerung</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3574830</span><span class="p">);</span>
+<span class="w">    </span><span class="n">staedte</span><span class="o">[</span><span class="mi">5</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stadt</span><span class="p">(</span><span class="s">&quot;Berlin&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">berlinBevoelkerung</span><span class="p">,</span><span class="w"> </span><span class="mf">891.68f</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">staedte</span><span class="p">;</span>
+<span class="p">}</span><span class="w">       </span>
+</code></pre></div></li>
+</ol>
+<p><strong>Liste</strong></p>
+<ol>
+<li>Erstellen Sie in der <code>main()</code>-Methode eine <code>List&lt;Stadt&gt; staedteListe = new ArrayList&lt;&gt;();</code>. Fügen Sie der <code>staedteListe</code> alle Städte aus dem durch Aufruf der <code>staedte()</code>-Methode erzeugtem Array zu.</li>
+<li>Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der <code>print()</code>-Methode aus der Klasse <code>Stadt</code> aus.</li>
+</ol>
+<p><strong>Menge</strong></p>
+<ol>
+<li>Erstellen Sie in der <code>main()</code>-Methode eine <code>Set&lt;Stadt&gt; staedteMenge = new HashSet&lt;&gt;();</code>. Fügen Sie der <code>staedteMenge</code> alle Städte aus dem durch Aufruf der <code>staedte()</code>-Methode erzeugtem Array zu.</li>
+<li>Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der <code>print()</code>-Methode aus der Klasse <code>Stadt</code> aus.</li>
+<li>Berlin erscheint doppelt, obwohl eine Menge keine doppelten Elemente enthalten darf. Warum?</li>
+</ol>
+<p><strong>Stadt - Teil 2</strong></p>
+<ol>
+<li>Implementieren Sie in der Klasse <code>Stadt</code> die <code>equals(Object)</code>- und die <code>hashCode()</code>-Methode.</li>
+<li>Führen Sie danach die <code>StadtTest</code>-Klasse erneut aus. Was hat sich an der Menge geändert?</li>
+</ol>
+<p><strong>Maps</strong></p>
+<ol>
+<li>Erstellen Sie in der <code>main()</code>-Methode eine <code>Map&lt;Integer, Stadt&gt; staedteMap = new HashMap&lt;&gt;();</code>. Fügen Sie der <code>staedteMap</code> einen fortlaufenden, eindeutigen <code>Integer</code>-Wert beginnend mit <code>1</code> als <em>Key</em> sowie alle alle Städte aus dem durch Aufruf der <code>staedte()</code>-Methode erzeugtem Array als <em>Value</em> hinzu.</li>
+<li>Geben Sie alle Informationen über alle Städte aus der Liste unter Verwendung der <code>print()</code>-Methode aus der Klasse <code>Stadt</code> aus. Beginnen Sie die Zeile jeweils mit der Ausgabe des <em>Keys</em>.</li>
+</ol>
+<p><strong>Ausgaben</strong></p>
+<div class="highlight"><pre><span></span><code>------------<span class="w"> </span>Liste<span class="w"> </span>--------------
+Berlin<span class="w">             </span><span class="m">891</span>,68<span class="w"> </span>km2<span class="w">    </span><span class="m">3</span>.382.169<span class="w">   </span><span class="m">3</span>.460.725<span class="w">   </span><span class="m">3</span>.574.830
+Hamburg<span class="w">            </span><span class="m">755</span>,22<span class="w"> </span>km2<span class="w">    </span><span class="m">1</span>.715.392<span class="w">   </span><span class="m">1</span>.786.448<span class="w">   </span><span class="m">1</span>.810.438
+Muenchen<span class="w">           </span><span class="m">310</span>,70<span class="w"> </span>km2<span class="w">    </span><span class="m">1</span>.210.223<span class="w">   </span><span class="m">1</span>.353.186<span class="w">   </span><span class="m">1</span>.464.301
+Koeln<span class="w">              </span><span class="m">405</span>,02<span class="w"> </span>km2<span class="w">      </span><span class="m">962</span>.884<span class="w">   </span><span class="m">1</span>.007.119<span class="w">   </span><span class="m">1</span>.075.935
+Frankfurt/Main<span class="w">     </span><span class="m">248</span>,31<span class="w"> </span>km2<span class="w">      </span><span class="m">648</span>.550<span class="w">     </span><span class="m">679</span>.664<span class="w">     </span><span class="m">736</span>.414
+Berlin<span class="w">             </span><span class="m">891</span>,68<span class="w"> </span>km2<span class="w">    </span><span class="m">3</span>.382.169<span class="w">   </span><span class="m">3</span>.460.725<span class="w">   </span><span class="m">3</span>.574.830
+
+------------<span class="w"> </span>Menge<span class="w"> </span>--------------
+Frankfurt/Main<span class="w">     </span><span class="m">248</span>,31<span class="w"> </span>km2<span class="w">      </span><span class="m">648</span>.550<span class="w">     </span><span class="m">679</span>.664<span class="w">     </span><span class="m">736</span>.414
+Berlin<span class="w">             </span><span class="m">891</span>,68<span class="w"> </span>km2<span class="w">    </span><span class="m">3</span>.382.169<span class="w">   </span><span class="m">3</span>.460.725<span class="w">   </span><span class="m">3</span>.574.830
+Muenchen<span class="w">           </span><span class="m">310</span>,70<span class="w"> </span>km2<span class="w">    </span><span class="m">1</span>.210.223<span class="w">   </span><span class="m">1</span>.353.186<span class="w">   </span><span class="m">1</span>.464.301
+Koeln<span class="w">              </span><span class="m">405</span>,02<span class="w"> </span>km2<span class="w">      </span><span class="m">962</span>.884<span class="w">   </span><span class="m">1</span>.007.119<span class="w">   </span><span class="m">1</span>.075.935
+Hamburg<span class="w">            </span><span class="m">755</span>,22<span class="w"> </span>km2<span class="w">    </span><span class="m">1</span>.715.392<span class="w">   </span><span class="m">1</span>.786.448<span class="w">   </span><span class="m">1</span>.810.438
+
+------------<span class="w"> </span>Maps<span class="w"> </span>--------------
+<span class="m">1</span><span class="w">  </span>Berlin<span class="w">            </span><span class="m">891</span>,68<span class="w"> </span>km2<span class="w">    </span><span class="m">3</span>.382.169<span class="w">   </span><span class="m">3</span>.460.725<span class="w">   </span><span class="m">3</span>.574.830
+<span class="m">2</span><span class="w">  </span>Hamburg<span class="w">           </span><span class="m">755</span>,22<span class="w"> </span>km2<span class="w">    </span><span class="m">1</span>.715.392<span class="w">   </span><span class="m">1</span>.786.448<span class="w">   </span><span class="m">1</span>.810.438
+<span class="m">3</span><span class="w">  </span>Muenchen<span class="w">          </span><span class="m">310</span>,70<span class="w"> </span>km2<span class="w">    </span><span class="m">1</span>.210.223<span class="w">   </span><span class="m">1</span>.353.186<span class="w">   </span><span class="m">1</span>.464.301
+<span class="m">4</span><span class="w">  </span>Koeln<span class="w">             </span><span class="m">405</span>,02<span class="w"> </span>km2<span class="w">      </span><span class="m">962</span>.884<span class="w">   </span><span class="m">1</span>.007.119<span class="w">   </span><span class="m">1</span>.075.935
+<span class="m">5</span><span class="w">  </span>Frankfurt/Main<span class="w">    </span><span class="m">248</span>,31<span class="w"> </span>km2<span class="w">      </span><span class="m">648</span>.550<span class="w">     </span><span class="m">679</span>.664<span class="w">     </span><span class="m">736</span>.414
+<span class="m">6</span><span class="w">  </span>Berlin<span class="w">            </span><span class="m">891</span>,68<span class="w"> </span>km2<span class="w">    </span><span class="m">3</span>.382.169<span class="w">   </span><span class="m">3</span>.460.725<span class="w">   </span><span class="m">3</span>.574.830
+</code></pre></div>
 </details>
 
 
