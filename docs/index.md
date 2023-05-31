@@ -670,3 +670,224 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 		```
 
+
+??? question "26.05.2023 - Interfaces"
+	- siehe [**Interfaces**](./interfaces/#interfaces)
+	- siehe [**Übung 6**](./uebungen/#ubung-6-interfaces)
+	- siehe [**Aufgabe 6**](./aufgaben/#aufgabe-6-interfaces)
+
+
+??? "Code aus der Vorlesung"
+
+	=== "Testklasse.java"
+		```java
+		package vorlesungen.vorlesung0526;
+
+		public class Testklasse 
+		{
+			
+			public static void sortieren(Comparable[] unsortiert)
+			{
+				for(int bubble=1; bubble < unsortiert.length; bubble++)
+				{
+					for(int index = 0; index < unsortiert.length-bubble; index++)
+					{
+						if(unsortiert[index].compareTo(unsortiert[index+1]) > 0)
+						{
+							Comparable tmp = unsortiert[index];
+							unsortiert[index] = unsortiert[index + 1];
+							unsortiert[index + 1] = tmp;
+						}
+					}
+				}
+			}
+			
+			public static void printArray(Printable[] arr)
+			{
+				for(Printable p : arr)
+				{
+					p.print();
+				}
+			}
+
+			public static void main(String[] args) 
+			{	
+				
+				
+				System.out.printf("%n%n------------------------ Rectangle --------------------------%n%n");
+				Rectangle[] rectArr = new Rectangle[6];
+				rectArr[0] = new Rectangle(9, 13);
+				rectArr[1] = new Rectangle(4, 17);
+				rectArr[2] = new Rectangle(12, 5);
+				rectArr[3] = new Rectangle(8, 9);
+				rectArr[4] = new Rectangle(10, 11);
+				rectArr[5] = new Rectangle(5, 15);
+				System.out.println(rectArr[5] instanceof Rectangle);
+				System.out.println(rectArr[5] instanceof Object);
+				System.out.println(rectArr[5] instanceof Shape);
+				System.out.println(rectArr[5] instanceof Comparable);
+				System.out.println(rectArr[5] instanceof Printable);
+				
+				for(Rectangle r : rectArr)
+				{
+					System.out.println(r);
+				}
+				
+				sortieren(rectArr);
+				System.out.println();
+				
+				printArray(rectArr);
+				
+				System.out.println();
+				printArray(rectArr);
+				
+				System.out.printf("%n%n------------------------ Shape --------------------------%n%n");
+		        Circle[] circArr = new Circle[6];
+		        circArr[0] = new Circle(5.0);
+		        circArr[1] = new Circle(5.5);
+		        circArr[2] = new Circle(4.0);
+		        circArr[3] = new Circle(2.5);
+		        circArr[4] = new Circle(7.0);
+		        circArr[5] = new Circle(1.0);
+				for(Circle c : circArr)
+				{
+					System.out.println(c);
+				}
+				
+				sortieren(circArr);
+				System.out.println();
+				
+				for(Circle c : circArr)
+				{
+					System.out.println(c);
+				}
+				
+				System.out.println();
+				printArray(circArr);
+			}
+
+		}
+
+		```
+
+	=== "Shape.java"
+		```java
+		package vorlesungen.vorlesung0526;
+
+		public abstract class Shape {
+			
+			public abstract double perimeter();
+			public abstract double area();
+
+		}
+		```
+
+	=== "Rectangle.java"
+		```java
+		package vorlesungen.vorlesung0526;
+
+		public class Rectangle extends Shape implements Comparable<Rectangle>, Printable
+		{
+			private int width, height;
+			
+
+			public Rectangle(int width, int height) 
+			{
+				this.width = width;
+				this.height = height;
+			}
+
+			@Override
+			public double perimeter() 
+			{
+				return 2 * (this.width + this.height);
+			}
+
+			@Override
+			public double area() 
+			{
+				return this.width * this.height;
+			}
+
+			@Override
+			public String toString()
+			{
+				String s = String.format("[ %3d x %3d = %7.2f ]", this.width, this.height, this.area());
+				return s;
+			}
+
+			@Override
+			public int compareTo(Rectangle o) 
+			{
+				return (this.width + this.height) - (o.width + o.height);
+			}
+
+			@Override
+			public void print() 
+			{
+				System.out.println(this.toString());
+				
+			}
+
+		}
+
+		```
+
+	=== "Circle.java"
+		```java
+		package vorlesungen.vorlesung0526;
+
+		public class Circle extends Shape implements Comparable<Circle>, Printable
+		{
+			private double radius;
+			
+			public Circle(double radius)
+			{
+				this.radius = radius;
+			}
+			
+			@Override
+			public double perimeter() 
+			{
+				return Math.PI * 2 * this.radius;
+			}
+
+			@Override
+			public double area() 
+			{
+				return Math.PI * this.radius * this.radius;
+			}
+			
+			@Override
+			public String toString()
+			{
+				String s = String.format("( radius: %.2f x --> area: %7.2f ]", this.radius, this.area());
+				return s;
+			}
+
+			@Override
+			public int compareTo(Circle o) {
+				return (int)((this.radius - o.radius)* 10000);
+			}
+
+			@Override
+			public void print() 
+			{
+				System.out.println(this.toString());
+			}
+
+
+		}
+		```
+
+	=== "Printable.java"
+		```java
+		package vorlesungen.vorlesung0526;
+
+		public interface Printable {
+			
+			public void print();
+
+		}
+		```
+

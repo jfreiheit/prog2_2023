@@ -24,6 +24,13 @@ theme:
   features:
     - instant
     - tabs
+    - navigation.footer
+    - navigation.instant
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
   favicon: img/favicon.png
   logo: img/fiw.jpg
 
@@ -75,6 +82,7 @@ nav:
     - Maps: maps.md
     - Abstrakte Klassen: abstrakt.md 
     - Interfaces: interfaces.md 
+    - GUI Einführung: gui.md 
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
 
