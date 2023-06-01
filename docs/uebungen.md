@@ -1146,10 +1146,10 @@
 			
 			void print()
 			{
-				System.out.printf("%-15s %9.2f km2 ", name, flaeche);
-				for(Integer i : bevoelkerung)
+				System.out.printf("%-18s %.2f km%c", this.name, this.flaeche, '\u00B2');
+				for(Integer anzahl : this.bevoelkerung)
 				{
-					System.out.printf("%,12d", i);
+					System.out.printf("%,14d", anzahl);
 				}
 				System.out.println();
 			}
