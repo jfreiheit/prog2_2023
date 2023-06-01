@@ -6,10 +6,10 @@ site_url: http://freiheit.f4.htw-berlin.de/prog2
 
 # Repository
 repo_name: prog2
-repo_url: https://github.com/jfreiheit/prog2_2022
+repo_url: https://github.com/jfreiheit/prog2_2023
 
 # Copyright
-copyright: Copyright &copy; 2022 Jörn Freiheit
+copyright: Copyright &copy; 2023 Jörn Freiheit
 
 # Configuration
 theme:

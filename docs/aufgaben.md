@@ -2389,6 +2389,1577 @@
 		D received Breaking News 4
 		```
 
+---
+
+### Klausurvorbereitung
+
+##### Klausurvorbereitung (Quadrat zeichnen)
+
+??? "Klausurvorbereitung (Quadrat zeichnen)"
+
+	1. Zeichnen Sie ein Quadrat. Passen Sie dieses Quadrat möglichst passend in das Fenster. Da es sich um ein Quadrat handelt, kann es sich nur der Höhe oder der Breite des Fensters anpassen, je nachdem, was kleiner ist. Wenn die Höhe kleiner ist, als die Breite, dann soll das Quadrat ausgefüllt sein. Wenn die Breite kleiner als die Höhe ist, dann soll das Quadrat nicht ausgefüllt sein, aber die Linienstärke auf `5.0f` gesetzt werden. 
+	2. Die Zeichenfarbe soll zufällig erzeugt werden - jedes Mal, wenn die `paintComponent()`-Methode aufgerufen wird.
+
+		![uebung10](./files/84_uebung10.png)
+
+	3. Beobachten Sie anhand des Farbwechsels, wie oft die `paintComponent()`-Methode aufgerufen wird. 
+
+
+??? question "eine mögliche Lösung für Quadrat zeichnen"
+	
+	=== "Zeichnen.java"
+		```java linenums="1"
+		package uebungen.zeichnen;
+		
+		import java.awt.BasicStroke;
+		import java.awt.Color;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.util.Random;
+		import javax.swing.*;
+		public class Uebung10 extends JFrame
+		{
+			public Uebung10()
+			{
+				super();
+				this.setTitle("Übung10");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				this.getContentPane().add(new Canvas());
+				this.setSize(400,300);
+				this.setLocation(300,200);
+				this.setVisible(true);
+				
+				
+			}
+			private class Canvas extends JPanel
+			{
+				@Override
+		        protected void paintComponent(Graphics g)
+		        {
+		            super.paintComponent(g);
+		            Graphics2D g2 = (Graphics2D)g;
+		            //g2.drawRect(20, 130, 200, 100);
+		               int abstand = this.getHeight()/20;
+		               int hoehe = this.getHeight() - 2* abstand;
+		               int breite = this.getWidth() - 2* abstand;
+		            //Random Farben erzeugen:
+		             Random r = new Random();
+		            int rot = r.nextInt(256);
+		            int gruen = r.nextInt(256);
+		            int blau = r.nextInt(256);
+		            Color c = new Color(rot, gruen, blau);
+		            g2.setColor(c); //rot-Grün-Blau 0 bis 255
+		          // Quadrat zeichnen
+		          if(hoehe < breite)
+		          {
+		        	  int abstandLinks = (this.getWidth()- hoehe)/2;
+		        	   g2.fillRect(abstandLinks, abstand, hoehe, hoehe);
+		          }
+		          else
+		          {
+		        	  int abstandOben = (this.getHeight()- breite)/2;
+		        	  g2.setStroke(new BasicStroke(5.0f)); //dicke Linien
+		        	  g2.drawRect(abstand, abstandOben, breite, breite);
+		        	
+		          }
+		        }
+				
+			}
+			public static void main(String[] args)
+			{
+				new Zeichnen();
+			}
+		}
+		```
+
+
+##### Klausurvorbereitung (Rechtecke zeichnen)
+
+??? "Klausurvorbereitung (Rechtecke zeichnen)"
+
+	1. Zeichnen Sie mithilfe der Maus farbige Rechtecke. Das Zeichnen soll folgendermaßen funktionieren:
+		- dort, wo sie mit der Maus in die Zeichenfläche klicken, ist ein Eckpunkt des Rechtecks
+		- mit gedrückter Maustaste ziehen Sie das Rechteck groß (währenddessen soll das Rechteck dargestellt werden)
+		- durch Loslassen der Maustaste legen Sie die endgültige Größe des Rechtecks fest und speichern das Rechteck
+		- durch wiederholtes Zeichnen werden mehrere Rechtecke gezeichnet. Die zuvor gezeichneten Rechtecke bleiben dargestellt
+		- jedes Rechteck hat eine zufällig erzeugte Farbe 
+		- beachten Sie, dass das Zeichnen eines Rechtecks nicht nur von links oben nach rechts unten, sondern in alle Richtungen möglich sein soll
+		
+	2. **Tipps:** 
+		- studieren Sie dieses [Beispiel](../mausereignisse/#beispiel-2-linien-zeichnen)
+		- behandeln Sie die Mausereignisse in den Methoden `mousePressed()`, `mouseReleased()` (`MouseListener`) sowie aus dem `MouseMotionListener` `mouseDragged()`
+		- erstellen Sie sich zunächst eine Klasse, die Rechtecke repräsentiert (Objektvariablen `x`, `y`, `width`, `height`, jweils `int`)
+		- speichern Sie die Rechtecke zusammen mit ihrer Farbe in einer `Map` (untersuchen Sie den Unterschied zwischen `HashMap` und `LinkedHashMap`)
+		- zeichnen Sie in `paintComponent()` alle Rechtecke aus der `Map` und das aktuelle Rechteck (das Sie gerade zeichnen)
+
+		![uebung11](./files/89_uebung11.png)
+
+
+
+??? question "eine mögliche Lösung für Rechtecke zeichnen"
+	
+	=== "RechteckeZeichnen.java"
+		```java linenums="1"
+		package uebungen.uebung11;
+		
+		import java.awt.Color;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+		import java.util.HashMap;
+		import java.util.Map;
+		import java.util.Random;
+
+		import javax.swing.JFrame;
+		import javax.swing.JPanel;
+
+		public class RechteckeZeichnen extends JFrame implements MouseListener, MouseMotionListener {
+			Canvas canvas;
+			Rechteck aktRechteck;
+			Color aktColor;
+			Map<Rechteck, Color> rechtecke;
+			
+		    public RechteckeZeichnen()
+		    {
+		        super();
+		        this.setTitle("Rechtecke zeichnen");
+		        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+		        this.rechtecke = new HashMap<>();
+		        this.canvas = new Canvas();
+		        this.canvas.addMouseListener(this);
+		        this.canvas.addMouseMotionListener(this);
+		        this.getContentPane().add(this.canvas);
+
+		        this.setSize(400, 300);
+		        this.setLocation(300,200);
+		        this.setVisible(true);
+		    }
+
+		    private class Canvas extends JPanel
+		    {
+		    	// die View
+		        @Override
+		        protected void paintComponent(Graphics g)
+		        {
+		            super.paintComponent(g);        
+		            Graphics2D g2 = (Graphics2D)g;  
+		            
+		            if(RechteckeZeichnen.this.aktRechteck != null)
+		            {
+		            	g2.setColor(aktColor);
+		            	int x = RechteckeZeichnen.this.aktRechteck.getX();
+		            	int y = RechteckeZeichnen.this.aktRechteck.getY();
+		            	int width = RechteckeZeichnen.this.aktRechteck.getWidth();
+		            	int height = RechteckeZeichnen.this.aktRechteck.getHeight();
+		            	
+		            	g2.fillRect(x, y, width, height);
+		            }
+		            
+		            for(Map.Entry<Rechteck, Color> eintrag : RechteckeZeichnen.this.rechtecke.entrySet())
+		            {
+		            	Rechteck r = eintrag.getKey();
+		            	Color c = eintrag.getValue();
+		            	
+		            	g2.setColor(c);
+		            	int x = r.getX();
+		            	int y = r.getY();
+		            	int width = r.getWidth();
+		            	int height = r.getHeight();
+		            	
+		            	g2.fillRect(x, y, width, height);
+		            }
+		        }
+		    }
+
+		    public static void main(String[] args) 
+		    {
+		        new RechteckeZeichnen();
+		    }
+
+		    // der Controller
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Point p = e.getPoint();
+				this.aktRechteck = new Rechteck(p.x,p.y,0,0);
+				
+				Random zuf = new Random();
+				int r = zuf.nextInt(256);
+				int g = zuf.nextInt(256);
+				int b = zuf.nextInt(256);
+				
+				this.aktColor = new Color(r,g,b);
+			}
+			
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				Point p = e.getPoint();
+				if(p.x > this.aktRechteck.getX()) // Maus nach rechts
+				{
+					int width = p.x - this.aktRechteck.getX();
+					this.aktRechteck.setWidth(width);
+				}
+				else // Maus nach links
+				{
+					int width = (this.aktRechteck.getX() - p.x) + this.aktRechteck.getWidth();
+					this.aktRechteck.setWidth(width);
+					this.aktRechteck.setX(p.x);
+				}
+				
+				if(p.y > this.aktRechteck.getY()) // Maus nach unten
+				{
+					int height = p.y - this.aktRechteck.getY();
+					this.aktRechteck.setHeight(height);
+				}
+				else // Maus nach oben
+				{
+					int height = (this.aktRechteck.getY() - p.y) + this.aktRechteck.getHeight();
+					this.aktRechteck.setHeight(height);
+					this.aktRechteck.setY(p.y);
+				}
+				
+				this.canvas.repaint();
+			}
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				Point p = e.getPoint();
+				this.rechtecke.put(this.aktRechteck, this.aktColor);
+			}
+			
+			@Override public void mouseClicked(MouseEvent e) {}
+			@Override public void mouseEntered(MouseEvent e) {}
+			@Override public void mouseExited(MouseEvent e) {}
+			@Override public void mouseMoved(MouseEvent e) {}
+		}
+		```
+	
+	=== "Rechteck.java"
+		```java linenums="1"
+		package uebungen.uebung11;
+				
+		public class Rechteck {
+			private int x;
+			private int y;
+			private int width;
+			private int height;
+			
+			public Rechteck(int x, int y, int width, int height) 
+			{
+				this.x = x;
+				this.y = y;
+				this.width = width;
+				this.height = height;
+			}
+
+			public int getX() {
+				return x;
+			}
+
+			public void setX(int x) {
+				this.x = x;
+			}
+
+			public int getY() {
+				return y;
+			}
+
+			public void setY(int y) {
+				this.y = y;
+			}
+
+			public int getWidth() {
+				return width;
+			}
+
+			public void setWidth(int width) {
+				this.width = width;
+			}
+
+			public int getHeight() {
+				return height;
+			}
+
+			public void setHeight(int height) {
+				this.height = height;
+			}
+				
+		}	
+		```
+
+
+##### Klausurvorbereitung (Graphen)
+
+??? "Klausurvorbereitung (Graphen)"
+
+	1. Erstellen Sie ein Fenster zum Zeichnen. Implementieren Sie den Mauslistener so, dass für jeden Mausklick an der Stelle des Mausklicks ein schwarzer ausgefüllter Kreis mit dem `DURCHMESSER = 30` angezeigt wird:
+
+		![uebung13](./files/125_uebung13.png)
+
+		- Für das *Model* genügt es, sich die Punkte in einer Collection zu merken (am einfachsten ist wohl eine `ArrayList`). 
+
+		- Für den *Controller* hätten wir hier die Wahl zwischen `mouseClicked()` und `mousePressed()`. Wegen der späteren Erweiterung (Bewegen der Punkte), sollten wir hier `mouseClicked()` wählen. 
+
+	2. Passen Sie die *View* nun so an, dass die Punkte durch Linien der Strichstärke `2.0f` miteinander verbunden werden. 
+
+		![uebung13](./files/126_uebung13.png)
+
+		- Sie können auch gleich (oder später) den ersten und letzten Punkt mit einer Linie verbinden (so wie in der Abbildung).
+
+	3. Implementieren sie den `MouseMotionListener` so, dass wenn Sie mit der Maus **auf** einen Punkt (Kreis) klicken (oder knapp daneben) und bei gedrückter Maustaste die Maus bewegen, sich auch der Punkt mitbewegt. 
+
+		- Zur Erinnerung: die Methode `mouseClicked()` wird aufgerufen, nachdem `mousePressed()` und `mouseReleased()` aufgerufen wurden. Ändert sich die Mausposition zwischen den Aufrufen von `mousePressed()` und `mouseReleased()`, wird `mouseClicked()` gar nicht aufgerufen. 
+
+		- Es empfiehlt sich also, in `mousePressed()` zu bestimmen, ob durch den Mausklick ein Kreis getroffen wurde. Das muss natürlich kein genauer "Treffer" sein, bauen Sie ruhig eine Toleranz von z.B. `20` ein. Den Punkt, den Sie "getroffen" haben, sollten Sie sich merken, denn seine Koordinaten werden ja durch die Mausbewegung verändert. 
+
+		- Wenn Sie in `mousePressed()` einen Punkt "getroffen" haben, dann sollten Sie das Verschieben des Punktes in `mouseDragged()` behandeln. Beachten Sie, dass `mouseDragged()` (bei gedrückter Maustaste) permanent aufgerufen wird. Wir können Sie die Änderung der Mausposition zwischen zwei Aufrufen von `mouseDragged()` ermitteln?
+
+
+??? question "eine mögliche Lösung für Klausurvorbereitung (Graphen)"
+	
+	=== "GraphenZeichnen.java"
+		```java linenums="1"
+		package uebungen.uebung13;
+		
+		import java.awt.BorderLayout;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+		import java.util.ArrayList;
+		import java.util.List;
+		import javax.swing.JFrame;
+		import javax.swing.JPanel;
+
+		public class GraphenZeichnen extends JFrame implements MouseListener, MouseMotionListener{
+		    Canvas canvas;
+		    List<Point> points; //für uns = Java.util!
+		    Point movepoint;
+		    Point remember;
+
+		    public GraphenZeichnen()
+		    {
+		        super();
+		        this.setTitle("Uebung13");
+		        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        this.canvas = new Canvas();
+		        this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+		        this.canvas.addMouseListener(this);//MOUSELISTENER ANMELDEN NICHT VERGESSEN!!!!
+		        this.canvas.addMouseMotionListener(this);//MOUSEMOTIONLISTENER ANMELDEN NICHT VERGESSEN!!!!
+		        this.setSize(400, 300);
+		        this.setLocation(300,200);
+		        this.setVisible(true);
+		        this.points = new ArrayList<>();
+		    }
+
+		    private class Canvas extends JPanel
+		    {
+		    	final static int DURCHM = 30;
+		    	final static int RADIUS = DURCHM / 2;
+
+		        @Override
+		        protected void paintComponent(Graphics g)
+		        {
+		            super.paintComponent(g);        	// Implementierung von JPanel aufrufen
+		            Graphics2D g2 = (Graphics2D)g;  	// Methoden von Graphics2D nutzbar
+
+		            // hier zeichnen wir die Punkte:
+		            for(Point p : Uebung13.this.points) // anstatt "points" = Uebung13.this.points
+		            {
+		            	int x = p.x;
+		            	int y = p.y;
+		            	g2.fillOval(x, y, DURCHM, DURCHM);	
+		            }
+
+		            for (int i = 0; i < Uebung13.this.points.size()-1; i++)  //.size wegen Liste
+		            {
+						Point p1 = Uebung13.this.points.get(i);
+						Point p2 = Uebung13.this.points.get(i+1); 	// "i+1" => Nachbarpunkt von p1
+						
+						g2.drawLine(p1.x + RADIUS, p1.y+ RADIUS, p2.x+ RADIUS, p2.y+ RADIUS); // "+ Radius" -> damit die Linien ab der Mitte des Punktes beginnen
+						if(i == Uebung13.this.points.size()-2)		// vorletzte Position=> HIER verbinden wir den ersten und letzten Punkt
+						{
+							Point p = Uebung13.this.points.get(0);
+							g2.drawLine(p2.x + RADIUS, p2.y + RADIUS, p.x + RADIUS, p.y + RADIUS);
+						}
+					}
+		        }
+		    }
+
+		    public static void main(String[] args)
+		    {
+		        new GraphenZeichnen();
+		    }
+
+			@Override
+			public void mouseClicked(MouseEvent e) //wir klicken -> Kreis wird gezeichnet -> Liste wird befüllt
+			{
+				Point p = e.getPoint();		// speichern den Punkt beim Ort des Klickens
+				this.points.add(p); 		// in der Liste speichern
+				this.canvas.repaint();		// canvas wird nochmal gezeichnet-- wichtig!!
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) //ermitteln, ob wir punkt getroffen haben
+			{
+				int x = e.getX();
+				int y = e.getY();
+				final int ABSTAND = 20; //Abstand festlegen
+				for(Point p : this.points)
+				{
+					if(Math.abs(x-p.x)< ABSTAND && Math.abs(y-p.y)< ABSTAND) // Abstand von Punkt ermitteln 
+																			 // MINUS den Punkt, den wir betrachten
+					{
+						this.movepoint=p;
+						this.remember=e.getPoint(); 	// Speichern die Koordinate des Mausklicks
+					}
+				}
+				
+			}
+
+			@Override public void mouseReleased(MouseEvent e) {}
+			@Override public void mouseEntered(MouseEvent e) {}
+			@Override public void mouseExited(MouseEvent e)	{}
+			
+			@Override
+			public void mouseDragged(MouseEvent e) //Kreise bewegen:
+			{
+				int x = e.getX();
+				int y = e.getY();
+				int x1 = this.remember.x;
+				int y1 = this.remember.y;
+				int xDif = x-x1; //Wohin und um wie viel haben wir uns bewegt?
+				int yDif = y-y1;
+				this.movepoint.x = this.movepoint.x+xDif; 	// wir verschieben den Punkt um die Differenz, 
+				this.movepoint.y = this.movepoint.y+yDif;	// die wir ermittelt haben
+				this.canvas.repaint();//WICHTIG
+				this.remember = e.getPoint(); 				// rememberPunkt wird gespeichert		
+			}
+		}
+		```
+
+
+##### Klausurvorbereitung (Quadrat)
+
+??? "Klausurvorbereitung (Quadrat)"
+
+	1. Erstellen Sie ein Fenster zum Zeichnen. Passen Sie zunächst ein Quadrat mit Strichstärke `3.0f` in das Fenster ein und zwar so, dass es 1/3 von entweder der Breite der `canvas` oder der Höhe der `canvas` groß ist, je nachdem, was **kleiner** ist. Es muss aber nicht mittig sein:
+
+		![uebung13](./files/132_uebung14.png)
+
+		- In der folgenden Abbildung ist die Höhe kleiner als die Breite. Also ist die Höhe korrekt gedrittelt, aber die gleiche Länge wurde für `x` verwendet, also für den Abstand vom linken Rand zum Quadrat. Deshalb ist der Abstand vom Quadrat zum rechten Rand größer. Sie können aber das Quadrat auch gerne komplett in die Mitte setzen.  
+
+		![uebung13](./files/133_uebung14.png)
+
+	2. Wenn der `create square`-Button gedrückt wird, erscheint ein farbiges Quadrat, das genau so groß ist, wie das zuvor gezeichnete nichtausgefüllte schwarze Quadrat. 
+
+		![uebung13](./files/134_uebung14.png)
+
+		- Die Position des Quadrates wird zufällig bestimmt. Es passt aber auf jeden Fall vollständig in die Canvas!
+
+		- Auch die Farbe des Quadrates wird zufällig bestimmt. Es behält die ganze Zeit über seine Farbe. 
+
+	3. Das farbige Quadrat kann nun durch Bewegen der Maus bei gedrückter Maustaste bewegt werden. Wenn das Quadrat (fast) vollständig in dem schwarzen Quadrat ist, dann bleibt es genau dort und kann nicht weiter bewegt werden.   
+
+		![uebung13](./files/132_uebung14.png)
+
+
+??? question "eine mögliche Lösung zu Klausurvorbereitung (Quadrat)"
+
+	=== "QuadratZeichnen.java"
+		```java linenums="1"
+		import java.awt.BasicStroke;
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+		import java.util.Random;
+
+		import javax.swing.JButton;
+		import javax.swing.JFrame;
+		import javax.swing.JPanel;
+
+		public class QuadratZeichnen  extends JFrame implements MouseListener, MouseMotionListener
+		{
+			Canvas canvas;
+			Point posSquare;
+			Color colorSquare;
+			boolean move = false;
+			Point remember;
+			boolean fixiert = false;
+			
+		    public QuadratZeichnen()
+		    {
+		        super();
+		        this.setTitle("Quadrat");
+		        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+		        this.canvas = new Canvas();
+		        this.canvas.addMouseListener(this);
+		        this.canvas.addMouseMotionListener(this);
+		        this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+		        
+		        // von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert
+		        this.getContentPane().add(this.initSouth(), BorderLayout.SOUTH);
+
+		        this.setSize(400, 300);
+		        this.setLocation(300,200);
+		        this.setVisible(true);
+		    }
+
+		    // start inner class
+		    private class Canvas extends JPanel
+		    {
+		    	
+		        @Override
+		        protected void paintComponent(Graphics g)
+		        {
+		            super.paintComponent(g);        // Implementierung von JPanel aufrufen
+		            Graphics2D g2 = (Graphics2D)g;  // Methoden von Graphics2D nutzbar
+		            
+		            int width = this.getWidth();
+		            int height = this.getHeight();
+		            
+		            // int smaller = (width < height) ? width : height;
+		            int smaller = 0;
+		            int length = 0;
+		            int x = 0;
+		            int y = 0;
+		            if(width < height) {
+		            	smaller = width;
+		            	length = smaller/3;
+		            	x = smaller/3;
+		            	y = (height - length)/2;
+		            } else {
+		            	smaller = height;
+		            	length = smaller/3;
+		            	y = smaller/3;
+		            	x = (width - length)/2;
+		            }
+		            
+		            g2.setStroke(new BasicStroke(3.0f));
+		            g2.drawRect(x, y, length, length);
+		            
+		            if(Uebung14.this.posSquare != null  && Uebung14.this.colorSquare != null) 
+		            {
+			            int xSquare = Uebung14.this.posSquare.x;
+			            int ySquare = Uebung14.this.posSquare.y;
+			            
+			            Color cSquare = Uebung14.this.colorSquare;
+			            
+			            g2.setColor(cSquare);
+			            g2.fillRect(xSquare, ySquare, length, length);
+		            }
+		        }
+		    }
+		    // ende innere Klasse
+		    
+		      
+		    private JPanel initSouth() 
+		    {
+		    	JPanel south = new JPanel();
+		    	JButton btnCreate = new JButton("create square");
+		    	
+		    	btnCreate.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Random r = new Random();
+						int widthCanvas = Uebung14.this.canvas.getWidth();
+						int heightCanvas = Uebung14.this.canvas.getHeight();
+						int lengthSquare = (widthCanvas < heightCanvas) ? widthCanvas/3 : heightCanvas/3;
+						
+						int x = r.nextInt(widthCanvas - lengthSquare);
+						int y = r.nextInt(heightCanvas - lengthSquare);
+						Uebung14.this.posSquare = new Point(x,y);
+						
+						int rot = r.nextInt(256);
+						int gruen = r.nextInt(256);
+						int blau = r.nextInt(256);
+						Uebung14.this.colorSquare = new Color(rot, gruen, blau);
+						
+						Uebung14.this.canvas.repaint();			
+					}
+		    		
+		    	});
+		    	
+		    	south.add(btnCreate);
+		    	return south;
+		    }
+		    
+
+		    public static void main(String[] args) 
+		    {
+		        new QuadratZeichnen();
+		    }
+
+
+			@Override
+			public void mouseDragged(MouseEvent e) 
+			{
+				if(move)
+				{
+					int xMouse = e.getX();
+					int yMouse = e.getY();
+					
+					int xLast = this.remember.x;
+					int yLast = this.remember.y;
+					
+					int xDiff = xMouse - xLast;
+					int yDiff = yMouse - yLast;
+					
+					this.posSquare.x = this.posSquare.x + xDiff;
+					this.posSquare.y = this.posSquare.y + yDiff;
+					
+					
+					// ab hier: im schwarzen Quadrat?
+					int widthCanvas = this.canvas.getWidth();
+					int heightCanvas = this.canvas.getHeight();
+					int xBlack, yBlack; 
+					if(widthCanvas < heightCanvas)
+					{
+						int lengthSquare = widthCanvas/3;
+						xBlack = widthCanvas/3;
+						yBlack = (heightCanvas - lengthSquare)/2;
+					}
+					else
+					{
+						int lengthSquare = heightCanvas/3;
+						yBlack = heightCanvas/3;
+						xBlack = (widthCanvas - lengthSquare)/2;
+					}
+					
+					int xSquare = this.posSquare.x;
+					int ySquare = this.posSquare.y;
+					
+					final int ABSTAND = 20;
+					
+					if(Math.abs(xSquare-xBlack) < ABSTAND && Math.abs(ySquare-yBlack) < ABSTAND)
+					{
+						// farbiges Quadrat genau im schwarzen
+						System.out.println("im schwarzen");
+						this.move = false;
+						this.posSquare.x = xBlack;
+						this.posSquare.y = yBlack;
+					}
+					
+					this.canvas.repaint();
+					this.remember = e.getPoint();
+				}	
+			}
+
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+
+			@Override
+			public void mousePressed(MouseEvent e) 
+			{
+				int xMouse = e.getX();
+				int yMouse = e.getY();
+				
+				if(!this.fixiert && this.posSquare != null)
+				{
+					int xSquare = this.posSquare.x;
+					int ySquare = this.posSquare.y;
+					
+					int widthCanvas = this.canvas.getWidth();
+					int heightCanvas = this.canvas.getHeight();
+					
+					int lengthSquare = (widthCanvas < heightCanvas) ? widthCanvas/3 : heightCanvas/3;
+					
+					if(xMouse >= xSquare && xMouse <= (xSquare + lengthSquare) && 
+							yMouse >= ySquare && yMouse <= (ySquare + lengthSquare))
+					{
+						this.move = true;
+						this.remember = e.getPoint();
+						System.out.println("im Quadrat");
+					}
+				}
+				
+			}
+
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				this.move = false;
+				
+			}
+
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		}
+
+		```
+
+##### Klausurvorbereitung (Quadrat und Kreis)
+
+??? "Klausurvorbereitung (Quadrat und Kreis)"
+
+	1. Erstellen Sie folgendes Fenster zum Zeichnen:
+
+		![uebung13](./files/148_quadrat.png)
+
+		Dabei sind folgende Dinge zu beachten:
+
+		- Oben im Fenster ist ein `JPanel` dessen Hintergrundfarbe `LIGHT_GRAY` ist und das ein `JLabel` enthält. Die Beschriftung des `JLabels` sollten Sie in der `paintComponent()`-Methode vornehmen, denn das `JLabel` zeigt an, ob die Zeichenfläche (Canvas) breiter als hoch ist (`breiter`) oder umgedreht (`hoeher`) und die Breite der Canvas sowie die Höhe (`breite, hoehe`). Es gibt also diese beiden Möglichkeiten:
+
+			![uebung13](./files/149_quadrat.png)
+
+			Achten Sie auch darauf, dass der Text des `JLabels` angepasst wird, wenn Sie die Größe des Fensters ändern (ergibt sich aber automatisch, wenn Sie den Text des `JLabels` in der `paintComponent()`-Methode setzen).
+
+		- In der Mitte des Fensters ist die Zeichenfläche (Canvas).
+
+			* Es wird eine Linie dargestellt. 
+
+			* Diese Linie ist in Strichstärke `2.0f`.
+
+			* Wenn die Canvas breiter als hoch ist, dann verläuft die Linie in der Mitte der Breite vertikal. 
+
+			* Wenn die Canvas höher als breit ist, dann verläuft die Linie in der Mitte der Höhe horizontal. 
+
+			* Der Fall Höhe==Breite muss nicht extra behandelt werden.
+
+			Es gibt also diese beiden Möglichkeiten:
+
+			![uebung13](./files/150_quadrat.png)
+
+		- Unten im Fenster ist ein `JPanel`, 
+
+			* dessen Hintergrundfarbe `LIGHT_GRAY` ist und
+
+			* das ein `JButton` mit dem Text `new` enthält.
+
+	2. Implementieren Sie eine Klasse `Figure` mit drei `privaten` Objektvariablen 
+
+		- `int x`
+
+		- `int y`
+
+		- `int length`
+
+		- Schreiben Sie einen parametrisierten Konstruktor `Figure(int x, int y, int length)`, der die Objektvariablen mit den Parameterwerten initialisiert. Schreiben Sie für alle drei Objektvariablen jeweils `Getter` und `Setter`.
+
+		- Implementieren Sie für den Button den `ActionListener` so, dass durch den Klick auf den Button 
+
+			- in die eine Hälfte der Canvas ein gelbes Quadrat (Farbe ist `YELLOW`) und
+
+			- in die andere Hälfte der Canvas ein grüner Kreis (Farbe ist `GREEN`) gezeichnet wird.
+
+			- Beide Objekte sind vom Typ `Figure`.
+
+			- `length` des Quadrates entspricht der Seitenlänge, `length` des Kreises entspricht dem Durchmesser.
+
+			- `x` und `y` sind jeweils die Koordinaten der linken oberen „Ecke“.
+
+			Beachten Sie, dass `length` bei Kreis und Quadrat gleich sind und dass sich die Länge möglichst gut (ca. 90%) in die Hälfte der Canvas einpasst, d.h. Sie müssen schauen, dass das Quadrat und der Kreis stets vollständig in ihre Hälfte passen, aber bestmöglich. 
+
+			Außerdem sollen die beiden Figuren möglichst mittig in ihrer jeweiligen Hälfte angeordnet sein.
+
+			![uebung13](./files/151_quadrat.png)
+
+			Wenn Sie die Größe des Fensters ändern, dann müssen sich Quadrat und Kreis nicht mitändern! Wenn Sie dann aber wieder auf den `new`-Button klicken, dann werden die beiden Figuren wieder an die neuen Canvas-Dimensionen angepasst.
+
+	3. Implementieren Sie `MouseListener` und `MouseMotionListener` so, dass Sie entweder den Kreis oder das Quadrat bei gedrückter Maustaste bewegen können, je nachdem, ob Sie auf das Quadrat oder auf den Kreis mit der Maus geklickt haben. 
+
+		Wenn Sie weder das Quadrat noch den Kreis durch den Mausklick getroffen haben, dann soll sich auch nichts bewegen. Bei Kreis betrachten Sie das Tangentenquadrat um den Kreis, um zu prüfen, ob Sie den Kreis getroffen haben (also genauso, wie beim Quadrat).
+
+		Sie können Kreis und Quadrat jeweils auch mehrmals hintereinander bewegen und/oder abwechselnd. Sie können nur nie beide Figuren zugleich bewegen (selbst wenn sie übereinander sind). In der folgenden Abbildung wurde sowohl der Kreis als auch das Quadrat bereits (evtl. mehrfach) bewegt:
+
+		![uebung13](./files/152_quadrat.png)		
+
+	4. Wenn Sie den Kreis fast vollständig über das Quadrat bewegt haben oder das Quadrat fast vollständig über den Kreis, dann wird das erkannt und der Kreis wird exakt in das Quadrat fixiert. Das bedeutet, es entsteht z.B. folgendes Bild:
+
+		![uebung13](./files/153_quadrat.png)		
+
+		- **Fast** vollständig bedeutet, dass sich die `x`- und `y`-Koordinaten der beiden Figuren um jeweils höchsten `30` Punkte unterscheiden.
+
+		- Sind die Figuren innerhalb dieses Abstandes, dann werden Sie automatisch exakt übereinandergelegt.
+
+		- Sind die beiden Figuren exakt übereinander, kann keine der beiden Figuren mehr bewegt werden. 
+
+		- Es kann nur noch der Button `new` geklickt werden, um die Ausgangssituation wieder herzustellen.
+
+		- Im Label oben erscheint `fixiert`. Der Text ist fettgedruckt (bold).
+
+
+??? question "eine mögliche Lösung zu Klausurvorbereitung (Quadrat und Kreis)"
+
+	=== "Figure.java"
+		```java linenums="1"
+		public class Figure {
+			private int x;
+			private int y;
+			private int length;
+			
+			public Figure(int x, int y, int length) 
+			{
+				this.x = x;
+				this.y = y;
+				this.length = length;
+			}
+
+			public int getX() {
+				return this.x;
+			}
+
+			public void setX(int x) {
+				this.x = x;
+			}
+
+			public int getY() {
+				return this.y;
+			}
+
+			public void setY(int y) {
+				this.y = y;
+			}
+
+			public int getLength() {
+				return this.length;
+			}
+
+			public void setLength(int length) {
+				this.length = length;
+			}
+
+		}
+		```
+
+	=== "QuadratUndKreis.java"
+		```java linenums="1"
+		import java.awt.BasicStroke;
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+
+		import javax.swing.*;
+
+		public class QuadratUndKreis  extends JFrame implements MouseListener, MouseMotionListener
+		{
+			Canvas canvas;
+			JLabel lOben;
+			Figure circle;
+			Figure square;
+			boolean circleMoved = false;
+			boolean squareMoved = false;
+			Point rememberLastPoint;
+			boolean fixed = false;
+
+
+			public QuadratUndKreis()
+			{
+				super();
+				this.setTitle("Klausur");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+				this.canvas = new Canvas();
+				this.canvas.addMouseListener(this);
+				this.canvas.addMouseMotionListener(this);
+				this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+
+				// von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert
+				this.getContentPane().add(this.initNorth(), BorderLayout.NORTH);
+				this.getContentPane().add(this.initSouth(), BorderLayout.SOUTH);
+
+				this.setSize(400, 300);
+				this.setLocation(300,200);
+				this.setVisible(true);
+			}
+
+			// start inner class
+			private class Canvas extends JPanel
+			{
+
+				@Override
+				protected void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);        // Implementierung von JPanel aufrufen
+					Graphics2D g2 = (Graphics2D)g;  // Methoden von Graphics2D nutzbar
+					int width = this.getWidth();
+					int height = this.getHeight();
+					g2.setStroke(new BasicStroke(2.0f));
+					if(width < height)
+					{
+						int mitteY = height/2;
+						g2.drawLine(0, mitteY, width, mitteY);
+					}
+					else
+					{
+						int mitteX = width/2;
+						g2.drawLine(mitteX, 0, mitteX, height);
+					}
+
+					String message = (width < height) ? "hoeher : " : "breiter : ";
+					message = message + "( " + width + ", " + height + " )";
+					if(QuadratUndKreis.this.fixed)
+					{
+						message = "fixiert";
+						QuadratUndKreis.this.lOben.setFont(new Font("Verdana", Font.BOLD, 14));
+					}
+					QuadratUndKreis.this.lOben.setText(message);
+
+					if(QuadratUndKreis.this.square != null)
+					{
+						g2.setColor(Color.YELLOW);
+						int x = QuadratUndKreis.this.square.getX();
+						int y = QuadratUndKreis.this.square.getY();
+						int length = QuadratUndKreis.this.square.getLength();
+						g2.fillRect(x,y,length,length);
+					}
+					if(QuadratUndKreis.this.circle != null)
+					{
+						g2.setColor(Color.GREEN);
+						int x = QuadratUndKreis.this.circle.getX();
+						int y = QuadratUndKreis.this.circle.getY();
+						int length = QuadratUndKreis.this.circle.getLength();
+						g2.fillOval(x,y,length,length);
+					}
+				}
+			}
+			// ende innere Klasse
+
+			private JPanel initNorth() 
+			{
+				JPanel north = new JPanel();
+				north.setBackground(Color.LIGHT_GRAY);
+				this.lOben = new JLabel();
+				north.add(this.lOben);
+				return north;
+			}
+
+			private JPanel initSouth() 
+			{
+				JPanel south = new JPanel();
+				south.setBackground(Color.LIGHT_GRAY);
+				JButton btnNew = new JButton("new");
+				btnNew.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						int width = QuadratUndKreis.this.canvas.getWidth();
+						int height = QuadratUndKreis.this.canvas.getHeight();
+						if(width < height) // hoeher --> untereinander
+						{
+							int height2 = height/2;
+							int smallest = (height2 < width) ? height2 : width;
+							int length = (int)(smallest * 0.9);
+							int oben = (height2-length)/2;
+							int links = (width-length)/2;
+
+							QuadratUndKreis.this.square = new Figure(links, oben, length);
+							QuadratUndKreis.this.circle = new Figure(links, height2 + oben, length);
+						}
+						else // breiter --> nebeneinander
+						{
+							int width2 = width/2;
+							int smallest = (width2 < height) ? width2 : height;
+							int length = (int)(smallest * 0.9);
+							int links = (width2-length)/2;
+							int oben = (height-length)/2;
+							QuadratUndKreis.this.square = new Figure(links, oben, length);
+							QuadratUndKreis.this.circle = new Figure(width2 + links, oben, length);	        		
+						}
+						QuadratUndKreis.this.canvas.repaint();
+						
+						QuadratUndKreis.this.squareMoved = false;
+						QuadratUndKreis.this.circleMoved = false;
+						QuadratUndKreis.this.fixed = false;
+						QuadratUndKreis.this.rememberLastPoint = null;
+					}
+
+				});
+
+				south.add(btnNew);
+
+				return south;
+			}
+
+			public static void main(String[] args) 
+			{
+				new QuadratUndKreis();
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e) 
+			{
+				if((QuadratUndKreis.this.circleMoved || QuadratUndKreis.this.squareMoved) && !QuadratUndKreis.this.fixed)
+				{
+					int x = e.getX();
+					int y = e.getY();
+
+					int x1 = QuadratUndKreis.this.rememberLastPoint.x;
+					int y1 = QuadratUndKreis.this.rememberLastPoint.y;
+
+					int xDiff = x - x1;
+					int yDiff = y - y1;
+
+					if(QuadratUndKreis.this.circleMoved)
+					{
+						int newX = QuadratUndKreis.this.circle.getX() + xDiff;
+						int newY = QuadratUndKreis.this.circle.getY() + yDiff;
+
+						QuadratUndKreis.this.circle.setX(newX);
+						QuadratUndKreis.this.circle.setY(newY);
+					}
+					else if(QuadratUndKreis.this.squareMoved)
+					{
+						int newX = QuadratUndKreis.this.square.getX() + xDiff;
+						int newY = QuadratUndKreis.this.square.getY() + yDiff;
+
+						QuadratUndKreis.this.square.setX(newX);
+						QuadratUndKreis.this.square.setY(newY);
+					}
+
+					// ab hier erkennen, ob uebereinander
+
+					final int ABSTAND = 30;
+
+					int xAbstand = Math.abs(QuadratUndKreis.this.square.getX() - QuadratUndKreis.this.circle.getX());
+					int yAbstand = Math.abs(QuadratUndKreis.this.square.getY() - QuadratUndKreis.this.circle.getY());
+
+					if(xAbstand <= ABSTAND && yAbstand <= ABSTAND)
+					{
+						if(QuadratUndKreis.this.circleMoved)
+						{
+							int newX = QuadratUndKreis.this.square.getX();
+							int newY = QuadratUndKreis.this.square.getY();
+
+							QuadratUndKreis.this.circle.setX(newX);
+							QuadratUndKreis.this.circle.setY(newY);
+						}
+						else if(QuadratUndKreis.this.squareMoved)
+						{
+							int newX = QuadratUndKreis.this.circle.getX();
+							int newY = QuadratUndKreis.this.circle.getY();
+
+							QuadratUndKreis.this.square.setX(newX);
+							QuadratUndKreis.this.square.setY(newY);
+						}
+						QuadratUndKreis.this.fixed = true;
+					}
+
+					QuadratUndKreis.this.canvas.repaint();
+					QuadratUndKreis.this.rememberLastPoint = e.getPoint();
+				}
+
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) 
+			{
+				if(!QuadratUndKreis.this.fixed)
+				{
+					int x = e.getX();
+					int y = e.getY();
+
+					int xC = QuadratUndKreis.this.circle.getX();
+					int yC = QuadratUndKreis.this.circle.getY();
+
+					int xS = QuadratUndKreis.this.square.getX();
+					int yS = QuadratUndKreis.this.square.getY();	
+
+					int length = QuadratUndKreis.this.square.getLength();
+
+					if(x >= xC && x <= xC+length && y >= yC && y <= yC+length)
+					{
+						QuadratUndKreis.this.circleMoved = true;
+						QuadratUndKreis.this.rememberLastPoint = e.getPoint();
+					}
+					else if(x >= xS && x <= xS+length && y >= yS && y <= yS+length)
+					{
+						QuadratUndKreis.this.squareMoved = true;
+						QuadratUndKreis.this.rememberLastPoint = e.getPoint();
+					}
+				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) 
+			{
+				QuadratUndKreis.this.squareMoved = false;
+				QuadratUndKreis.this.circleMoved = false;
+				QuadratUndKreis.this.rememberLastPoint = null;
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		}
+		```
+
+
+
+##### Klausurvorbereitung (Figure)
+
+??? "Klausurvorbereitung (Figure)"
+
+	1. Erstellen Sie folgendes Fenster zum Zeichnen:
+
+		![uebung13](./files/136_ellipse.png)
+
+		Dabei ist zu beachten, dass es sich bei `Ellipse`, `-`, `+`, `Löschen` und `Farbe aendern` um Buttons handelt. Wählen Sie die Layoutmanager der jeweiligen JPanels so, dass das gleiche Aussehen entsteht, also z.B. der Button `Ellipse` über die gesamte Breite des Fensters geht und die Buttons `–` und `+` jeweils die angezeigte Höhe ausfüllen.  Abstände zwischen den Buttons müssen nicht beachtet werden. In der Mitte des Fensters ist die Zeichenfläche (Canvas). 
+
+	2. Implementieren Sie eine Klasse `Figure mit folgenden 5 Objektvariablen (müssen hier nicht `private` sein – Paketsichtbarkeit ist gut; wenn Sie sie `private` machen, benötigen Sie noch `Getter`!!!)
+		- `Shape shape`
+		- `Color color`
+		- `Point start`
+		- `int width`
+		- `int height`
+
+		`Shape` ist dabei ein `enum`, das sie gleich in der Klasse erstellen können (oder separat). Dieses `enum` hat folgende Werte: `OVAL` und `RECTANGLE`.
+
+		Die Idee der Objektvariablen ist in der folgenden Abbildung dargestellt (`color` ist nicht gezeigt, damit soll die `Figure` ausgefüllt werden):
+
+		![uebung13](./files/137_ellipse.png)
+
+		- Implementieren Sie eine Objektmethode `public void changeColor()`, in der der Wert von `color` zufällig (mithilfe von `Random`) auf einen neuen Wert gesetzt wird. 
+
+		- Implementieren Sie eine Objektmethode `public void setStartPoint(Point point)`, in der der Wert der Objektvariablen `point` auf den Parameterwert gesetzt wird. 
+
+		- Implementieren Sie eine Objektmethode `public void changeShape()`, in der der Wert der Objektvariablen `shape` auf den jeweils anderen Wert aus dem `Shape`-`enum` gesetzt wird (d.h. wenn der Wert `OVAL` war, dann soll er auf `RECTANGLE` gesetzt werden und andersherum). 
+
+		- Implementieren Sie eine Objektmethode `public void addSideLength(int xDiff, int yDiff)`. Die Werte von `xDiff` und `yDiff` geben an, um wieviel sich die Seitenlängen ändern. 
+
+		**Erklärung:** Diese Methode wird später aufgerufen, wenn Sie die `Figure` mit der Maus zeichnen (bei gedrückter Maustaste). Entweder Sie ziehen nach rechts unten (dann sind `xDiff` und `yDiff` postiv) oder Sie ziehen nach links und/oder nach oben (dann sind `xDiff` und/oder `yDiff` entsprechend negativ).
+
+		**Beachten Sie(!):**
+
+		- Wenn `xDiff` und `yDiff` postiv sind, dann verhält sich die Sache relativ einfach, denn dann werden die Werte einfach auf die jeweiligen Seitenlängen addiert (siehe folgende Abbildung):
+
+			![uebung13](./files/138_ellipse.png)
+
+		- Wenn `xDiff` und/oder `yDiff` negativ sind/ist, dann ist es komplizierter, denn dann ändern sich nicht nur die Seitenlängen, sondern es verschiebt sich auch der Startpunkt der `Figure` (siehe folgende Abbildung für den Fall, dass `xDiff` und `yDiff` negativ sind):
+
+			![uebung13](./files/139_ellipse.png)
+
+		- Implementieren Sie eine Objektmethode `public void bigger()`, in der die `Figure` größer skaliert werden soll (ca 10% abhängig von der aktuellen Breite und Länge nach allen Seiten):
+
+			![uebung13](./files/140_ellipse.png)
+
+ 		- Implementieren Sie eine Objektmethode `public void smaller()`, in der die `Figure` kleiner skaliert werden soll (ca 10% abhängig von der aktuellen Breite und Länge nach allen Seiten):
+
+			![uebung13](./files/141_ellipse.png)
+
+	3. Implementieren Sie `MouseListener` und `MouseMotionListener` so, dass Sie bei gedrückter Maustaste ein Objekt der Klasse `Figure` zeichnen können, d.h. bei Mausklick in die Canvas wird der `start`-Punkt der `Figure` erzeugt und bei gedrückter Maustaste vergrößern Sie die `Figure`. 
+
+		In der folgenden Abbildung steht der Pfeil für die gedrückte Maus:
+
+		![uebung13](./files/142_ellipse.png)
+
+		Wenn Sie die Maustaste loslassen, ist die `Figure fertig gezeichnet. Am Anfang handelt es sich bei der `Figure` um ein `RECTANGLE`.
+
+	4. Implementieren Sie das Klick-Ereignis des Buttons `Ellipse` so, dass aus dem Rechteck eine Ellipse wird. Die Farbe der `Figure` bleibt gleich. Nutzen Sie dazu die Methode `changeShape()` aus der `Figure`-Klasse. 
+
+		Die Beschriftung des Buttons wechselt auf `Rechteck`. Wenn Sie den Button erneut drücken, erscheint wieder das Rechteck und auf dem Button erscheint `Ellipse`. 
+
+		![uebung13](./files/143_ellipse.png)
+
+		- Implementieren Sie das Klick-Ereignis des Buttons `+` so, dass sich die `Figure` vergrößert. Nutzen Sie dazu die Methode `bigger()` aus der `Figure`-Klasse. 
+
+			![uebung13](./files/144_ellipse.png)
+
+		- Implementieren Sie das Klick-Ereignis des Buttons `-` so, dass sich die `Figure` verkleinert. Nutzen Sie dazu die Methode `smaller()` aus der `Figure`-Klasse. 
+
+			![uebung13](./files/145_ellipse.png)
+
+		- Implementieren Sie das Klick-Ereignis des Buttons `Farbe aendern` so, dass sich die Farbe der `Figure` ändert. Nutzen Sie dazu die Methode `changeColor()` aus der `Figure`-Klasse. 
+
+			![uebung13](./files/146_ellipse.png)
+
+		- Implementieren Sie das Klick-Ereignis des Buttons `Loeschen` so, dass keine `Figure` mehr existiert und angezeigt wird.  
+
+			![uebung13](./files/147_ellipse.png)
+
+
+??? question "eine mögliche Lösung zu Klausurvorbereitung (Figure)"
+
+	=== "Figure.java"
+		```java linenums="1"
+		import java.awt.Color;
+		import java.awt.Point;
+		import java.util.Random;
+
+		public class Figure {
+			
+			enum Shape {
+				OVAL, RECTANGLE
+			}
+			Shape shape;
+			Color color;
+			Point start;
+			int width;
+			int height;
+			
+			public Figure(Shape shape, Point start) {
+				this.shape = shape;
+				this.start = start;
+				this.width = 0;
+				this.height = 0;
+				Random r = new Random();
+				int gelb = r.nextInt(256);
+				int rot = r.nextInt(256);
+				int blau = r.nextInt(256);
+				this.color = new Color(rot, gelb, blau);
+			}
+			
+			public void changeColor() {
+				Random r = new Random();
+				int gelb = r.nextInt(256);
+				int rot = r.nextInt(256);
+				int blau = r.nextInt(256);
+				this.color = new Color(rot, gelb, blau);
+			}
+			
+			public void addSideLengths(int xDiff, int yDiff)
+			{
+				if(xDiff<0 && yDiff<0) {
+					Point start = this.start;
+					start.x += xDiff;
+					start.y += yDiff;
+					this.width -= xDiff;
+					this.height -= yDiff;
+					this.setStartPoint(start);
+				}
+				else if(xDiff<0 && yDiff>=0) {
+					Point start = this.start;
+					start.x += xDiff;
+					this.width -= xDiff;
+					this.height += yDiff;
+					this.setStartPoint(start);
+				}
+				else if(xDiff>=0 && yDiff<0) {
+					Point start = this.start;
+					start.y += yDiff;
+					this.width += xDiff;
+					this.height -= yDiff;
+					this.setStartPoint(start);
+				}
+				else {
+					this.width += xDiff;
+					this.height += yDiff;
+				}
+			}
+			
+			public void setStartPoint(Point start) {
+				this.start = start;
+			}
+			
+			public void bigger() {
+				int xScale = (int)(this.width * 0.1);
+				int yScale = (int)(this.height * 0.1);
+				Point start = this.start;
+				start.x -= xScale;
+				start.y -= yScale;
+				this.width += 2*xScale;
+				this.height += 2*yScale;
+				this.setStartPoint(start);
+			}
+			
+			public void smaller() {
+				int xScale = (int)(this.width * 0.1);
+				int yScale = (int)(this.height * 0.1);
+				Point start = this.start;
+				start.x += xScale;
+				start.y += yScale;
+				this.width -= 2*xScale;
+				this.height -= 2*yScale;
+				this.setStartPoint(start);
+			}
+			
+			public void changeShape() {
+				if(this.shape == Shape.OVAL) this.shape = Shape.RECTANGLE;
+				else this.shape = Shape.OVAL;
+			}
+
+		}
+		```
+
+	=== "FigureZeichnen.java"
+		```java linenums="1"
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.GridLayout;
+		import java.awt.Point;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+
+		import javax.swing.*;
+
+		public class FigureZeichnen  extends JFrame 
+		{
+			Canvas canvas;
+
+
+			public FigureZeichnen()
+			{
+				super();
+				this.setTitle("Klausur");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+
+				this.canvas = new Canvas();
+				this.canvas.addMouseListener(this.canvas);
+				this.canvas.addMouseMotionListener(this.canvas);
+				this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+
+				// von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert
+				this.getContentPane().add(this.initNorth(), BorderLayout.NORTH);
+				this.getContentPane().add(this.initSouth(), BorderLayout.SOUTH);
+				this.getContentPane().add(this.initWest(), BorderLayout.WEST);
+				this.getContentPane().add(this.initEast(), BorderLayout.EAST);
+
+				this.setSize(800, 600);
+				this.setLocation(300,200);
+				this.setVisible(true);
+			}
+
+			// start inner class
+			private class Canvas extends JPanel implements MouseListener, MouseMotionListener
+			{
+				Figure figure;
+				Point remember;
+				boolean finishedCreating = false;
+				
+				@Override
+				protected void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);        // Implementierung von JPanel aufrufen
+					Graphics2D g2 = (Graphics2D)g;  // Methoden von Graphics2D nutzbar
+					
+					if(this.figure != null)
+					{
+						g2.setColor(this.figure.color);
+						Point start = this.figure.start;
+						int width = this.figure.width;
+						int height = this.figure.height;
+						if(this.figure.shape == Figure.Shape.RECTANGLE) {
+							g2.fillRect(start.x, start.y, width, height);
+						}
+						else if(this.figure.shape == Figure.Shape.OVAL) {
+							g2.fillOval(start.x, start.y, width, height);
+						}
+						
+					}
+				}
+
+				@Override
+				public void mouseDragged(MouseEvent e) {
+					if(this.figure != null && !this.finishedCreating) {
+						Point here = e.getPoint();
+						int xDiff = here.x - this.remember.x;
+						int yDiff = here.y - this.remember.y;
+						this.figure.addSideLengths(xDiff, yDiff);
+						this.remember = here;
+					}
+					System.out.println(this.figure.width + ", " + this.figure.height);
+					this.repaint();
+					
+				}
+
+				@Override
+				public void mouseMoved(MouseEvent e) {
+
+					
+				}
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					Point here = e.getPoint();
+					if(this.figure == null) {
+						this.figure = new Figure(Figure.Shape.RECTANGLE, here);
+						this.remember = here;
+					}
+					this.repaint();
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					if(!this.finishedCreating) this.finishedCreating = true;
+					
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+			}
+			// ende innere Klasse
+
+			private JPanel initNorth() 
+			{
+				JPanel north = new JPanel();
+				north.setLayout(new GridLayout(1,1));
+				JButton circle = new JButton("Ellipse");
+				circle.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Klausur2PZ.this.canvas.figure.changeShape();
+						JButton circle = (JButton)e.getSource();
+						if(circle.getActionCommand().equals("Ellipse")) circle.setText("Rechteck");
+						else circle.setText("Ellipse");
+						Klausur2PZ.this.canvas.repaint();
+					}
+					
+				});
+				north.add(circle);
+				return north;
+			}
+
+			private JPanel initSouth() 
+			{
+				JPanel south = new JPanel();
+				south.setLayout(new GridLayout(1,2,10,10));
+				JButton delete = new JButton("Löschen");
+				delete.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Klausur2PZ.this.canvas.figure = null;
+						Klausur2PZ.this.canvas.finishedCreating = false;
+						Klausur2PZ.this.canvas.remember = null;
+						Klausur2PZ.this.canvas.repaint();
+					}
+					
+				});
+				south.add(delete);
+				JButton farbe = new JButton("Farbe aendern");
+				farbe.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Klausur2PZ.this.canvas.figure.changeColor();;
+						Klausur2PZ.this.canvas.repaint();
+					}
+					
+				});
+				south.add(farbe);
+				return south;
+			}
+			
+			private JPanel initWest() 
+			{
+				JPanel west = new JPanel();
+				west.setLayout(new GridLayout(1,1));
+				JButton minus = new JButton("-");
+				minus.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Klausur2PZ.this.canvas.figure.smaller();
+						Klausur2PZ.this.canvas.repaint();
+					}
+					
+				});
+				west.add(minus);
+				return west;
+			}
+			
+			private JPanel initEast() 
+			{
+				JPanel east = new JPanel();
+				east.setLayout(new GridLayout(1,1));
+				JButton plus = new JButton("+");
+				plus.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Klausur2PZ.this.canvas.figure.bigger();
+						Klausur2PZ.this.canvas.repaint();
+					}
+					
+				});
+				east.add(plus);
+				return east;
+			}
+
+			public static void main(String[] args) 
+			{
+				new Klausur2PZ();
+			}
+		}
+		```
 
 
 
