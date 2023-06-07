@@ -46,12 +46,12 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 | 3. | 01.-05.05.2023 | [Collections (List und Set)](./collections/#collections) | [Übung 3](./#ubung-3-exceptions) |[Aufgabe 3](./aufgaben/#aufgabe-3-solitaire) | 18.05.2023 | 
 | 4. | 08.-12.05.2023 | [Collections (Map)](./maps/#maps) und [Abstrakte Klassen](./abstrakt/#abstrakte-klassen)| [Übung 4](./uebungen/#ubung-4-listen-und-mengen) |[Aufgabe 4](./aufgaben/#aufgabe-4-operationen-uber-mengen) | 25.05.2023 | 
 | 5. | 15.-19.05.2023 | - | - | - | - | 
-| 6. | 22.-26.05.2023 | Interfaces | Übung 5 |Aufgabe 5 | 01.06.2023 | 
-| 7. | 29.-02.06.2023 | GUI Einführung | Übung 6 |Aufgabe 6 | 08.06.2023 | 
-| 8. | 05.-09.06.2023 | Layout-Manager | Übung 7 |Aufgabe 7 | 15.06.2023 | 
-| 9. | 12.-16.06.2023 | GUI Ereignisse  | Übung 8 |Aufgabe 8 | 22.06.2023 | 
-| 10. | 19.-23.06.2023 | ActionListener | Übung 9|Aufgabe 9 | 29.06.2023 | 
-| 12. | 26.-30.06.2023 | Mausereignisse | Übung 10 | Aufgabe 10 | 06.07.2023 |
+| 6. | 22.-26.05.2023 | [Interfaces](./interfaces/#interfaces) | [Übung 5](./uebungen/#ubung-5-maps) |[Aufgabe 5](./aufgaben/#aufgabe-5-maps) | 01.06.2023 | 
+| 7. | 29.-02.06.2023 | [GUI Einführung](./gui/#graphical-user-interfaces) | [Übung 6](./uebungen/#ubung-6-interfaces) |[Aufgabe 6](./aufgaben/#aufgabe-6-interfaces) | 08.06.2023 | 
+| 8. | 05.-09.06.2023 | [GUI Ereignisse](./ereignisse/#ereignisse) | [Übung 7](./uebungen/#ubung-7-gui) |[Aufgabe 7](./aufgaben/#aufgabe-7-gui) | 15.06.2023 | 
+| 9. | 12.-16.06.2023 | ActionListener  | Übung 8 |[Aufgabe 8](./aufgaben/#aufgabe-8-ereignisbehandlung) | 22.06.2023 | 
+| 10. | 19.-23.06.2023 | Mausereignisse | Übung 9|Aufgabe 9 | 29.06.2023 | 
+| 12. | 26.-30.06.2023 | Graphics | Übung 10 | Aufgabe 10 | 06.07.2023 |
 | 13. | 03.-07.07.2023 | JUnit | Übung 11 | - | - |
 | 14. | 10.-14.07.2023 | REST-API mit SpringBoot| Übung 12 | - | - |
 |  | 28.07.2023 14:00 Uhr| Klausur 1.PZ | Labore 6. Etage C-Gebäude| - | - |
@@ -890,4 +890,97 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 		}
 		```
+
+
+??? question "02.06.2023 - Graphical User Interfaces"
+	- siehe [**GUI Einführung**](./gui/#graphical-user-interfaces)
+	- siehe [**Übung 7**](./uebungen/#ubung-7-gui)
+	- siehe [**Aufgabe 7**](./aufgaben/#aufgabe-7-gui)
+
+
+??? "Code aus der Vorlesung"
+
+	=== "MyFirstWindow.java"
+		```java
+		package vorlesungen.vorlesung0602;
+
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.FlowLayout;
+		import java.awt.GridLayout;
+
+		import javax.swing.*;
+
+
+		public class MyFirstWindow extends JFrame
+		{
+			public MyFirstWindow()
+			{
+				super();
+				this.setTitle("Mein erstes Fenster");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				this.setSize(800, 600);
+				this.setLocation(300, 500);
+				JPanel mainPanel = this.initContent();
+				this.getContentPane().add(mainPanel);
+				this.setVisible(true);
+			}
+			
+			public JPanel initContent()
+			{
+				JPanel content = new JPanel();
+				//content.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 140));
+				//content.setLayout(new GridLayout(3, 2, 20, 40));
+				content.setLayout(new BorderLayout());
+				/*
+				JLabel label = new JLabel("Name langer Text: "); 
+				content.add(label);
+				
+				JTextField input = new JTextField(30);
+				content.add(input);
+				*/
+				
+				JButton button1 = new JButton("Button1");
+				content.add(button1, BorderLayout.NORTH);
+				JButton button2 = new JButton("Button2");
+				content.add(button2, BorderLayout.EAST);
+				JButton button3 = new JButton("Button3");
+				content.add(button3, BorderLayout.SOUTH);
+				JButton button4 = new JButton("Button4");
+				content.add(button4, BorderLayout.WEST);
+				JButton button5 = new JButton("Button5");
+				content.add(button5, BorderLayout.CENTER);
+				
+				/*
+				JButton button6 = new JButton("Button6");
+				content.add(button6, BorderLayout.NORTH);
+
+				JButton button7 = new JButton("Button7");
+				content.add(button7);
+				*/
+				
+				return content;
+			}
+		}
+
+		```
+
+	=== "Testklasse.java"
+		```java
+		package vorlesungen.vorlesung0602;
+
+		public class Testklasse {
+
+			public static void main(String[] args) 
+			{
+				new MyFirstWindow();
+			}
+		}
+		```
+
+
+??? question "09.06.2023 - Ereignisbehandlung"
+	- siehe [**GUI Ereignisse**](./ereignisse/#ereignisse)
+	- siehe [**Übung 8**]()
+	- siehe [**Aufgabe 8**](./aufgaben/#aufgabe-8-ereignisbehandlung)
 

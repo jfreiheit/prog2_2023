@@ -1565,5 +1565,11 @@
 
 		![uebung8](./files/62_uebung8.png)
 
+		bzw. betriebssystemabhängig ungefähr so:
+
+		![uebung8](./files/62_uebung8a.png)
+
+		**Tipp:** Zur Erstellung von Rahmen (*Border*) schauen Sie z.B. [hier](https://docs.oracle.com/javase/tutorial/uiswing/components/border.html) oder [hier](http://www.java2s.com/Code/Java/Swing-JFC/Borderofallkinds.htm).
+
 
 

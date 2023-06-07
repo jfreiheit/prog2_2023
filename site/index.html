@@ -444,6 +444,21 @@
   
   
     <li class="md-nav__item">
+      <a href="ereignisse/" class="md-nav__link">
+        GUI Ereignisse
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="uebungen/" class="md-nav__link">
         Übungen
       </a>
@@ -642,39 +657,39 @@
 <tr>
 <td>6.</td>
 <td>22.-26.05.2023</td>
-<td>Interfaces</td>
-<td>Übung 5</td>
-<td>Aufgabe 5</td>
+<td><a href="./interfaces/#interfaces">Interfaces</a></td>
+<td><a href="./uebungen/#ubung-5-maps">Übung 5</a></td>
+<td><a href="./aufgaben/#aufgabe-5-maps">Aufgabe 5</a></td>
 <td>01.06.2023</td>
 </tr>
 <tr>
 <td>7.</td>
 <td>29.-02.06.2023</td>
-<td>GUI Einführung</td>
-<td>Übung 6</td>
-<td>Aufgabe 6</td>
+<td><a href="./gui/#graphical-user-interfaces">GUI Einführung</a></td>
+<td><a href="./uebungen/#ubung-6-interfaces">Übung 6</a></td>
+<td><a href="./aufgaben/#aufgabe-6-interfaces">Aufgabe 6</a></td>
 <td>08.06.2023</td>
 </tr>
 <tr>
 <td>8.</td>
 <td>05.-09.06.2023</td>
-<td>Layout-Manager</td>
-<td>Übung 7</td>
-<td>Aufgabe 7</td>
+<td><a href="./ereignisse/#ereignisse">GUI Ereignisse</a></td>
+<td><a href="./uebungen/#ubung-7-gui">Übung 7</a></td>
+<td><a href="./aufgaben/#aufgabe-7-gui">Aufgabe 7</a></td>
 <td>15.06.2023</td>
 </tr>
 <tr>
 <td>9.</td>
 <td>12.-16.06.2023</td>
-<td>GUI Ereignisse</td>
+<td>ActionListener</td>
 <td>Übung 8</td>
-<td>Aufgabe 8</td>
+<td><a href="./aufgaben/#aufgabe-8-ereignisbehandlung">Aufgabe 8</a></td>
 <td>22.06.2023</td>
 </tr>
 <tr>
 <td>10.</td>
 <td>19.-23.06.2023</td>
-<td>ActionListener</td>
+<td>Mausereignisse</td>
 <td>Übung 9</td>
 <td>Aufgabe 9</td>
 <td>29.06.2023</td>
@@ -682,7 +697,7 @@
 <tr>
 <td>12.</td>
 <td>26.-30.06.2023</td>
-<td>Mausereignisse</td>
+<td>Graphics</td>
 <td>Übung 10</td>
 <td>Aufgabe 10</td>
 <td>06.07.2023</td>
@@ -1562,6 +1577,104 @@
 </div>
 </div>
 </div>
+</details>
+<details class="question">
+<summary>02.06.2023 - Graphical User Interfaces</summary>
+<ul>
+<li>siehe <a href="./gui/#graphical-user-interfaces"><strong>GUI Einführung</strong></a></li>
+<li>siehe <a href="./uebungen/#ubung-7-gui"><strong>Übung 7</strong></a></li>
+<li>siehe <a href="./aufgaben/#aufgabe-7-gui"><strong>Aufgabe 7</strong></a></li>
+</ul>
+</details>
+<details>
+<summary>Code aus der Vorlesung</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">MyFirstWindow.java</label><label for="__tabbed_6_2">Testklasse.java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">vorlesungen.vorlesung0602</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.FlowLayout</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.GridLayout</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.*</span><span class="p">;</span>
+
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyFirstWindow</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JFrame</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MyFirstWindow</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Mein erstes Fenster&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="w"> </span><span class="mi">600</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">mainPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">initContent</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">mainPanel</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">JPanel</span><span class="w"> </span><span class="nf">initContent</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">//content.setLayout(new FlowLayout(FlowLayout.CENTER, 120, 140));</span>
+<span class="w">        </span><span class="c1">//content.setLayout(new GridLayout(3, 2, 20, 40));</span>
+<span class="w">        </span><span class="n">content</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">());</span>
+<span class="w">        </span><span class="cm">/*</span>
+<span class="cm">        JLabel label = new JLabel(&quot;Name langer Text: &quot;); </span>
+<span class="cm">        content.add(label);</span>
+
+<span class="cm">        JTextField input = new JTextField(30);</span>
+<span class="cm">        content.add(input);</span>
+<span class="cm">        */</span>
+
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">button1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button1&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">content</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">button1</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">button2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button2&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">content</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">button2</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">EAST</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">button3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button3&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">content</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">button3</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">button4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button4&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">content</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">button4</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">WEST</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">button5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button5&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">content</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">button5</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+
+<span class="w">        </span><span class="cm">/*</span>
+<span class="cm">        JButton button6 = new JButton(&quot;Button6&quot;);</span>
+<span class="cm">        content.add(button6, BorderLayout.NORTH);</span>
+
+<span class="cm">        JButton button7 = new JButton(&quot;Button7&quot;);</span>
+<span class="cm">        content.add(button7);</span>
+<span class="cm">        */</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">vorlesungen.vorlesung0602</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Testklasse</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MyFirstWindow</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+<details class="question">
+<summary>09.06.2023 - Ereignisbehandlung</summary>
+<ul>
+<li>siehe <a href="./ereignisse/#ereignisse"><strong>GUI Ereignisse</strong></a></li>
+<li>siehe <a href=""><strong>Übung 8</strong></a></li>
+<li>siehe <a href="./aufgaben/#aufgabe-8-ereignisbehandlung"><strong>Aufgabe 8</strong></a></li>
+</ul>
 </details>
 
 
