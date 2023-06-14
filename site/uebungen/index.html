@@ -15,7 +15,7 @@
         <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/prog2/uebungen/">
       
       
-        <link rel="prev" href="../ereignisse/">
+        <link rel="prev" href="../mausereignisse/">
       
       
         <link rel="next" href="../aufgaben/">
@@ -398,6 +398,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../mausereignisse/" class="md-nav__link">
+        Mausereignisse
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -478,6 +493,13 @@
         <li class="md-nav__item">
   <a href="#ubung-7-gui" class="md-nav__link">
     Übung 7 (GUI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-8-ereignisbehandlung-actionlistener" class="md-nav__link">
+    Übung 8 (Ereignisbehandlung - ActionListener)
   </a>
   
 </li>
@@ -576,6 +598,13 @@
         <li class="md-nav__item">
   <a href="#ubung-7-gui" class="md-nav__link">
     Übung 7 (GUI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-8-ereignisbehandlung-actionlistener" class="md-nav__link">
+    Übung 8 (Ereignisbehandlung - ActionListener)
   </a>
   
 </li>
@@ -2764,6 +2793,205 @@ Frankfurt/Main<span class="w">     </span><span class="m">248</span>,31<span cla
 </li>
 </ol>
 </details>
+<details class="question">
+<summary>mögliche Lösung für Übung 7</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Stadt.java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">uebungen.uebung7</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.GridLayout</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.*</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Uebung7</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JFrame</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Uebung7</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;GUI Übung&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">initContent</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">JPanel</span><span class="w"> </span><span class="nf">initContent</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">mainPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// Panel fuer den Norden (FlowLayout)</span>
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">norden</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">norden</span><span class="p">.</span><span class="na">setBorder</span><span class="p">(</span><span class="n">BorderFactory</span><span class="p">.</span><span class="na">createLineBorder</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+<span class="w">        </span><span class="n">norden</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">BLUE</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JLabel</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">(</span><span class="s">&quot;Text&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">text</span><span class="p">.</span><span class="na">setHorizontalAlignment</span><span class="p">(</span><span class="n">JLabel</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+<span class="w">        </span><span class="n">text</span><span class="p">.</span><span class="na">setForeground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">WHITE</span><span class="p">);</span>
+<span class="w">        </span><span class="n">norden</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Panel fuer den Osten (GridLayout(2,1))</span>
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">osten</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">osten</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GridLayout</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">));</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">button1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button 1&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">button2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button 2&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">osten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">button1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">osten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">button2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Panel fuer Center (GridLayout(2,1))</span>
+<span class="w">        </span><span class="c1">// erste Zelle JLabel</span>
+<span class="w">        </span><span class="c1">// zweite Zelle JPanel inputPanel (FlowLayout)</span>
+<span class="w">        </span><span class="c1">// inputPanel enthaelt JTextField input </span>
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">center</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GridLayout</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+<span class="w">        </span><span class="n">JLabel</span><span class="w"> </span><span class="n">text2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">(</span><span class="s">&quot;Weiterer Text&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">text2</span><span class="p">.</span><span class="na">setHorizontalAlignment</span><span class="p">(</span><span class="n">JLabel</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">inputPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">JTextField</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JTextField</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="w">        </span><span class="n">inputPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="w">        </span><span class="n">center</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">text2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">center</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">inputPanel</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Panel hinzufuegen</span>
+<span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">norden</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">osten</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">EAST</span><span class="p">);</span>
+<span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">mainPanel</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Uebung7</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+</details>
+<h5 id="ubung-8-ereignisbehandlung-actionlistener">Übung 8 (Ereignisbehandlung - ActionListener)<a class="headerlink" href="#ubung-8-ereignisbehandlung-actionlistener" title="Permanent link">&para;</a></h5>
+<details>
+<summary>Übung 8</summary>
+<ol>
+<li>Erstellen Sie ein Fenster mit einem Textfeld und zwei Buttons <code>add</code> und <code>remove</code>. Sowohl das Textfeld als auch die beiden Buttons sollen Objektvariablen (und somit zugreifbar von allen Methoden der Klasse) sein.</li>
+<li>Unterteilen Sie das <code>main</code>-<code>JPanel</code> zunächst in zwei <code>JPanel</code>s <code>unten</code> und <code>oben</code>. Dem <code>JPanel oben</code> werden das Textfeld und die beiden Buttons hinzugefügt. Setzen Sie die Hintergrundfarbe des JPanels <code>oben</code> auf <code>YELLOW</code>.  Setzen Sie die Hintergrundfarbe des JPanels <code>unten</code> auf <code>CYAN</code>. Das JPanel <code>unten</code> soll ebenfalls eine Objektvariable sein.</li>
+<li>
+<p>Setzen Sie die Größe des Fensters auf Werte, so dass es wie folgt erscheint:
+    <img alt="uebung9" src="../files/67_uebung9.png" /></p>
+</li>
+<li>
+<p>Fügen Sie folgende Objektvariable hinzu: <code>List&lt;JLabel&gt; labels = new ArrayList&lt;&gt;();</code></p>
+</li>
+<li>
+<p>Implementieren Sie den <code>ActionListener</code> wie folgt: <br/>
+    Wird der <code>add</code>-Button gedrückt, </p>
+<ul>
+<li>
+<p>wird der Liste <code>labels</code> ein <code>JLabel</code> hinzugefügt, wobei der Text des JLabels dem Text im Textfeld entspricht (der Text des Textfeldes kann über die Objektmethode <code>getText()</code> von JTextField ausgelesen werden).</p>
+</li>
+<li>
+<p>Die Liste <code>labels</code> wird vollständig ausgelesen und jedes <code>JLabel</code> aus <code>labels</code> wird dem <code>JPanel unten</code> mithilfe der <code>add()</code>-Methode von <code>JPanel</code> hinzugefügt.</p>
+</li>
+<li>
+<p>Rufen Sie <code>this.unten.revalidate();</code> auf – dies stößt ein Neuzeichnen des JPanels <code>unten</code> an.</p>
+</li>
+</ul>
+<p>Wird der „remove“-Button gedrückt,</p>
+<ul>
+<li>
+<p>wird das <code>JLabel</code> aus der Liste <code>labels</code> gelöscht, das den gleichen Text hat wie der Text, der im Textfeld eingegeben wurde.</p>
+</li>
+<li>
+<p>Außerdem wird das <code>JLabel</code> aus den <code>JPanel unten</code> entfernt (Objektmethode <code>remove()</code> von <code>JPanel</code>).</p>
+</li>
+<li>
+<p>Rufen Sie <code>this.unten.revalidate();</code> auf – dies stößt ein Neuzeichnen des JPanels unten an.</p>
+</li>
+</ul>
+<p><img alt="uebung9" src="../files/68_uebung9.png" /></p>
+</li>
+<li>
+<p><strong>Tipp</strong>: wenn Sie einem <code>JLabel</code> eine Hintergrundfarbe mit <code>setBackground(Color c)</code> setzen, dann sieht man diese nur, wenn Sie für dieses <code>JLabel</code> die Methode <code>setOpaque(true)</code> aufrufen. Nur dadurch werden für dieses <code>JLabel</code> alle Pixel gezeichnet, die in dessen <em>Grenzen</em> sind, d.h. das komplette Rechteck, das das <code>JLabel</code> ausfüllt. Ansonsten würde nur der Text "gezeichnet" und die Hintergrundfarbe wäre hinter dem Text versteckt. </p>
+</li>
+</ol>
+</details>
 
 
 
@@ -2787,7 +3015,7 @@ Frankfurt/Main<span class="w">     </span><span class="m">248</span>,31<span cla
       <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
         
           
-          <a href="../ereignisse/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: GUI Ereignisse" rel="prev">
+          <a href="../mausereignisse/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Mausereignisse" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -2796,7 +3024,7 @@ Frankfurt/Main<span class="w">     </span><span class="m">248</span>,31<span cla
                 Zurück
               </span>
               <div class="md-ellipsis">
-                GUI Ereignisse
+                Mausereignisse
               </div>
             </div>
           </a>

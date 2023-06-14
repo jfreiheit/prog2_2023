@@ -2412,6 +2412,45 @@
 	4. Ab dann ist alles **Zusatz** und bedarf in vielen Fällen der Erweiterung der GUI: Verwendung und Beachten von Klammern (ist aber sehr schwer!), Speichern von Zwischenergebnissen, komplexere Operationen durch zuätzliche Tasten (Wurzel, Potenzieren, ...). Alles, was Sie möchten - Viel Spaß!
 
 
+
+##### Aufgabe 9 (Schiebepuzzle)
+
+??? "Aufgabe 9"
+
+	1. Implementieren Sie folgendes Puzzle: 
+		
+		![schachbrett](./files/115_puzzle.png)
+
+		- obige Abbildung zeigt den Anfangszustand des Puzzles (`2` über `1` links)
+
+		![schachbrett](./files/116_puzzle.png)
+
+		- obige Abbildung zeigt den Endzustand des Puzzles (`1` über `2` links)
+
+		- Das Puzzle besteht aus 5 „Kacheln“, 3 gelben und 2 roten. Die roten Kacheln sind mit einer `1` und einer `2` nummeriert. Am Anfang steht die rote Kachel mit der `2` über der roten Kachel mit der `1`. (siehe erste Abb.) Ziel des Puzzles ist es, die beiden roten Kacheln zu vertauschen. Wenn links die `1` über der `2` steht, ist das Puzzle beendet. Wo die gelben Kacheln im Endzustand sind, ist egal (siehe zweite Abb.). Ein Feld ist stets frei (grau dargestellt). In dieses Feld kann eine benachbarte Kachel geschoben werden.
+
+		- Zeigen Sie oben die Anzahl der Züge an. Wenn der Endzustand erreicht ist, kann nicht mehr gezogen werden! Der Button `Neustart` setzt alles wieder auf Anfang. 
+
+		- Die Programmierung bleibt ganz Ihnen überlassen. Zum Schieben einer Kachel auf das leere Feld, klickt man auf die Kachel selbst. Diese „bewegt“ sich dann auf das leere (graue) Feld und hinterlässt ein leeres (graues) Feld (siehe folgende Abb.)
+
+		![schachbrett](./files/117_puzzle.png)
+
+	2. **Tipps:** 
+
+		- Sie benötigen keine `Canvas` und kein Überschreiben der `paintComponent()`-Methode!	
+
+		- Am einfachsten bekommt man ein Label in die Mitte eines Panels gesetzt, wenn das Panel im `GridLayout(1,1)` (oder sogar parameterlos) ist und Sie für das Label `label.setHorizontalAlignment(JLabel.CENTER);` definieren
+
+		- die (Schrift-)Farbe eines Labels setzt man mit `label.setForeground(Color);`
+
+		- die (Hintergrund-Farbe eines Panels setzt man mit `panel.setBackground(Color);`
+
+		- für das Identifizieren des entsprechenden Panels, auf das man geklickt hat, könnte es hilfreich sein, sich dafür eine eigene Klasse zu schreiben (die von JPanel erbt). Muss aber nicht.
+
+		- wahrscheinlich ist es am einfachsten, ein zweidimensionales Array 2x3 als Datenstruktur für Ihr Puzzle zu verwenden
+
+
+
 ---
 
 ### Klausurvorbereitung

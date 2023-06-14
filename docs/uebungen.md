@@ -1572,4 +1572,117 @@
 		**Tipp:** Zur Erstellung von Rahmen (*Border*) schauen Sie z.B. [hier](https://docs.oracle.com/javase/tutorial/uiswing/components/border.html) oder [hier](http://www.java2s.com/Code/Java/Swing-JFC/Borderofallkinds.htm).
 
 
+??? question "mögliche Lösung für Übung 7"
+	
+	=== "Stadt.java"
+		```java linenums="1"
+		package uebungen.uebung7;
+
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.GridLayout;
+
+		import javax.swing.*;
+
+		public class Uebung7 extends JFrame
+		{
+			public Uebung7()
+			{
+				super();
+				this.setTitle("GUI Übung");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				JPanel content = this.initContent();
+				this.getContentPane().add(content);
+				this.setSize(500, 400);
+				this.setLocation(300, 200);
+				this.setVisible(true);
+			}
+			
+			JPanel initContent()
+			{
+				JPanel mainPanel = new JPanel();
+				mainPanel.setLayout(new BorderLayout());
+				
+				// Panel fuer den Norden (FlowLayout)
+				JPanel norden = new JPanel();
+				norden.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+				norden.setBackground(Color.BLUE);
+				JLabel text = new JLabel("Text");
+				text.setHorizontalAlignment(JLabel.CENTER);
+				text.setForeground(Color.WHITE);
+				norden.add(text);
+				
+				// Panel fuer den Osten (GridLayout(2,1))
+				JPanel osten = new JPanel();
+				osten.setLayout(new GridLayout(2,1,0,20));
+				JButton button1 = new JButton("Button 1");
+				JButton button2 = new JButton("Button 2");
+				osten.add(button1);
+				osten.add(button2);
+				
+				// Panel fuer Center (GridLayout(2,1))
+				// erste Zelle JLabel
+				// zweite Zelle JPanel inputPanel (FlowLayout)
+				// inputPanel enthaelt JTextField input	
+				JPanel center = new JPanel();
+				center.setLayout(new GridLayout(2,1));
+				JLabel text2 = new JLabel("Weiterer Text");
+				text2.setHorizontalAlignment(JLabel.CENTER);
+				JPanel inputPanel = new JPanel();
+				JTextField input = new JTextField(15);
+				inputPanel.add(input);
+				center.add(text2);
+				center.add(inputPanel);
+				
+				// Panel hinzufuegen
+				mainPanel.add(norden, BorderLayout.NORTH);
+				mainPanel.add(osten, BorderLayout.EAST);
+				mainPanel.add(center, BorderLayout.CENTER);
+				return mainPanel;
+			}
+
+			public static void main(String[] args) 
+			{
+				new Uebung7();
+			}
+
+		}
+
+		```
+
+##### Übung 8 (Ereignisbehandlung - ActionListener)
+
+??? "Übung 8"
+
+	1. Erstellen Sie ein Fenster mit einem Textfeld und zwei Buttons `add` und `remove`. Sowohl das Textfeld als auch die beiden Buttons sollen Objektvariablen (und somit zugreifbar von allen Methoden der Klasse) sein.
+	2. Unterteilen Sie das `main`-`JPanel` zunächst in zwei `JPanel`s `unten` und `oben`. Dem `JPanel oben` werden das Textfeld und die beiden Buttons hinzugefügt. Setzen Sie die Hintergrundfarbe des JPanels `oben` auf `YELLOW`.  Setzen Sie die Hintergrundfarbe des JPanels `unten` auf `CYAN`. Das JPanel `unten` soll ebenfalls eine Objektvariable sein.
+	3. Setzen Sie die Größe des Fensters auf Werte, so dass es wie folgt erscheint:
+		![uebung9](./files/67_uebung9.png)
+
+	4. Fügen Sie folgende Objektvariable hinzu: `List<JLabel> labels = new ArrayList<>();`
+	5. Implementieren Sie den `ActionListener` wie folgt: <br/>
+		Wird der `add`-Button gedrückt, 
+
+		- wird der Liste `labels` ein `JLabel` hinzugefügt, wobei der Text des JLabels dem Text im Textfeld entspricht (der Text des Textfeldes kann über die Objektmethode `getText()` von JTextField ausgelesen werden).
+
+		- Die Liste `labels` wird vollständig ausgelesen und jedes `JLabel` aus `labels` wird dem `JPanel unten` mithilfe der `add()`-Methode von `JPanel` hinzugefügt.
+
+		- Rufen Sie `this.unten.revalidate();` auf – dies stößt ein Neuzeichnen des JPanels `unten` an.
+
+		Wird der „remove“-Button gedrückt,
+
+		- wird das `JLabel` aus der Liste `labels` gelöscht, das den gleichen Text hat wie der Text, der im Textfeld eingegeben wurde.
+
+		- Außerdem wird das `JLabel` aus den `JPanel unten` entfernt (Objektmethode `remove()` von `JPanel`).
+
+		- Rufen Sie `this.unten.revalidate();` auf – dies stößt ein Neuzeichnen des JPanels unten an.
+
+		![uebung9](./files/68_uebung9.png)
+
+	6. **Tipp**: wenn Sie einem `JLabel` eine Hintergrundfarbe mit `setBackground(Color c)` setzen, dann sieht man diese nur, wenn Sie für dieses `JLabel` die Methode `setOpaque(true)` aufrufen. Nur dadurch werden für dieses `JLabel` alle Pixel gezeichnet, die in dessen *Grenzen* sind, d.h. das komplette Rechteck, das das `JLabel` ausfüllt. Ansonsten würde nur der Text "gezeichnet" und die Hintergrundfarbe wäre hinter dem Text versteckt. 
+
+
+
+
 

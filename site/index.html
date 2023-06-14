@@ -459,6 +459,21 @@
   
   
     <li class="md-nav__item">
+      <a href="mausereignisse/" class="md-nav__link">
+        Mausereignisse
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="uebungen/" class="md-nav__link">
         Übungen
       </a>
@@ -1672,8 +1687,141 @@
 <summary>09.06.2023 - Ereignisbehandlung</summary>
 <ul>
 <li>siehe <a href="./ereignisse/#ereignisse"><strong>GUI Ereignisse</strong></a></li>
-<li>siehe <a href=""><strong>Übung 8</strong></a></li>
+<li>siehe <a href="./uebungen/#ubung-8-ereignisbehandlung-actionlistener"><strong>Übung 8</strong></a></li>
 <li>siehe <a href="./aufgaben/#aufgabe-8-ereignisbehandlung"><strong>Aufgabe 8</strong></a></li>
+</ul>
+</details>
+<details>
+<summary>Code aus der Vorlesung</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Ereignisbehandlung.java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">vorlesungen.vorlesung0609</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Font</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.GridLayout</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionEvent</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.event.ActionListener</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.*</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Ereignisbehandlung</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JFrame</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">JLabel</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Integer</span><span class="w"> </span><span class="n">anzKlicks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Ereignisbehandlung</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Ereignisbehandlung&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createContent</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">JPanel</span><span class="w"> </span><span class="nf">createContent</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">mainPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">());</span>
+
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">oben</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">minus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;-&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">plus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;+&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">oben</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">minus</span><span class="p">);</span>
+<span class="w">        </span><span class="n">oben</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">plus</span><span class="p">);</span>
+<span class="w">        </span><span class="n">minus</span><span class="p">.</span><span class="na">setActionCommand</span><span class="p">(</span><span class="s">&quot;minus&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">plus</span><span class="p">.</span><span class="na">setActionCommand</span><span class="p">(</span><span class="s">&quot;plus&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">minus</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionHandler</span><span class="p">());</span>
+<span class="w">        </span><span class="n">plus</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ActionHandler</span><span class="p">());</span>
+<span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">oben</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+
+<span class="w">        </span><span class="cm">/*</span>
+<span class="cm">        JButton button = new JButton(&quot;Klick mich&quot;);</span>
+<span class="cm">        button.addActionListener(this);</span>
+<span class="cm">        mainPanel.add(button, BorderLayout.NORTH);</span>
+<span class="cm">        */</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">anzKlicks</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">output</span><span class="p">.</span><span class="na">setHorizontalAlignment</span><span class="p">(</span><span class="n">JLabel</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">output</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Font</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Helvetica&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Font</span><span class="p">.</span><span class="na">BOLD</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">));</span>
+<span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">output</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">mainPanel</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Ereignisbehandlung</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">120</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">120</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5001</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">i4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5001</span><span class="p">;</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i4</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">    @Override</span>
+<span class="cm">    public void actionPerformed(ActionEvent e) </span>
+<span class="cm">    {</span>
+<span class="cm">        Object source = e.getSource();</span>
+<span class="cm">        if(source instanceof JButton) </span>
+<span class="cm">        {</span>
+<span class="cm">            JButton srcBtn = (JButton)source;</span>
+<span class="cm">            System.out.println(&quot;Button &quot; + srcBtn.getText() + &quot; geklickt&quot;);</span>
+<span class="cm">            if(srcBtn.getActionCommand().equals(&quot;minus&quot;)) {</span>
+<span class="cm">                this.anzKlicks--;</span>
+<span class="cm">            } else if(srcBtn.getActionCommand().equals(&quot;plus&quot;)) {</span>
+<span class="cm">                this.anzKlicks++;</span>
+<span class="cm">            }</span>
+<span class="cm">            if(this.anzKlicks &lt; 0) this.output.setForeground(Color.RED);</span>
+<span class="cm">            else this.output.setForeground(Color.BLACK);</span>
+<span class="cm">            this.output.setText(this.anzKlicks.toString());</span>
+<span class="cm">        }</span>
+
+<span class="cm">    }</span>
+<span class="cm">    */</span>
+
+<span class="w">    </span><span class="kd">class</span> <span class="nc">ActionHandler</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ActionListener</span>
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="nd">@Override</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Object</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getSource</span><span class="p">();</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">source</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">JButton</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">JButton</span><span class="w"> </span><span class="n">srcBtn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">JButton</span><span class="p">)</span><span class="n">source</span><span class="p">;</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Button &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">srcBtn</span><span class="p">.</span><span class="na">getText</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; geklickt&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">srcBtn</span><span class="p">.</span><span class="na">getActionCommand</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;minus&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">Ereignisbehandlung</span><span class="p">.</span><span class="na">this</span><span class="p">.</span><span class="na">anzKlicks</span><span class="o">--</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">srcBtn</span><span class="p">.</span><span class="na">getActionCommand</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;plus&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+<details class="question">
+<summary>16.06.2023 - Ereignisbehandlung</summary>
+<ul>
+<li>siehe <a href="./ereignisse/#ereignisse"><strong>ActionListener</strong></a></li>
+<li>siehe <a href=""><strong>Übung 9</strong></a></li>
+<li>siehe <a href="./aufgaben/#aufgabe-9-schiebepuzzle"><strong>Aufgabe 9</strong></a></li>
 </ul>
 </details>
 

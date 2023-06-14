@@ -398,6 +398,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../mausereignisse/" class="md-nav__link">
+        Mausereignisse
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../uebungen/" class="md-nav__link">
         Übungen
       </a>
@@ -498,6 +513,13 @@
         <li class="md-nav__item">
   <a href="#aufgabe-8-ereignisbehandlung" class="md-nav__link">
     Aufgabe 8 (Ereignisbehandlung)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aufgabe-9-schiebepuzzle" class="md-nav__link">
+    Aufgabe 9 (Schiebepuzzle)
   </a>
   
 </li>
@@ -643,6 +665,13 @@
         <li class="md-nav__item">
   <a href="#aufgabe-8-ereignisbehandlung" class="md-nav__link">
     Aufgabe 8 (Ereignisbehandlung)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aufgabe-9-schiebepuzzle" class="md-nav__link">
+    Aufgabe 9 (Schiebepuzzle)
   </a>
   
 </li>
@@ -3159,6 +3188,58 @@ D<span class="w"> </span>received<span class="w"> </span>Breaking<span class="w"
 <li>Minimumanforderung ist, dass durch die Eingabe von Ziffern Zahlen entstehen und dass die Buttons <code>+</code>, <code>-</code>, <code>/</code>, <code>+</code> und <code>=</code> insofern funktionieren, dass dadurch tatsächlich gerechnet wird, auch wenn die Regel "Punktrechnung geht vor Strichrechnung" nicht eingehalten wird. </li>
 <li>Eine erste Verbesserung (ist schon <strong>Zusatz</strong>) wäre, dass die Regel "Punktrechnung geht vor Strichrechnung" eingehalten wird.</li>
 <li>Ab dann ist alles <strong>Zusatz</strong> und bedarf in vielen Fällen der Erweiterung der GUI: Verwendung und Beachten von Klammern (ist aber sehr schwer!), Speichern von Zwischenergebnissen, komplexere Operationen durch zuätzliche Tasten (Wurzel, Potenzieren, ...). Alles, was Sie möchten - Viel Spaß!</li>
+</ol>
+</details>
+<h5 id="aufgabe-9-schiebepuzzle">Aufgabe 9 (Schiebepuzzle)<a class="headerlink" href="#aufgabe-9-schiebepuzzle" title="Permanent link">&para;</a></h5>
+<details>
+<summary>Aufgabe 9</summary>
+<ol>
+<li>
+<p>Implementieren Sie folgendes Puzzle: </p>
+<p><img alt="schachbrett" src="../files/115_puzzle.png" /></p>
+<ul>
+<li>obige Abbildung zeigt den Anfangszustand des Puzzles (<code>2</code> über <code>1</code> links)</li>
+</ul>
+<p><img alt="schachbrett" src="../files/116_puzzle.png" /></p>
+<ul>
+<li>
+<p>obige Abbildung zeigt den Endzustand des Puzzles (<code>1</code> über <code>2</code> links)</p>
+</li>
+<li>
+<p>Das Puzzle besteht aus 5 „Kacheln“, 3 gelben und 2 roten. Die roten Kacheln sind mit einer <code>1</code> und einer <code>2</code> nummeriert. Am Anfang steht die rote Kachel mit der <code>2</code> über der roten Kachel mit der <code>1</code>. (siehe erste Abb.) Ziel des Puzzles ist es, die beiden roten Kacheln zu vertauschen. Wenn links die <code>1</code> über der <code>2</code> steht, ist das Puzzle beendet. Wo die gelben Kacheln im Endzustand sind, ist egal (siehe zweite Abb.). Ein Feld ist stets frei (grau dargestellt). In dieses Feld kann eine benachbarte Kachel geschoben werden.</p>
+</li>
+<li>
+<p>Zeigen Sie oben die Anzahl der Züge an. Wenn der Endzustand erreicht ist, kann nicht mehr gezogen werden! Der Button <code>Neustart</code> setzt alles wieder auf Anfang. </p>
+</li>
+<li>
+<p>Die Programmierung bleibt ganz Ihnen überlassen. Zum Schieben einer Kachel auf das leere Feld, klickt man auf die Kachel selbst. Diese „bewegt“ sich dann auf das leere (graue) Feld und hinterlässt ein leeres (graues) Feld (siehe folgende Abb.)</p>
+</li>
+</ul>
+<p><img alt="schachbrett" src="../files/117_puzzle.png" /></p>
+</li>
+<li>
+<p><strong>Tipps:</strong> </p>
+<ul>
+<li>
+<p>Sie benötigen keine <code>Canvas</code> und kein Überschreiben der <code>paintComponent()</code>-Methode!   </p>
+</li>
+<li>
+<p>Am einfachsten bekommt man ein Label in die Mitte eines Panels gesetzt, wenn das Panel im <code>GridLayout(1,1)</code> (oder sogar parameterlos) ist und Sie für das Label <code>label.setHorizontalAlignment(JLabel.CENTER);</code> definieren</p>
+</li>
+<li>
+<p>die (Schrift-)Farbe eines Labels setzt man mit <code>label.setForeground(Color);</code></p>
+</li>
+<li>
+<p>die (Hintergrund-Farbe eines Panels setzt man mit <code>panel.setBackground(Color);</code></p>
+</li>
+<li>
+<p>für das Identifizieren des entsprechenden Panels, auf das man geklickt hat, könnte es hilfreich sein, sich dafür eine eigene Klasse zu schreiben (die von JPanel erbt). Muss aber nicht.</p>
+</li>
+<li>
+<p>wahrscheinlich ist es am einfachsten, ein zweidimensionales Array 2x3 als Datenstruktur für Ihr Puzzle zu verwenden</p>
+</li>
+</ul>
+</li>
 </ol>
 </details>
 <hr />

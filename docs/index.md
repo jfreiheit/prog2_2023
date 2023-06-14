@@ -981,6 +981,132 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 ??? question "09.06.2023 - Ereignisbehandlung"
 	- siehe [**GUI Ereignisse**](./ereignisse/#ereignisse)
-	- siehe [**Übung 8**]()
+	- siehe [**Übung 8**](./uebungen/#ubung-8-ereignisbehandlung-actionlistener)
 	- siehe [**Aufgabe 8**](./aufgaben/#aufgabe-8-ereignisbehandlung)
 
+??? "Code aus der Vorlesung"
+
+	=== "Ereignisbehandlung.java"
+		```java
+		package vorlesungen.vorlesung0609;
+
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.GridLayout;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+
+		import javax.swing.*;
+
+		public class Ereignisbehandlung extends JFrame
+		{
+			JLabel output;
+			Integer anzKlicks = 0;
+			
+			Ereignisbehandlung()
+			{
+				super();
+				this.setTitle("Ereignisbehandlung");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				JPanel content = createContent();
+				this.getContentPane().add(content);
+				
+				this.setSize(300, 200);
+				this.setLocation(200,100);
+				this.setVisible(true);
+			}
+			
+			JPanel createContent()
+			{
+				JPanel mainPanel = new JPanel();
+				mainPanel.setLayout(new BorderLayout());
+				
+				JPanel oben = new JPanel();
+				JButton minus = new JButton("-");
+				JButton plus = new JButton("+");
+				oben.add(minus);
+				oben.add(plus);
+				minus.setActionCommand("minus");
+				plus.setActionCommand("plus");
+				minus.addActionListener(new ActionHandler());
+				plus.addActionListener(new ActionHandler());
+				mainPanel.add(oben, BorderLayout.NORTH);
+				
+				/*
+				JButton button = new JButton("Klick mich");
+				button.addActionListener(this);
+				mainPanel.add(button, BorderLayout.NORTH);
+				*/
+				
+				this.output = new JLabel(this.anzKlicks.toString());
+				this.output.setHorizontalAlignment(JLabel.CENTER);
+				this.output.setFont(new Font ("Helvetica", Font.BOLD, 24));
+				mainPanel.add(this.output, BorderLayout.CENTER);
+				return mainPanel;
+			}
+			
+			public static void main(String[] args) {
+				new Ereignisbehandlung();
+				
+				Integer i1 = 120;
+				Integer i2 = 120;
+				Integer i3 = 5001;
+				Integer i4 = 5001;
+				System.out.println(i1 == i2);
+				System.out.println(i3 == i4);
+			}
+
+			/*
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				Object source = e.getSource();
+				if(source instanceof JButton) 
+				{
+					JButton srcBtn = (JButton)source;
+					System.out.println("Button " + srcBtn.getText() + " geklickt");
+					if(srcBtn.getActionCommand().equals("minus")) {
+						this.anzKlicks--;
+					} else if(srcBtn.getActionCommand().equals("plus")) {
+						this.anzKlicks++;
+					}
+					if(this.anzKlicks < 0) this.output.setForeground(Color.RED);
+					else this.output.setForeground(Color.BLACK);
+					this.output.setText(this.anzKlicks.toString());
+				}
+				
+			}
+			*/
+			
+			class ActionHandler implements ActionListener
+			{
+
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{
+					Object source = e.getSource();
+					if(source instanceof JButton)
+					{
+						JButton srcBtn = (JButton)source;
+						System.out.println("Button " + srcBtn.getText() + " geklickt");
+						if(srcBtn.getActionCommand().equals("minus")) {
+							Ereignisbehandlung.this.anzKlicks--;
+						} else if(srcBtn.getActionCommand().equals("plus")) {
+							
+						}
+							
+					}
+					
+				}
+				
+			}
+		}
+		```
+
+
+??? question "16.06.2023 - Ereignisbehandlung"
+	- siehe [**ActionListener**](./ereignisse/#ereignisse)
+	- siehe [**Übung 9**]()
+	- siehe [**Aufgabe 9**](./aufgaben/#aufgabe-9-schiebepuzzle)

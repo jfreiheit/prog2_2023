@@ -84,6 +84,7 @@ nav:
     - Interfaces: interfaces.md 
     - GUI Einführung: gui.md 
     - GUI Ereignisse: ereignisse.md 
+    - Mausereignisse: mausereignisse.md
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
 
