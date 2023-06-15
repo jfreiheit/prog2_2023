@@ -2982,7 +2982,7 @@ Frankfurt/Main<span class="w">     </span><span class="m">248</span>,31<span cla
 <p>Außerdem wird das <code>JLabel</code> aus den <code>JPanel unten</code> entfernt (Objektmethode <code>remove()</code> von <code>JPanel</code>).</p>
 </li>
 <li>
-<p>Rufen Sie <code>this.unten.revalidate();</code> auf – dies stößt ein Neuzeichnen des JPanels unten an.</p>
+<p>Rufen Sie <code>this.unten.revalidate();</code> und <code>this.unten.repaint()</code>auf – dies stößt eine Neuberechnung des Layoutmanagers für die Anordnung der Komponenten sowie ein Neuzeichnen des JPanels unten an.</p>
 </li>
 </ul>
 <p><img alt="uebung9" src="../files/68_uebung9.png" /></p>

@@ -1676,7 +1676,7 @@
 
 		- Außerdem wird das `JLabel` aus den `JPanel unten` entfernt (Objektmethode `remove()` von `JPanel`).
 
-		- Rufen Sie `this.unten.revalidate();` auf – dies stößt ein Neuzeichnen des JPanels unten an.
+		- Rufen Sie `this.unten.revalidate();` und `this.unten.repaint()`auf – dies stößt eine Neuberechnung des Layoutmanagers für die Anordnung der Komponenten sowie ein Neuzeichnen des JPanels unten an.
 
 		![uebung9](./files/68_uebung9.png)
 
