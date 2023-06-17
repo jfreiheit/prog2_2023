@@ -1107,6 +1107,261 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "16.06.2023 - Ereignisbehandlung"
-	- siehe [**ActionListener**](./ereignisse/#ereignisse)
+	- siehe [**ActionListener**](./ereignisse/#ereignisse) und [**Mausereignisse**](./mausereignisse/#mausereignisse)
 	- siehe [**Übung 9**]()
 	- siehe [**Aufgabe 9**](./aufgaben/#aufgabe-9-schiebepuzzle)
+
+
+??? "Code aus der Vorlesung"
+
+	=== "Ereignisbehandlung.java"
+		```java
+		package vorlesungen.vorlesung0616;
+
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.GridLayout;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+
+		import javax.swing.*;
+
+		public class Ereignisbehandlung extends JFrame
+		{
+			JLabel output;
+			Integer anzKlicks = 0;
+			
+			Ereignisbehandlung()
+			{
+				super();
+				this.setTitle("Ereignisbehandlung");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				JPanel content = createContent();
+				this.getContentPane().add(content);
+				
+				this.setSize(300, 200);
+				this.setLocation(200,100);
+				this.setVisible(true);
+			}
+			
+			JPanel createContent()
+			{
+				JPanel mainPanel = new JPanel();
+				mainPanel.setLayout(new BorderLayout());
+				
+				JPanel oben = new JPanel();
+				JButton minus = new JButton("-");
+				JButton plus = new JButton("+");
+				oben.add(minus);
+				oben.add(plus);
+				minus.setActionCommand("minus");
+				plus.setActionCommand("plus");
+				minus.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Ereignisbehandlung.this.anzKlicks--;
+						Ereignisbehandlung.this.output.setText(Ereignisbehandlung.this.anzKlicks.toString());
+					}
+					
+				});
+				
+				
+				plus.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Ereignisbehandlung.this.anzKlicks++;
+						Ereignisbehandlung.this.output.setText(Ereignisbehandlung.this.anzKlicks.toString());
+					} 
+					
+				});
+				
+				
+				mainPanel.add(oben, BorderLayout.NORTH);
+				
+				this.output = new JLabel(this.anzKlicks.toString());
+				this.output.setHorizontalAlignment(JLabel.CENTER);
+				this.output.setFont(new Font ("Helvetica", Font.BOLD, 24));
+				mainPanel.add(this.output, BorderLayout.CENTER);
+				return mainPanel;
+			}
+			
+			public static void main(String[] args) {
+				new Ereignisbehandlung();
+				
+				Integer i1 = 120;
+				Integer i2 = 120;
+				Integer i3 = 5001;
+				Integer i4 = 5001;
+				System.out.println(i1 == i2);
+				System.out.println(i3 == i4);
+			}
+
+			/*
+			class ActionHandler implements ActionListener
+			{
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{
+					Object source = e.getSource();
+					if(source instanceof JButton) 
+					{
+						JButton srcBtn = (JButton)source;
+						System.out.println("Button " + srcBtn.getText() + " geklickt");
+						if(srcBtn.getActionCommand().equals("minus")) {
+							Ereignisbehandlung.this.anzKlicks--;
+						} else if(srcBtn.getActionCommand().equals("plus")) {
+							Ereignisbehandlung.this.anzKlicks++;
+						}
+						if(Ereignisbehandlung.this.anzKlicks < 0) Ereignisbehandlung.this.output.setForeground(Color.RED);
+						else Ereignisbehandlung.this.output.setForeground(Color.BLACK);
+						Ereignisbehandlung.this.output.setText(Ereignisbehandlung.this.anzKlicks.toString());
+					}
+				}
+				
+			}
+			*/
+			
+			
+		}
+
+		```
+
+	=== "Mausereignisse.java"
+		```java
+		package vorlesungen.vorlesung0616;
+
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.GridLayout;
+		import java.awt.Point;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.util.Random;
+
+		import javax.swing.JFrame;
+		import javax.swing.JLabel;
+		import javax.swing.JPanel;
+
+		public class Mausereignisse extends JFrame implements MouseListener
+		{
+		    private int size;
+		    private JPanel[][] panels;
+		    private JPanel panel;
+
+		    public Mausereignisse(int size)
+		    {
+		        super();
+		        this.size = size;
+		        this.setTitle("Mausereignisse");
+		        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		        JPanel mainPanel = initContent(size);
+
+		        this.getContentPane().add(mainPanel, BorderLayout.CENTER);
+
+		        this.setSize(400,400);
+		        this.setVisible(true);
+		    }
+
+		    private Color randomColor() 
+		    {
+		        Random r = new Random();
+		        int red = r.nextInt(256);
+		        int blue = r.nextInt(256);
+		        int green = r.nextInt(256);
+
+		        Color c = new Color(red, blue, green);
+		        return c;
+		    }
+
+		    private JPanel initContent(int size)
+		    {
+		        this.panel = new JPanel();
+		        this.panel.setLayout(new GridLayout(size, size));
+		        this.panel.addMouseListener(this);
+
+		        this.panels = new JPanel[size][size];
+		        for (int row = 0; row < panels.length; row++) 
+		        {
+		            for (int col = 0; col < panels[row].length; col++) 
+		            {
+		                this.panels[row][col] = new JPanel();
+		                this.panels[row][col].setLayout(new BorderLayout());
+		                JLabel label = new JLabel(row + " " + col);
+		                label.setHorizontalAlignment(JLabel.CENTER);
+		                label.setFont(new Font("Verdana", Font.BOLD, 8));
+		                label.setForeground(Color.WHITE);
+		                //this.panels[row][col].add(label);
+		                this.panels[row][col].setBackground(randomColor());
+		                this.panel.add(this.panels[row][col]);
+		            }
+		        }
+		        return this.panel;
+		    }
+
+		    public static void main(String[] args) 
+		    {
+		        new Mausereignisse(250);
+
+		    }
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int x = e.getX();
+				int y = e.getY();
+				Point p = e.getPoint();
+				System.out.println("mouseClicked --> [x=" + x + ", y=" + y + "] ( " +p.x+", " +p.y+")");
+				
+				if(e.isAltDown()) System.out.println("AltDown");
+				if(e.isAltGraphDown()) System.out.println("AltGraphDown");
+				if(e.isShiftDown()) System.out.println("ShiftDown");
+				if(e.isMetaDown()) System.out.println("MetaDown");
+				if(e.isControlDown()) System.out.println("ControlDown");
+				
+				if(e.getClickCount()==2) System.out.println("Doppelklick");
+				
+				int width = this.panel.getWidth();
+				int height = this.panel.getHeight();
+				
+				int widthSinglePanel = width / this.size;
+				int heightSinglePanel = height / this.size;
+				
+				int col = x / widthSinglePanel;
+				int row = y / heightSinglePanel;
+				System.out.println("width : " + width + " height : " + height );
+				System.out.println("col   : " + col + " row  : " + row );
+				
+				this.panels[row][col].setBackground(randomColor());
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("mousePressed");
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println("mouseReleased");
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("mouseEntered");
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("mouseExited");
+				
+			}
+		}
+
+		```

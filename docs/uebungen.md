@@ -1574,7 +1574,7 @@
 
 ??? question "mögliche Lösung für Übung 7"
 	
-	=== "Stadt.java"
+	=== "Uebung7.java"
 		```java linenums="1"
 		package uebungen.uebung7;
 
@@ -1682,6 +1682,594 @@
 
 	6. **Tipp**: wenn Sie einem `JLabel` eine Hintergrundfarbe mit `setBackground(Color c)` setzen, dann sieht man diese nur, wenn Sie für dieses `JLabel` die Methode `setOpaque(true)` aufrufen. Nur dadurch werden für dieses `JLabel` alle Pixel gezeichnet, die in dessen *Grenzen* sind, d.h. das komplette Rechteck, das das `JLabel` ausfüllt. Ansonsten würde nur der Text "gezeichnet" und die Hintergrundfarbe wäre hinter dem Text versteckt. 
 
+
+??? question "mögliche Lösung für Übung 8"
+	
+	=== "Uebung8.java"
+		```java linenums="1"
+		package uebungen.uebung8;
+
+		import java.awt.*; 		// Achtung, enthaelt auch List-Klasse
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.util.List;
+		import java.util.ArrayList;
+
+		import javax.swing.*;
+
+		public class Uebung8 extends JFrame implements ActionListener
+		{
+			JButton btnAdd;
+			JButton btnRemove;
+			List<JLabel> labels;
+			JTextField input;
+			JPanel unten;
+			
+			Uebung8()
+			{
+				super();
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				this.setTitle("Elemente hinzufuegen");
+				this.setSize(500, 100);
+				this.setLocation(200,100);
+				JPanel oben = oben();
+				this.getContentPane().add(oben, BorderLayout.NORTH);
+				
+				this.unten = unten();
+				this.getContentPane().add(unten, BorderLayout.CENTER);
+				
+				this.setVisible(true);
+				this.labels = new ArrayList<>();
+			}
+			
+			JPanel oben()
+			{
+				JPanel oben = new JPanel();
+				oben.setBackground(Color.RED);
+				
+				// Steuerelemente erzeugen
+				this.input = new JTextField(10);
+				this.btnAdd = new JButton("add");
+				this.btnRemove = new JButton("remove");
+				
+				// Buttons an den ActionListener anmelden!!!
+				this.btnAdd.addActionListener(this);
+				this.btnRemove.addActionListener(this);
+				
+				// Steuerelemente hinzufuegen
+				oben.add(input);
+				oben.add(this.btnAdd);
+				oben.add(this.btnRemove);
+				return oben;
+			}
+			
+			JPanel unten()
+			{
+				JPanel unten = new JPanel();
+				unten.setBackground(Color.WHITE);
+				return unten;
+			}
+
+			public static void main(String[] args) {
+				new Uebung8();
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				Object src = e.getSource();
+				if(src instanceof JButton)
+				{
+					//JButton srcBtn = (JButton)src;
+					if(src == this.btnAdd)
+					{
+						String inputString = this.input.getText();
+						JLabel inputLabel = new JLabel(inputString);
+						inputLabel.setBackground(new Color(230, 219, 174));
+						inputLabel.setOpaque(true);
+						this.unten.add(inputLabel);		// dem Panel hinzufuegen
+						this.labels.add(inputLabel);	// der Liste hinzufuegen
+						
+						this.input.setText("");			// Eingabefeld leeren
+						this.input.requestFocus();		// Cursor ins Eingabefeld
+						
+						System.out.println("add geklickt : " + inputString);
+					} 
+					else if(src == this.btnRemove)
+					{
+						String inputString = this.input.getText();
+						
+						for(JLabel element : this.labels)
+						{
+							if(element.getText().equals(inputString))
+							{
+								this.unten.remove(element);
+							}
+						}
+
+						
+						System.out.println("remove geklickt");
+					}
+					
+					this.unten.revalidate();	// LayoutManager berechnet neu
+					this.unten.repaint();		// neuzeichnen des Fensters
+				}
+			}
+
+		}
+
+		```
+
+
+##### Übung 9 (TicTacToe)
+
+??? "Übung 9"
+
+	Gegeben sind die folgenden Klassen:
+
+	=== "Model.java"
+		```java linenums="1"
+		package uebungen.uebung9;
+
+		import java.util.Random;
+
+		/*
+		 * Implementierung von TicTacToe
+		 *
+		 */
+		public class Model
+		{
+		    private Player[][] field;
+		    public enum Player {RED, BLACK, EMPTY};
+		    private Player player;
+		    private int size;
+
+		    /*
+		     * erzeugt Objekt vom Model 
+		     * 	Parameter size fuer field: size x size 
+		     * 	alle Felder in field am Anfang leer (EMPTY)
+		     * 	player BLACK beginnt
+		     */
+		    public Model(int size)
+		    {
+		        this.size = size;
+		        this.field = new Player[this.size][this.size];
+		        for(int row = 0; row < this.size; row++)
+		        {
+		            for(int col = 0; col < this.size; col++)
+		            {
+		                this.field[row][col] = Player.EMPTY;
+		            }
+		        }
+		        this.player = Player.BLACK;     // BLACK faengt an
+		    }
+
+		    /*
+		     * field wieder alle Felder EMPTY
+		     * player ist BLACK
+		     */
+		    public void restart() 
+		    {
+
+		        for(int row = 0; row < this.size; row++)
+		        {
+		            for(int col = 0; col < this.size; col++)
+		            {
+		                this.field[row][col] = Player.EMPTY;
+		            }
+		        }
+		        this.player = Player.BLACK;     
+		    }
+
+		    /*
+		     * Rueckgabe von size
+		     * 	z.B. 3 bei 3 x 3 field
+		     */
+		    public int getSize() 
+		    {
+		        return this.size;
+		    }
+
+		    /*
+		     *  Rueckgabe deep copy von field
+		     */
+		    public Player[][] getField() {
+		        Player[][] copy = new Player[this.size][this.size];
+		        for(int row = 0; row < this.size; row++)
+		        {
+		            for(int col = 0; col < this.size; col++)
+		            {
+		                copy[row][col] = this.field[row][col];
+		            }
+		        }
+		        return copy;
+		    }
+
+		    /*
+		     * Ausgabe von field auf Konsole
+		     */
+		    public void printField()
+		    {
+		        for(int row = 0; row < this.size; row++)
+		        {
+		            for(int col = 0; col < this.size; col++)
+		            {
+		                if(this.field[row][col] == Player.EMPTY)
+		                {
+		                    System.out.print("- ");
+		                }
+		                else if(this.field[row][col] == Player.BLACK)
+		                {
+		                    System.out.print("x ");
+		                }
+		                else if(this.field[row][col] == Player.RED)
+		                {
+		                    System.out.print("o ");
+		                }
+		            }
+		            System.out.println();	// Ende der Zeile
+		        }
+		        System.out.println();		// nach Ausgabe des Feldes
+		    }
+
+		    /*
+		     * Spielerinnenwechsel 
+		     * von BLACK zu RED oder
+		     * von RED zu BLACK
+		     * 
+		     */
+		    public void switchPlayer()
+		    {
+		        this.player = (this.player == Player.BLACK) ? Player.RED : Player.BLACK;
+		    }
+
+		    /*
+		     * setzt player in field, wenn moeglich
+		     * gibt true zurueck, wenn Zug moeglich war
+		     * false, wenn Zug nicht moeglich war (z.B. falsche row oder col 
+		     * oder field[row][col] bereits besetzt)
+		     */
+		    public boolean move(int row, int col)
+		    {
+		    	boolean movePossible = this.movePossible(row, col);
+		        if(movePossible)
+		        {
+		            this.field[row][col] = this.player;
+		        }
+		        return movePossible;
+		    }
+
+		    /*
+		     * Rueckgabe aktueller player
+		     */
+		    public Player curPlayer() 
+		    {
+		        return this.player;
+		    }
+
+		    /* 
+		     * Hilfsmethode, um zu ermitteln, ob Zug moeglich
+		     * gibt true zurueck, wenn Zug moeglich war
+		     * false, wenn Zug nicht moeglich war (z.B. falsche row oder col 
+		     * oder field[row][col] bereits besetzt)
+		     */
+		    public boolean movePossible(int row, int col)
+		    {
+		        boolean movePossible = false;
+		        // row und col jeweils koorekter Index ?
+		        if(row >= 0 && row < this.size && col >= 0 && col < this.size)
+		        {
+		            // ist das Feld ueberhaupt leer ?
+		            if(this.field[row][col] == Player.EMPTY)
+		            {
+		                movePossible = true;
+		            }
+		        }
+		        return movePossible;
+		    }
+
+		    /*
+		     * true, wenn gewonnen
+		     * false, wenn nicht
+		     */
+		    public boolean won()
+		    {
+		    	return this.won(Player.BLACK) || this.won(Player.RED);
+		    }
+		    
+		    /*
+		     * Hilfsmethode fuer won(), um zu ueberpruefen,
+		     * ob BLACK oder RED gewonnen hat
+		     */
+		    private boolean won(Player player)
+		    {
+		        boolean won = false;
+		        if(player == Player.BLACK || player == Player.RED)
+		        {
+			        // 3 nebeneinander ???
+			        for(int row = 0; row < this.size && !won; row++)
+			        {
+			            if( this.field[row][0] == player && 
+			                this.field[row][1] == player &&
+			                this.field[row][2] == player) 
+			            {
+			                won = true;
+			            }
+			        }
+			        // 3 untereinander ???
+			        for(int col = 0; col < this.size && !won; col++)
+			        {
+			            if( this.field[0][col] == player && 
+			                this.field[1][col] == player &&
+			                this.field[2][col] == player) 
+			            {
+			                won = true;
+			            }
+			        }
+			        // von links oben nach rechts unten - Diagonale
+			        if( !won && 
+			        	this.field[0][0] == player && 
+			            this.field[1][1] == player &&
+			            this.field[2][2] == player) 
+			        {
+			            won = true;
+			        }
+			        // von rechts oben nach links unten - Diagonale
+			        if( !won && 
+			        	this.field[0][2] == player && 
+			            this.field[1][1] == player &&
+			            this.field[2][0] == player) 
+			        {
+			            won = true;
+			        }
+		        }
+		        return won;
+		    }
+
+		    /*
+		     * Ausgabe auf die Konsole 
+		     * player, die gewonnen hat
+		     */
+		    public void printWon()
+		    {
+		        if(this.player == Player.BLACK)
+		        {
+		            System.out.println("Spielerin x hat gewonnen !!!" );
+		        }
+		        else
+		        {
+		            System.out.println("Spielerin o hat gewonnen !!!" );
+		        }
+		    }
+
+		    /*
+		     * Hilfsmethode, um zu uberpruefen, ob alle Felder besetzt
+		     * wird fuer draw() benoetigt
+		     */
+		    private boolean fieldFilled()
+		    {
+		        for(int row = 0; row < this.size; row++)
+		        {
+		            for(int col = 0; col < this.size; col++)
+		            {
+		                if(this.field[row][col] == Player.EMPTY)
+		                {
+		                    return false;
+		                }
+		            }
+		        }
+		        return true;
+		    }
+
+		    /*
+		     * true, wenn unentschieden
+		     * false, wenn nicht
+		     * unentschieden ist, wenn field voll ist (fieldFilled()),
+		     * aber niemand gewonnen hat
+		     */
+		    public boolean draw()
+		    {
+		        return this.fieldFilled() && !this.won();
+		    }
+
+		    /*
+		     * true, wenn Spiel zu Ende
+		     * entweder unentschieden oder gewonnen
+		     */
+		    public boolean finished()
+		    {
+		        return this.draw() || this.won();
+		    }
+
+		    /*
+		     * zufaelliger Zug
+		     * wird ausgefuehrt, aber keine Pruefung, ob
+		     * gewonnen oder unentschieden
+		     * nach dem Zug switschPlayer()
+		     */
+		    public void automaticMove()
+		    {
+		        Random r = new Random();
+		        int row = r.nextInt(this.size);
+		        int col = r.nextInt(this.size);
+		        while(!this.movePossible(row, col))
+		        {
+		            row = r.nextInt(this.size);
+		            col = r.nextInt(this.size);
+		        }
+		        this.move(row, col);
+		    }
+
+		    /*
+		     * automatischer (zufaelliger) Zug mit
+		     * anschliessender Pruefung, ob gewonnen 
+		     * oder nicht
+		     * neuer Stand von field Ausgabe auf die Konsole
+		     * bei Gewinn oder Unentschieden Ausgabe auf die Konsole
+		     */
+		    public void automaticMoveAndCheck()
+		    {
+		        this.automaticMove();
+		        this.printField();
+		        if(this.finished())
+		        {
+		            if(this.won())
+		            {
+		                this.printWon();
+		            }
+		            else    // draw
+		            {
+		                System.out.println("Unentschieden !!!");
+		            }
+		        }
+		        else
+		        {
+		            this.switchPlayer();
+		        }
+		    }
+
+		    /*
+		     * so lange automatisch ziehen bis Spiel zu Ende
+		     * inkl. Ausgabe auf die Konsole
+		     */
+		    public void playGame()
+		    {
+		        while(!this.finished())
+		        {
+		            this.automaticMoveAndCheck();
+		        }
+		    }
+
+		}
+		```
+
+	=== "View.java"
+		```java linenums="1"
+		package uebungen.uebung9;
+
+		import java.awt.BorderLayout;
+		import java.awt.Font;
+		import java.awt.GridLayout;
+
+
+		import javax.swing.*;
+
+		public class View extends JFrame
+		{
+			JButton[] buttons; 
+			JLabel labelStatus;
+			JButton btnStart;
+			Model model;
+
+			View(Model model)
+			{
+				super();
+				this.model = model;
+				setTitle("TicTacToe");
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				// center panel
+				JPanel hauptPanel = init();
+				this.getContentPane().add(hauptPanel, BorderLayout.CENTER);
+				
+				// label panel
+				JPanel labelPanel = new JPanel();
+				this.labelStatus = new JLabel();
+				this.labelStatus.setFont(new Font("Verdana", Font.BOLD, 24));
+				this.labelStatus.setText("X beginnt");
+				labelPanel.add(this.labelStatus);
+				this.getContentPane().add(labelPanel, BorderLayout.NORTH);
+				
+				// button panel
+				this.btnStart = new JButton("Start");
+				this.getContentPane().add(this.btnStart, BorderLayout.SOUTH);
+				
+				setSize(400,400);
+				setVisible(true);
+			}
+
+			private JPanel init()
+			{
+				JPanel panel = new JPanel();
+				panel.setLayout(new GridLayout(3,3,10,10));
+
+				this.buttons = new JButton[9];
+				for (int i=0; i<this.buttons.length; i++)
+				{
+					this.buttons[i]=new JButton();	
+					this.buttons[i].setFont(new Font("Verdana", Font.BOLD, 48));
+					this.buttons[i].setActionCommand(Integer.toString(i));
+					panel.add(buttons[i]);
+				}
+				return panel;
+			}
+			
+			public void restart() {
+				for (int i=0; i<this.buttons.length; i++)
+				{
+					this.buttons[i].setText("");
+					this.revalidate();
+					this.repaint();
+				}
+			}
+			
+			
+
+		}
+		```
+
+	=== "Controller.java"
+		```java linenums="1"
+		package uebungen.uebung9;
+
+		import java.awt.Color;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+
+		import javax.swing.JButton;
+
+		public class Controller implements ActionListener
+		{
+			Model model;
+			View view;
+
+			Controller(Model model, View view) {
+				this.model = model;
+				this.model.restart();
+				this.view = view;
+				for(int i = 0; i < this.view.buttons.length; i++) {
+					this.view.buttons[i].addActionListener(this);
+				}
+				this.view.btnStart.addActionListener(this);
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				// TODO
+
+			}
+		}
+		```
+
+	=== "Programclass.java"
+		```java linenums="1"
+		package uebungen.uebung9;
+
+		public class Programclass 
+		{
+
+			public static void main(String[] args) 
+			{
+		        Model model = new Model(3); 
+		        model.playGame();	// einmal ein Spiel auf Konsole ausgeben
+		        View view = new View(model);
+		        Controller controller = new Controller(model, view);
+			}
+
+		}
+		```
+
+	**Aufgabe:** Implementieren Sie die `actionPerformed()`-Methode in der `Controller`-Klasse.
 
 
 

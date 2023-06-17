@@ -85,6 +85,8 @@ nav:
     - GUI Einführung: gui.md 
     - GUI Ereignisse: ereignisse.md 
     - Mausereignisse: mausereignisse.md
+    - GUI Graphics: graphics.md 
+    - Mausereignisse (in Graphics): mausereignisse_graphics.md
     - Übungen: uebungen.md
     - Aufgaben: aufgaben.md
 
