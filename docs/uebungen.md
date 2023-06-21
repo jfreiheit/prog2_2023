@@ -1805,7 +1805,7 @@
 
 ??? "Übung 9"
 
-	Gegeben sind die folgenden Klassen:
+	Gegeben sind die folgenden Klassen ([uebung9.zip zum Download](./files/uebung9.zip)):
 
 	=== "Model.java"
 		```java linenums="1"
