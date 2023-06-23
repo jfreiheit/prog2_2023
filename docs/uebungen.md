@@ -2273,4 +2273,80 @@
 
 
 
+??? question "mögliche Lösung für Übung 9"
+	
+	=== "actionPerformed() aus Controller.java"
+		```java linenums="1"
+	    @Override
+	    public void actionPerformed(ActionEvent e) 
+	    {
+	    	Object src = e.getSource();
+	    	if(src instanceof JButton) {
+	    		JButton buttonPressed = (JButton)src;
+	    		if(buttonPressed.getActionCommand().equals("Start")) 
+	    		{
+	    			System.out.println("Start-Button");
+	    			this.model.restart();
+	    			this.view.restart();
+	    		}
+	    		else
+	    		{
+	    			String command = buttonPressed.getActionCommand();
+	    			int index = Integer.valueOf(command).intValue();
+	    			System.out.println("Button " + index + " geklickt");
+	    			
+	    			int row = index / this.model.getSize();
+	    			int col = index % this.model.getSize();
+	    			
+	    			if(!this.model.finished() && this.model.movePossible(row, col))
+	    			{
+		    			if(this.model.curPlayer() == Model.Player.BLACK) {
+		    				buttonPressed.setForeground(Color.BLACK);
+		    				buttonPressed.setText("X");
+		    				this.view.labelStatus.setForeground(Color.RED);
+    						this.view.labelStatus.setText("O ist dran");
+		    			} else if(this.model.curPlayer() == Model.Player.RED) {
+		    				buttonPressed.setForeground(Color.RED);
+		    				buttonPressed.setText("O");
+		    				this.view.labelStatus.setForeground(Color.BLACK);
+    						this.view.labelStatus.setText("X ist dran");
+		    			}	
+		
+		    			this.model.move(row, col);
+		    			
+		    			if(this.model.won()) {
+		    				if(this.model.curPlayer() == Model.Player.BLACK) {
+		    					this.view.labelStatus.setForeground(Color.BLACK);
+		    					this.view.labelStatus.setText("X hat gewonnen!");
+		    				}
+		    				else {
+		    					this.view.labelStatus.setForeground(Color.RED);
+		    					this.view.labelStatus.setText("O hat gewonnen!");
+		    				}
+		    				
+		    			} 
+		    			else if(this.model.draw()) {
+		    				this.view.labelStatus.setForeground(Color.GRAY);
+		    				this.view.labelStatus.setText("Unentschieden!");
+		    			}
+		    			
+		    			if(!this.model.won()) this.model.switchPlayer();
+	    			}
+	    			
+	    		}
+	    	}
+	    }
+		```
+
+
+##### Übung 10 (Zeichnen)
+
+??? "Übung 10"
+
+	1. Zeichnen Sie ein Quadrat. Passen Sie dieses Quadrat möglichst passend in das Fenster. Da es sich um ein Quadrat handelt, kann es sich nur der Höhe oder der Breite des Fensters anpassen, je nachdem, was kleiner ist. Wenn die Höhe kleiner ist, als die Breite, dann soll das Quadrat ausgefüllt sein. Wenn die Breite kleiner als die Höhe ist, dann soll das Quadrat nicht ausgefüllt sein, aber die Linienstärke auf `5.0f` gesetzt werden. 
+	2. Die Zeichenfarbe soll zufällig erzeugt werden - jedes Mal, wenn die `paintComponent()`-Methode aufgerufen wird.
+
+		![uebung10](./files/84_uebung10.png)
+
+	3. Beobachten Sie anhand des Farbwechsels, wie oft die `paintComponent()`-Methode aufgerufen wird. 
 

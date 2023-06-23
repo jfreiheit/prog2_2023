@@ -1108,7 +1108,7 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 ??? question "16.06.2023 - Ereignisbehandlung"
 	- siehe [**ActionListener**](./ereignisse/#ereignisse) und [**Mausereignisse**](./mausereignisse/#mausereignisse)
-	- siehe [**Übung 9**]()
+	- siehe [**Übung 9**](./uebungen/#ubung-9-tictactoe)
 	- siehe [**Aufgabe 9**](./aufgaben/#aufgabe-9-schiebepuzzle)
 
 
@@ -1365,3 +1365,266 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 		}
 
 		```
+
+
+??? question "23.06.2023 - Graphics"
+	- siehe [**Mausereignisse**](./mausereignisse/#mausereignisse) und [**Graphics**](./graphics/#graphics) 
+	- siehe [**Übung 10**](./uebungen/#ubung-10-zeichnen)
+	- siehe [**Aufgabe 10**](./aufgaben/#aufgabe-10-zeichnen)
+
+
+??? "Code aus der Vorlesung"
+
+
+	=== "Mausereignisse.java"
+		```java
+		package vorlesungen.vorlesung0623;
+
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.GridLayout;
+		import java.awt.Point;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.util.Random;
+
+		import javax.swing.JFrame;
+		import javax.swing.JLabel;
+		import javax.swing.JPanel;
+
+		public class Mausereignisse extends JFrame 
+		{
+		    private int size;
+		    private JPanel[][] panels;
+		    private JPanel panel;
+
+		    public Mausereignisse(int size)
+		    {
+		        super();
+		        this.size = size;
+		        this.setTitle("Mausereignisse");
+		        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		        JPanel mainPanel = initContent(size);
+
+		        this.getContentPane().add(mainPanel, BorderLayout.CENTER);
+
+		        this.setSize(400,400);
+		        this.setVisible(true);
+		    }
+
+		    private Color randomColor() 
+		    {
+		        Random r = new Random();
+		        int red = r.nextInt(256);
+		        int blue = r.nextInt(256);
+		        int green = r.nextInt(256);
+
+		        Color c = new Color(red, blue, green);
+		        return c;
+		    }
+
+		    private JPanel initContent(int size)
+		    {
+		        this.panel = new JPanel();
+		        this.panel.setLayout(new GridLayout(size, size));
+
+		        this.panels = new JPanel[size][size];
+		        for (int row = 0; row < panels.length; row++) 
+		        {
+		            for (int col = 0; col < panels[row].length; col++) 
+		            {
+		                this.panels[row][col] = new JPanel();
+		                this.panels[row][col].setLayout(new BorderLayout());
+		                JLabel label = new JLabel(row + " " + col);
+		                label.setHorizontalAlignment(JLabel.CENTER);
+		                label.setFont(new Font("Verdana", Font.BOLD, 8));
+		                label.setForeground(Color.WHITE);
+		                //this.panels[row][col].add(label);
+		                this.panels[row][col].setBackground(randomColor());
+				        this.panels[row][col].addMouseListener(new MouseListener() {
+
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int x = e.getX();
+								int y = e.getY();
+								Point p = e.getPoint();
+								System.out.println("mouseClicked --> [x=" + x + ", y=" + y + "] ( " +p.x+", " +p.y+")");
+								
+								Object src = e.getSource();
+								JPanel here = (JPanel)src;
+								here.setBackground(randomColor());
+								
+							}
+
+							@Override
+							public void mousePressed(MouseEvent e) {
+								// TODO Auto-generated method stub
+								
+							}
+
+							@Override
+							public void mouseReleased(MouseEvent e) {
+								// TODO Auto-generated method stub
+								
+							}
+
+							@Override
+							public void mouseEntered(MouseEvent e) {
+								// TODO Auto-generated method stub
+								
+							}
+
+							@Override
+							public void mouseExited(MouseEvent e) {
+								// TODO Auto-generated method stub
+								
+							}
+				        	  
+				        });
+		                this.panel.add(this.panels[row][col]);
+		            }
+		        }
+		        return this.panel;
+		    }
+
+		    public static void main(String[] args) 
+		    {
+		        new Mausereignisse(10);
+
+		    }
+
+		    /*
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int x = e.getX();
+				int y = e.getY();
+				Point p = e.getPoint();
+				System.out.println("mouseClicked --> [x=" + x + ", y=" + y + "] ( " +p.x+", " +p.y+")");
+				
+				if(e.isAltDown()) System.out.println("AltDown");
+				if(e.isAltGraphDown()) System.out.println("AltGraphDown");
+				if(e.isShiftDown()) System.out.println("ShiftDown");
+				if(e.isMetaDown()) System.out.println("MetaDown");
+				if(e.isControlDown()) System.out.println("ControlDown");
+				
+				if(e.getClickCount()==2) System.out.println("Doppelklick");
+				
+				int width = this.panel.getWidth();
+				int height = this.panel.getHeight();
+				
+				int widthSinglePanel = width / this.size;
+				int heightSinglePanel = height / this.size;
+				
+				int col = x / widthSinglePanel;
+				int row = y / heightSinglePanel;
+				System.out.println("width : " + width + " height : " + height );
+				System.out.println("col   : " + col + " row  : " + row );
+				
+				this.panels[row][col].setBackground(randomColor());
+			}
+			*/
+
+		}
+
+		```
+
+	=== "Zeichnen.java"
+		```java
+		package vorlesungen.vorlesung0623;
+
+		import java.awt.BasicStroke;
+		import java.awt.Color;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.geom.Arc2D;
+		import java.awt.geom.Ellipse2D;
+		import java.awt.geom.Rectangle2D;
+		import java.awt.Shape;
+		import java.util.Random;
+
+		import javax.swing.*;
+
+		public class Zeichnen extends JFrame
+		{
+			
+			Zeichnen()
+			{
+				super();
+				this.setTitle("Wir zeichnen");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				this.setSize(500, 500);
+				this.setLocation(200, 100);
+				
+				//JPanel content = initContent();
+				Canvas canvas = new Canvas();
+				this.getContentPane().add(canvas);
+				this.setVisible(true);
+			}
+			
+			class Canvas extends JPanel
+			{
+				@Override
+				public void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);
+					Graphics2D g2 = (Graphics2D)g;
+					
+					g2.setStroke(new BasicStroke(3.0f));
+					/*
+					g2.drawRect(40, 30, 200, 200);
+					for(int i = 0; i < 20; i++)
+					{
+						g2.setColor(Zeichnen.this.randomColor());
+						g2.drawOval(40 + i*10, 30 + i*10, 200, 200);
+					}
+					*/
+					
+					int widthJPanel = this.getWidth();
+					int heightJPanel = this.getHeight();
+					double x = widthJPanel / 10.0;
+					double y = heightJPanel /10.0;
+					double widthShape = widthJPanel * 0.8;
+					double heightShape = heightJPanel * 0.8;
+					
+					Shape rectangle = new Rectangle2D.Double(x, y, widthShape, heightShape);
+					Shape circle = new Ellipse2D.Double(x,y, widthShape, heightShape);
+					
+					//g2.draw(circle);
+					//g2.draw(rectangle);
+					g2.setStroke(new BasicStroke(3.0f));
+					//g2.setColor(Color.RED);
+					//g2.fill3DRect((int)x, (int)y, (int)widthShape, (int)heightShape, true);
+					
+					Shape arc = new Arc2D.Double(x, y, 2 * widthShape, 2 * heightShape, 90, 90, Arc2D.CHORD);
+					g2.draw(arc);
+					
+					System.out.println(widthJPanel + " x " + heightJPanel);
+				}
+			}
+			
+		    private Color randomColor() 
+		    {
+		        Random r = new Random();
+		        int red = r.nextInt(256);
+		        int blue = r.nextInt(256);
+		        int green = r.nextInt(256);
+
+		        Color c = new Color(red, blue, green);
+		        return c;
+		    }
+			
+			JPanel initContent()
+			{
+				JPanel main = new JPanel();
+				
+				return main;
+			}
+			
+			public static void main(String[] args) {
+				new Zeichnen();
+			}
+		}
+		```
+

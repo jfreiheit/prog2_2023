@@ -555,6 +555,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#aufgabe-10-zeichnen" class="md-nav__link">
+    Aufgabe 10 (Zeichnen)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#klausurvorbereitung" class="md-nav__link">
     Klausurvorbereitung
   </a>
@@ -702,6 +709,13 @@
         <li class="md-nav__item">
   <a href="#aufgabe-9-schiebepuzzle" class="md-nav__link">
     Aufgabe 9 (Schiebepuzzle)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aufgabe-10-zeichnen" class="md-nav__link">
+    Aufgabe 10 (Zeichnen)
   </a>
   
 </li>
@@ -3269,6 +3283,26 @@ D<span class="w"> </span>received<span class="w"> </span>Breaking<span class="w"
 <p>wahrscheinlich ist es am einfachsten, ein zweidimensionales Array 2x3 als Datenstruktur für Ihr Puzzle zu verwenden</p>
 </li>
 </ul>
+</li>
+</ol>
+</details>
+<h5 id="aufgabe-10-zeichnen">Aufgabe 10 (Zeichnen)<a class="headerlink" href="#aufgabe-10-zeichnen" title="Permanent link">&para;</a></h5>
+<details>
+<summary>Aufgabe 10</summary>
+<ol>
+<li>
+<p>Wir berechnen PI mithilfe der <a href="https://groups.uni-paderborn.de/reiss/AnalyseBuch/Grundlagen/Geometrie/pi/area.html">Monte-Carlo-Methode</a>. Dazu zeichnen wir ein Quadrat und darin einen Kreisbogen (einen Viertelkreis), dessen Radius der Seitenlänge des Quadrats entspricht:</p>
+<p><img alt="aufgabe10" src="../files/85_aufgabe10.png" /></p>
+</li>
+<li>
+<p>Nun zeichnen wir in dieses Quadrat viele kleine ausgefüllte Kreise (Durchmesser z.B. <code>2</code> Pixel). Die Positionen dieser Kreise werden zufällig ermittelt. Wenn die zufällig ermittelte Position für diesen Kreis <strong>im Kreisbogen</strong> liegt, dann sind die kleinen Kreise rot, wenn die Position außerhalb liegt, dann sind die Kreise blau. Es entsteht bei ganz vielen (z.B. <code>50000</code>) Punkten so ein Bild:</p>
+<p><img alt="aufgabe10" src="../files/86_aufgabe10.png" /></p>
+</li>
+<li>
+<p><strong>Tipp:</strong> Ob ein Punkt mit den Koordinaten <code>(x,y)</code> in einem (Viertel-)Kreis liegt, ermitteln Sie mithilfe der <a href="https://studyflix.de/mathematik/kreisgleichung-1867">Kreisgleichung</a>. Sei <code>(xm, ym)</code> der Mittelpunkt und <code>r</code> der Radius des Kreises, dann gilt <code>(x-xm)^2 + (y-ym)^2 = r^2</code> für alle Punkte auf dem Kreis (für Punkte im Kreis gilt &lt;= und für Punkte außerhalb des Kreises &gt;).</p>
+</li>
+<li>
+<p>Der Quotient aus der Anzahl der roten Punkte und der Gesamtanzahl der Punkte ist eine Näherung von PI/4. Geben Sie Ihre Annäherung von PI auf der Konsole aus.</p>
 </li>
 </ol>
 </details>
