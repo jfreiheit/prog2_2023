@@ -2350,3 +2350,288 @@
 
 	3. Beobachten Sie anhand des Farbwechsels, wie oft die `paintComponent()`-Methode aufgerufen wird. 
 
+	4. **Zusatz**: Wenn die Höhe größer ist als Breite sollen mehrere Quadrate wie folgt gezeichnet werden:
+
+		![uebung10](./files/92a_uebung10.png)
+
+
+??? question "mögliche Lösung für Übung 10"
+	
+	=== "Uebung10.java"
+		```java linenums="1"
+	    package uebungen.uebung10;
+
+		import java.awt.BasicStroke;
+		import java.awt.Color;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Shape;
+		import java.awt.geom.Rectangle2D;
+		import java.awt.geom.RoundRectangle2D;
+		import java.util.Random;
+
+		import javax.swing.*;
+
+		public class Uebung10 extends JFrame
+		{
+			Uebung10()
+			{
+				super();
+				this.setTitle("Uebung 10");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				this.setSize(400,400);
+				this.getContentPane().add(new Canvas());
+				this.setLocation(200,200);
+				this.setVisible(true);
+			}
+			
+			class Canvas extends JPanel
+			{
+				@Override
+				public void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);
+					Graphics2D g2 = (Graphics2D)g;
+					
+					int widthPanel = this.getWidth();
+					int heightPanel = this.getHeight();
+					
+					g2.setColor(this.randomColor());
+					g2.setStroke(new BasicStroke(5.0f));
+					
+					if(widthPanel > heightPanel)
+					{
+						double y = heightPanel / 10.0;
+						double length = heightPanel - 2 * y;
+						double x = (widthPanel-length) / 2.0;
+						
+						//Shape rect = new RoundRectangle2D.Double(x, y, length, length, y, y);
+						Shape rect = new Rectangle2D.Double(x, y, length, length);
+						g2.fill(rect);
+						
+						//g2.fillRect((int)x, (int)y, (int)length, (int)length);
+						
+					}
+					else
+					{
+						// for Schleife fuer Zusatz
+						for(int i = 0; i < 28; i++)
+						{
+							double x = widthPanel / 10.0 + (i * (widthPanel / 30.0));
+							double length = widthPanel - 2 * x;
+							double y = (heightPanel-length) / 2.0;
+							
+							//Shape rect = new RoundRectangle2D.Double(x, y, length, length, x, x);
+							Shape rect = new Rectangle2D.Double(x, y, length, length);
+							g2.draw(rect);
+						}
+						
+						//g2.drawRect((int)x, (int)y, (int)length, (int)length);
+					}
+					
+				}
+				
+				Color randomColor()
+				{
+					Random ra = new Random();
+					int r = ra.nextInt(256);
+					int g = ra.nextInt(256);
+					int b = ra.nextInt(256);
+					
+					return new Color(r,g,b);
+				}
+			}
+			
+			public static void main(String[] args) 
+			{
+				new Uebung10();
+			}
+
+		}
+
+		```
+
+
+
+##### Übung 11 (Mausereignisse)
+
+??? "Übung 11"
+
+	1. Zeichnen Sie mithilfe der Maus farbige Rechtecke. Das Zeichnen soll folgendermaßen funktionieren:
+		- dort, wo sie mit der Maus in die Zeichenfläche klicken, ist ein Eckpunkt des Rechtecks
+		- mit gedrückter Maustaste ziehen Sie das Rechteck groß (währenddessen soll das Rechteck dargestellt werden)
+		- durch Loslassen der Maustaste legen Sie die endgültige Größe des Rechtecks fest und speichern das Rechteck
+		- durch wiederholtes Zeichnen werden mehrere Rechtecke gezeichnet. Die zuvor gezeichneten Rechtecke bleiben dargestellt
+		- jedes Rechteck hat eine zufällig erzeugte Farbe 
+		- beachten Sie, dass das Zeichnen eines Rechtecks nicht nur von links oben nach rechts unten, sondern in alle Richtungen möglich sein soll
+		
+	2. **Tipps:** 
+		- studieren Sie dieses [Beispiel](../mausereignisse/#beispiel-2-linien-zeichnen)
+		- behandeln Sie die Mausereignisse in den Methoden `mousePressed()`, `mouseReleased()` (`MouseListener`) sowie aus dem `MouseMotionListener` `mouseDragged()`
+		- erstellen Sie sich zunächst eine Klasse, die Rechtecke repräsentiert (Objektvariablen `x`, `y`, `width`, `height`, jweils `int`)
+		- speichern Sie die Rechtecke zusammen mit ihrer Farbe in einer `Map` (untersuchen Sie den Unterschied zwischen `HashMap` und `LinkedHashMap`)
+		- zeichnen Sie in `paintComponent()` alle Rechtecke aus der `Map` und das aktuelle Rechteck (das Sie gerade zeichnen)
+
+		![uebung11](./files/89_uebung11.png)
+
+
+
+##### Übung SWT (JUnit)
+
+??? "Übung SWT (JUnit)"
+	- Probieren Sie sich mit `JUnit` aus! Schreiben Sie Unit-Tests für Ihre `MyInteger`-Klasse aus [Aufgabe 2](../aufgaben/#aufgabe-2-myinteger).  
+	- Testen Sie z.B. für `parseInt()`:
+		```
+			"1234" 			-> 1234
+			"+1234"  		-> 1234
+			"01234"  		-> 1234
+			"-1234" 		-> -1234
+			"-01234"  		-> -1234
+			null			-> Exception (IAE) kein String
+			""				-> Exception (IAE) leerer String
+			"+"				-> Exception (IAE) nur '+' bzw. '-' --> keine Zahl
+			"-"				-> Exception (IAE) nur '+' bzw. '-' --> keine Zahl
+			"-00000000"		-> 0
+			"+00000000"		-> 0
+			"-00000001"		-> -1
+			"+00000001"		->	1
+			"123456a"		-> Exception (IAE) keine Zahl!
+			"-123456a"		-> Exception (IAE) keine Zahl!
+			"+123456a"		-> Exception (IAE) keine Zahl!
+			"2147483648"	-> Exception (IAE) Zahl zu gross!
+			"-2147483649"	-> Exception (IAE) Zahl zu klein!
+
+		```
+
+
+??? question "MyInteger.java"
+	
+	=== "MyInteger.java"
+		```java linenums="1"
+		package testen;
+
+		public class MyInteger
+		{
+			public static final int MAX_VALUE = 2147483647;
+			public static final int MIN_VALUE = -2147483648;
+
+			private int value;
+
+			public MyInteger(int value)
+			{
+				this.value=value;
+			}
+
+			public MyInteger(String s) throws IllegalArgumentException
+			{
+				this.value = parseInt(s);
+			}
+
+			private static boolean isDigit(char c)
+			{
+				return (c=='0' || c=='1' || c=='2' || c=='3' || c=='4' || c=='5' ||
+						c=='6' || c=='7' || c=='8' || c=='9');
+			}
+
+			private static int charToInt(char c)
+			{
+				int asciivalue = c;
+				int intvalue = asciivalue-48; // 0 ist 48 bis 9 ist 57
+				return intvalue;
+			}
+
+			public static int parseInt(String s) throws IllegalArgumentException
+			{
+				if(s == null) throw new IllegalArgumentException("kein String");
+				if(s.length()==0) throw new IllegalArgumentException("leerer String");
+				// pruefe, ob erstes Zeichen + oder -
+				// merken und weiter mit Rest
+				boolean negativ = false;
+				if(s.charAt(0)=='+') s = s.substring(1);
+				else if(s.charAt(0)=='-')
+				{
+					s = s.substring(1);
+					negativ = true;
+				}
+				if(s.length()==0) throw new IllegalArgumentException("nur '+' bzw. '-' --> keine Zahl");
+				// entferne fuehrende Nullen
+				while(s.length() > 0 && s.charAt(0)=='0')
+				{
+					s = s.substring(1);
+				}
+				if(s.length()==0) return 0;		// String bestand nur aus Nullen --> 0
+				for(int i=0; i<s.length(); i++)
+				{
+					if(!isDigit(s.charAt(i))) throw new IllegalArgumentException("keine Zahl!");
+				}
+				
+				int zahl = 0;
+				for(int i = 0; i < s.length(); i++)
+				{
+					int ziffer = charToInt(s.charAt(i));
+					if((!negativ && (MyInteger.MAX_VALUE - ziffer) / 10 < zahl) || (negativ && (MyInteger.MAX_VALUE+1 - ziffer) / 10 < zahl))
+					{
+						if(negativ) throw new IllegalArgumentException("Zahl zu klein!");
+						else throw new IllegalArgumentException("Zahl zu gross!");
+					}
+					zahl = zahl * 10 + ziffer;
+				}
+				if(negativ) return -zahl;
+				else return zahl;
+			}
+
+			public int intValue()
+			{
+				return this.value;
+			}
+
+			public double doubleValue()
+			{
+				return this.value;
+			}
+
+			public static MyInteger valueOf(String s) throws IllegalArgumentException
+			{
+				return new MyInteger(s);
+			}
+
+			public static MyInteger valueOf(int value)
+			{
+				return new MyInteger(value);
+			}
+
+			@Override
+			public boolean equals(Object other)
+			{
+				if(other == null) return false;
+				if(this == other) return true; 
+				if(this.getClass() != other.getClass()) return false;   
+
+				MyInteger otherInt = (MyInteger)other;  
+				return (this.value == otherInt.value); 
+			}
+
+			@Override
+			public int hashCode()
+			{
+				return this.value;
+			}
+
+			@Override
+			public String toString()
+			{
+				return value+"";
+			}
+
+			public static int compare(int x, int y)
+			{
+				return (x < y) ? -1 : ((x == y) ? 0 : 1);
+			}
+
+			public int compareTo(MyInteger otherMyInteger)
+			{
+				return compare(this.value, otherMyInteger.value);
+			}
+		}
+		```
+	

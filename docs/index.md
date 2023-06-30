@@ -49,10 +49,10 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 | 6. | 22.-26.05.2023 | [Interfaces](./interfaces/#interfaces) | [Übung 5](./uebungen/#ubung-5-maps) |[Aufgabe 5](./aufgaben/#aufgabe-5-maps) | 01.06.2023 | 
 | 7. | 29.-02.06.2023 | [GUI Einführung](./gui/#graphical-user-interfaces) | [Übung 6](./uebungen/#ubung-6-interfaces) |[Aufgabe 6](./aufgaben/#aufgabe-6-interfaces) | 08.06.2023 | 
 | 8. | 05.-09.06.2023 | [GUI Ereignisse](./ereignisse/#ereignisse) | [Übung 7](./uebungen/#ubung-7-gui) |[Aufgabe 7](./aufgaben/#aufgabe-7-gui) | 15.06.2023 | 
-| 9. | 12.-16.06.2023 | ActionListener  | Übung 8 |[Aufgabe 8](./aufgaben/#aufgabe-8-ereignisbehandlung) | 22.06.2023 | 
-| 10. | 19.-23.06.2023 | Mausereignisse | Übung 9|Aufgabe 9 | 29.06.2023 | 
-| 12. | 26.-30.06.2023 | Graphics | Übung 10 | Aufgabe 10 | 06.07.2023 |
-| 13. | 03.-07.07.2023 | JUnit | Übung 11 | - | - |
+| 9. | 12.-16.06.2023 | [ActionListener](./ereignisse/#erstes-beispiel-actionlistener)  | [Übung 8](./uebungen/#ubung-8-ereignisbehandlung-actionlistener) |[Aufgabe 8](./aufgaben/#aufgabe-8-ereignisbehandlung) | 22.06.2023 | 
+| 10. | 19.-23.06.2023 | [Mausereignisse](./mausereignisse/#mausereignisse) | [Übung 9](./uebungen/#ubung-9-tictactoe) |[Aufgabe 9](./aufgaben/#aufgabe-9-schiebepuzzle) | 29.06.2023 | 
+| 12. | 26.-30.06.2023 | [Graphics](./prog2/graphics/#graphics) | [Übung 10](./uebungen/#ubung-10-zeichnen) | [Aufgabe 10](./aufgaben/#aufgabe-10-zeichnen) | 06.07.2023 |
+| 13. | 03.-07.07.2023 | [Zeichnen mit der Maus](./mausereignisse_graphics/#mausereignisse) | [Übung 11](./uebungen/#ubung-11-mausereignisse) | - | - |
 | 14. | 10.-14.07.2023 | REST-API mit SpringBoot| Übung 12 | - | - |
 |  | 28.07.2023 14:00 Uhr| Klausur 1.PZ | Labore 6. Etage C-Gebäude| - | - |
 |  | 29.09.2023 14:00 Uhr| Klausur 2.PZ | Labore 6. Etage C-Gebäude| - | - |
@@ -1375,7 +1375,6 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 ??? "Code aus der Vorlesung"
 
-
 	=== "Mausereignisse.java"
 		```java
 		package vorlesungen.vorlesung0623;
@@ -1628,3 +1627,237 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 		}
 		```
 
+
+??? question "30.06.2023 - Zeichnen mit der Maus"
+	- siehe [**Mausereignisse (in Graphics)**](./mausereignisse_graphics/#mausereignisse) 
+	- siehe [**Übung 11**](./uebungen/#ubung-10-zeichnen)
+
+
+??? "Code aus der Vorlesung"
+
+	=== "Zeichnen.java"
+		```java
+		package vorlesungen.vorlesung0630;
+
+		import java.awt.BasicStroke;
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+		import java.util.ArrayList;
+		import java.util.List;
+		import java.util.Random;
+
+		import javax.swing.*;
+
+		public class Zeichnen extends JFrame implements MouseListener, MouseMotionListener
+		{
+			Canvas canvas;
+			List<Point> points;
+			Linie line;
+			List<Linie> lines;
+			
+			Zeichnen()
+			{
+				super("Wir zeichnen");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				this.canvas = new Canvas();
+				this.canvas.addMouseListener(this);
+				this.canvas.addMouseMotionListener(this);
+				this.getContentPane().add(this.canvas);
+				this.getContentPane().add(buttonPanel(), BorderLayout.SOUTH);
+				
+				this.setSize(500,500);
+				this.setLocation(200,100);
+				this.setVisible(true);
+				
+				this.points = new ArrayList<>();
+				this.lines = new ArrayList<>();
+			}
+			
+			JPanel buttonPanel()
+			{
+				JPanel btnPanel = new JPanel();
+				JButton clearBtn = new JButton("clear");
+				clearBtn.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Zeichnen.this.lines.clear();
+						Zeichnen.this.points.clear();
+						Zeichnen.this.line = null;
+						Zeichnen.this.canvas.repaint();
+						
+					}
+					
+				});
+				
+				btnPanel.add(clearBtn);
+				return btnPanel;
+			}
+			
+			class Canvas extends JPanel
+			{
+				final int DURCHMESSER = 30;
+				
+				@Override
+				public void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);
+					Graphics2D g2 = (Graphics2D)g;
+					
+					//g2.drawLine(0, 0, this.getWidth(), this.getHeight());
+					/*
+					 * for(Point p : Zeichnen.this.points) { g2.fillRect(p.x, p.y, DURCHMESSER,
+					 * DURCHMESSER); }
+					 */
+					
+					g2.setStroke(new BasicStroke(3.0f));
+					
+					for(int i = 0; i < Zeichnen.this.points.size()-1; i++)
+					{
+						g2.setColor(Zeichnen.this.randomColor());
+						Point p1 = Zeichnen.this.points.get(i);
+						Point p2 = Zeichnen.this.points.get(i+1);
+						g2.drawLine(p1.x, p1.y, p2.x, p2.y);
+						
+					}
+
+					
+					for(Linie l : Zeichnen.this.lines)
+					{
+						g2.setColor(l.getColor());
+						g2.drawLine(l.getStart().x, l.getStart().y, l.getEnd().x, l.getEnd().y);
+					}
+					
+					if(Zeichnen.this.line != null)
+					{
+						int x1 = Zeichnen.this.line.getStart().x;
+						int y1 = Zeichnen.this.line.getStart().y;
+						int x2 = Zeichnen.this.line.getEnd().x;
+						int y2 = Zeichnen.this.line.getEnd().y;
+						g2.setColor(Zeichnen.this.line.getColor());
+						g2.drawLine(x1, y1, x2, y2);
+					}
+				}
+			}
+			
+			Color randomColor()
+			{
+				Random ra = new Random();
+				int r = ra.nextInt(256);
+				int g = ra.nextInt(256);
+				int b = ra.nextInt(256);
+				return new Color(r,g,b);
+			}
+			
+			public static void main(String[] args) {
+				new Zeichnen();
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Point p = e.getPoint();
+				this.points.add(p);
+				this.canvas.repaint(); 	// ruft paintComponent() auf
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Point p = e.getPoint();
+				Color color = Zeichnen.this.randomColor();
+				this.line = new Linie(p,p, color);
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				this.lines.add(this.line);
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				//System.out.println("dragged");
+				Point p = e.getPoint();
+				this.line.setEnd(p);
+				this.canvas.repaint();
+				
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				//System.out.println("moved");
+				
+			}
+		}
+		```
+
+	=== "Linie.java"
+		```java
+		package vorlesungen.vorlesung0630;
+
+		import java.awt.Color;
+		import java.awt.Point;
+
+		public class Linie 
+		{
+			private Point start;
+			private Point end;
+			private Color color;
+			
+			Linie(Point start, Point end)
+			{
+				this.start = start;
+				this.end = end;
+				this.color = Color.BLACK;
+			}
+			
+			Linie(Point start, Point end, Color color)
+			{
+				this.start = start;
+				this.end = end;
+				this.color = color;
+			}
+			
+			void setEnd(Point end)
+			{
+				this.end = end;
+			}
+			
+			Point getStart()
+			{
+				return this.start;
+			}
+			
+			Point getEnd()
+			{
+				return this.end;
+			}
+			
+			Color getColor()
+			{
+				return this.color;
+			}
+		}
+
+		```
