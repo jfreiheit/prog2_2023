@@ -942,7 +942,7 @@ class PowerTest {
 	void testValue() {		
 		double value = p1.value();
 		
-		assertEquals(value, 8.0, "2^3 should be 8.0");
+		assertEquals(8.0, value, "2^3 should be 8.0");
 	}
 	
 	@Test
