@@ -2670,6 +2670,143 @@
 		```
 
 
+
+##### Übung 12 (Klausurvorbereitung)
+
+??? "Übung 12"
+
+	1. Gegeben ist die folgende Klasse (auch <a href="./files/Uebung12.java" download>hier zum Download</a>):
+
+		```java linenums="1"
+		package uebungen.uebung12;
+
+		import java.awt.BasicStroke;
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.geom.Rectangle2D;
+		import java.awt.Shape;
+
+		import javax.swing.JButton;
+		import javax.swing.JFrame;
+		import javax.swing.JLabel;
+		import javax.swing.JPanel;
+
+		public class Uebung12 extends JFrame
+		{
+			Canvas canvas;
+			JLabel label;
+			
+			Uebung12()
+			{
+				super();
+				this.setTitle("Uebung 12");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+				this.setSize(500,500);
+				this.setLocation(200,100);
+				this.canvas = new Canvas();
+				this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+				this.getContentPane().add(this.createNorthPanel(), BorderLayout.NORTH);
+				this.getContentPane().add(this.createSouthPanel(), BorderLayout.SOUTH);
+				
+				this.setVisible(true);
+			}
+			
+			JPanel createNorthPanel()
+			{
+				JPanel north = new JPanel();
+				north.setBackground(Color.GRAY);
+				
+				// befuellen
+				this.label = new JLabel("Quadrat");
+				this.label.setForeground(Color.WHITE);
+				this.label.setFont(new Font("Verdana", Font.BOLD, 18));
+				north.add(this.label);
+				
+				return north;
+			}
+			
+			JPanel createSouthPanel()
+			{
+				JPanel south = new JPanel();
+				south.setBackground(Color.GRAY);
+				JButton shapeBtn = new JButton("circle");
+				JButton createBtn = new JButton("create");
+				
+				south.add(shapeBtn);
+				south.add(createBtn);
+				
+				return south;
+			}
+			
+			class Canvas extends JPanel
+			{
+				@Override
+				public void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);
+					Graphics2D g2 = (Graphics2D)g;
+					
+					int widthPanel = this.getWidth();
+					int heightPanel = this.getHeight();
+					
+					if(widthPanel > heightPanel)
+					{
+						double y = heightPanel/10.0;
+						double length = heightPanel - 2.0 * y;
+						double x = (widthPanel - length) / 2.0;
+						
+						g2.setStroke(new BasicStroke(3.0f, 
+								BasicStroke.CAP_BUTT,
+		                        BasicStroke.JOIN_MITER,
+		                        10.0f, 
+		                        new float[] {10.0f}, 
+		                        0.0f));
+						Shape s = new Rectangle2D.Double(x, y, length, length);
+						g2.draw(s);
+					}
+				}
+			}
+			
+			public static void main(String[] args) 
+			{
+				new Uebung12();
+
+			}
+
+		}
+		```
+
+		Die Klasse ist ausführbar und erzeugt die folgende GUI: 
+
+		![uebung12](./files/172_uebung12.png)
+			
+	2. Implementieren Sie für den Button `create`:
+		- nach Klick des Buttons erscheint ein ausgefülltes grünes Quadrat
+		- die Koordinaten des linken oberen Punktes des Quadrates sind zufällig ermittelt
+		- das Quadrat geht entweder bis zum rechten Rand oder bis zum unteren Rand der Canvas (je nachdem, was passt)
+
+		![uebung12](./files/173_uebung12.png)
+
+			
+	3. Implementieren Sie für den Button `circle`:
+		- aus den beiden Quadraten (dem gestrichelten und dem ausgefüllten) wird jeweils ein Kreis
+		- auf dem Button steht dann `square`
+		- klickt man erneut drauf, erscheint wieder `circle` und aus den Kreisen werden wieder Quadrate
+
+		![uebung12](./files/174_uebung12.png)
+
+	4. Implementieren Sie `MouseListener` und `MouseMotionListener` so, dass sich das ausgefüllte Quadrat bzw. der ausgefüllte Kreis bei gedrückter Maustaste bewegen lässt.
+
+	5. **Zusatz A:** Implementieren Sie `MouseListener` und `MouseMotionListener` so, dass sich die Größe des ausgefüllten Quadrats bzw. des ausgefüllten Kreises bei gedrückter Maustaste (rechte untere Ecke) ändern lässt.
+
+	6. **Zusatz B:** Implementieren Sie `MouseListener` und `MouseMotionListener` so, dass sich das ausgefüllte Quadrat bzw. der ausgefüllte Kreis nicht merh bewegen und ändern lässt, wenn es jeweils genau in den gestrichelten Rahmen passt.
+
+		![uebung12](./files/175_uebung12.png)
+
+
 ##### Übung SWT (JUnit)
 
 ??? "Übung SWT (JUnit)"

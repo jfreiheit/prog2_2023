@@ -586,6 +586,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ubung-12-klausurvorbereitung" class="md-nav__link">
+    Übung 12 (Klausurvorbereitung)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ubung-swt-junit" class="md-nav__link">
     Übung SWT (JUnit)
   </a>
@@ -714,6 +721,13 @@
         <li class="md-nav__item">
   <a href="#ubung-11-mausereignisse" class="md-nav__link">
     Übung 11 (Mausereignisse)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-12-klausurvorbereitung" class="md-nav__link">
+    Übung 12 (Klausurvorbereitung)
   </a>
   
 </li>
@@ -4985,6 +4999,243 @@ Frankfurt/Main<span class="w">     </span><span class="m">248</span>,31<span cla
 </div>
 </div>
 </div>
+</details>
+<h5 id="ubung-12-klausurvorbereitung">Übung 12 (Klausurvorbereitung)<a class="headerlink" href="#ubung-12-klausurvorbereitung" title="Permanent link">&para;</a></h5>
+<details>
+<summary>Übung 12</summary>
+<ol>
+<li>
+<p>Gegeben ist die folgende Klasse (auch <a href="./files/Uebung12.java" download>hier zum Download</a>):</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">uebungen.uebung12</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.BasicStroke</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.BorderLayout</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Font</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Graphics</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Graphics2D</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.geom.Rectangle2D</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Shape</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JButton</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JLabel</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JPanel</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Uebung12</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JFrame</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">;</span>
+<span class="w">    </span><span class="n">JLabel</span><span class="w"> </span><span class="n">label</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Uebung12</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Uebung 12&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span><span class="w">        </span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Canvas</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">createNorthPanel</span><span class="p">(),</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">createSouthPanel</span><span class="p">(),</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">JPanel</span><span class="w"> </span><span class="nf">createNorthPanel</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">north</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">north</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">GRAY</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// befuellen</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">(</span><span class="s">&quot;Quadrat&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="p">.</span><span class="na">setForeground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">WHITE</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Font</span><span class="p">(</span><span class="s">&quot;Verdana&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Font</span><span class="p">.</span><span class="na">BOLD</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">));</span>
+<span class="w">        </span><span class="n">north</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">label</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">north</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">JPanel</span><span class="w"> </span><span class="nf">createSouthPanel</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">south</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">south</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">GRAY</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">shapeBtn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;circle&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">createBtn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;create&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">south</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">shapeBtn</span><span class="p">);</span>
+<span class="w">        </span><span class="n">south</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">createBtn</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">south</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">class</span> <span class="nc">Canvas</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JPanel</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nd">@Override</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">paintComponent</span><span class="p">(</span><span class="n">Graphics</span><span class="w"> </span><span class="n">g</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">super</span><span class="p">.</span><span class="na">paintComponent</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
+<span class="w">            </span><span class="n">Graphics2D</span><span class="w"> </span><span class="n">g2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Graphics2D</span><span class="p">)</span><span class="n">g</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">widthPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">getWidth</span><span class="p">();</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">heightPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">();</span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">widthPanel</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">heightPanel</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">heightPanel</span><span class="o">/</span><span class="mf">10.0</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">double</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">heightPanel</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">widthPanel</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+
+<span class="w">                </span><span class="n">g2</span><span class="p">.</span><span class="na">setStroke</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BasicStroke</span><span class="p">(</span><span class="mf">3.0f</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">BasicStroke</span><span class="p">.</span><span class="na">CAP_BUTT</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">BasicStroke</span><span class="p">.</span><span class="na">JOIN_MITER</span><span class="p">,</span>
+<span class="w">                        </span><span class="mf">10.0f</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="kt">float</span><span class="o">[]</span><span class="w"> </span><span class="p">{</span><span class="mf">10.0f</span><span class="p">},</span><span class="w"> </span>
+<span class="w">                        </span><span class="mf">0.0f</span><span class="p">));</span>
+<span class="w">                </span><span class="n">Shape</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Rectangle2D</span><span class="p">.</span><span class="na">Double</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">);</span>
+<span class="w">                </span><span class="n">g2</span><span class="p">.</span><span class="na">draw</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Uebung12</span><span class="p">();</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Die Klasse ist ausführbar und erzeugt die folgende GUI: </p>
+<p><img alt="uebung12" src="../files/172_uebung12.png" /></p>
+</li>
+<li>
+<p>Implementieren Sie für den Button <code>create</code>:</p>
+<ul>
+<li>nach Klick des Buttons erscheint ein ausgefülltes grünes Quadrat</li>
+<li>die Koordinaten des linken oberen Punktes des Quadrates sind zufällig ermittelt</li>
+<li>das Quadrat geht entweder bis zum rechten Rand oder bis zum unteren Rand der Canvas (je nachdem, was passt)</li>
+</ul>
+<p><img alt="uebung12" src="../files/173_uebung12.png" /></p>
+</li>
+<li>
+<p>Implementieren Sie für den Button <code>circle</code>:</p>
+<ul>
+<li>aus den beiden Quadraten (dem gestrichelten und dem ausgefüllten) wird jeweils ein Kreis</li>
+<li>auf dem Button steht dann <code>square</code></li>
+<li>klickt man erneut drauf, erscheint wieder <code>circle</code> und aus den Kreisen werden wieder Quadrate</li>
+</ul>
+<p><img alt="uebung12" src="../files/174_uebung12.png" /></p>
+</li>
+<li>
+<p>Implementieren Sie <code>MouseListener</code> und <code>MouseMotionListener</code> so, dass sich das ausgefüllte Quadrat bzw. der ausgefüllte Kreis bei gedrückter Maustaste bewegen lässt.</p>
+</li>
+<li>
+<p><strong>Zusatz A:</strong> Implementieren Sie <code>MouseListener</code> und <code>MouseMotionListener</code> so, dass sich die Größe des ausgefüllten Quadrats bzw. des ausgefüllten Kreises bei gedrückter Maustaste (rechte untere Ecke) ändern lässt.</p>
+</li>
+<li>
+<p><strong>Zusatz B:</strong> Implementieren Sie <code>MouseListener</code> und <code>MouseMotionListener</code> so, dass sich das ausgefüllte Quadrat bzw. der ausgefüllte Kreis nicht merh bewegen und ändern lässt, wenn es jeweils genau in den gestrichelten Rahmen passt.</p>
+<p><img alt="uebung12" src="../files/175_uebung12.png" /></p>
+</li>
+</ol>
 </details>
 <h5 id="ubung-swt-junit">Übung SWT (JUnit)<a class="headerlink" href="#ubung-swt-junit" title="Permanent link">&para;</a></h5>
 <details>
