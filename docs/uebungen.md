@@ -2811,10 +2811,301 @@
 
 	5. **Zusatz A:** Implementieren Sie `MouseListener` und `MouseMotionListener` so, dass sich die Größe des ausgefüllten Quadrats bzw. des ausgefüllten Kreises bei gedrückter Maustaste (rechte untere Ecke) ändern lässt.
 
-	6. **Zusatz B:** Implementieren Sie `MouseListener` und `MouseMotionListener` so, dass sich das ausgefüllte Quadrat bzw. der ausgefüllte Kreis nicht merh bewegen und ändern lässt, wenn es jeweils genau in den gestrichelten Rahmen passt.
+	6. **Zusatz B:** Implementieren Sie `MouseListener` und `MouseMotionListener` so, dass sich das ausgefüllte Quadrat bzw. der ausgefüllte Kreis nicht mehr bewegen und ändern lässt, wenn es jeweils genau in den gestrichelten Rahmen passt.
 
 		![uebung12](./files/175_uebung12.png)
 
+
+??? question "eine mögliche Lösung für Übung 12"
+	
+	=== "Uebung12.java"
+		```java linenums="1"
+		package uebungen.uebung12;
+
+		import java.awt.BasicStroke;
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.geom.Ellipse2D;
+		import java.awt.geom.Rectangle2D;
+		import java.util.Random;
+		import java.awt.Shape;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+
+		import javax.swing.JButton;
+		import javax.swing.JFrame;
+		import javax.swing.JLabel;
+		import javax.swing.JPanel;
+
+		public class Uebung12 extends JFrame implements MouseListener, MouseMotionListener
+		{
+			Canvas canvas;
+			JLabel label;
+			double xShape, yShape, lengthShape;
+			boolean showRectangle = true;	// Umschalten zwischen Kreis und Quadrat
+			Point remember;					// letzten Punkt von MouseEvent merken
+			boolean move = false;			// Shape bewegen
+			boolean size = false;			// Groesse Shape aendern
+			boolean fixed = false;			// passend in dashed Shape
+
+			Uebung12()
+			{
+				super();
+				this.setTitle("Uebung 12");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+				this.setSize(500,500);
+				this.setLocation(200,100);
+				this.canvas = new Canvas();
+				this.canvas.addMouseListener(this);
+				this.canvas.addMouseMotionListener(this);
+				this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+				this.getContentPane().add(this.createNorthPanel(), BorderLayout.NORTH);
+				this.getContentPane().add(this.createSouthPanel(), BorderLayout.SOUTH);
+
+				this.setVisible(true);
+			}
+
+			JPanel createNorthPanel()
+			{
+				JPanel north = new JPanel();
+				north.setBackground(Color.GRAY);
+
+				// befuellen
+				this.label = new JLabel("Quadrat");
+				this.label.setForeground(Color.WHITE);
+				this.label.setFont(new Font("Verdana", Font.BOLD, 18));
+				north.add(this.label);
+
+				return north;
+			}
+
+			JPanel createSouthPanel()
+			{
+				JPanel south = new JPanel();
+				south.setBackground(Color.GRAY);
+				JButton shapeBtn = new JButton("circle");
+				shapeBtn.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) 
+					{
+						JButton btn = (JButton)e.getSource();
+						if(Uebung12.this.showRectangle)
+						{
+							Uebung12.this.showRectangle = false;
+							btn.setText("square");
+							Uebung12.this.label.setText("Kreis");
+						}
+						else
+						{
+							Uebung12.this.showRectangle = true;
+							btn.setText("circle");
+							Uebung12.this.label.setText("Quadrat");
+						}
+						Uebung12.this.canvas.repaint();
+					}
+
+				});
+
+				JButton createBtn = new JButton("create");
+				createBtn.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) 
+					{
+						Random r = new Random();
+
+						int widthCanvas = Uebung12.this.canvas.getWidth();
+						int heightCanvas = Uebung12.this.canvas.getHeight();
+
+						Uebung12.this.xShape = r.nextInt(widthCanvas);
+						Uebung12.this.yShape = r.nextInt(heightCanvas);
+
+						if(widthCanvas - Uebung12.this.xShape < heightCanvas - Uebung12.this.yShape)
+						{
+							Uebung12.this.lengthShape = widthCanvas - Uebung12.this.xShape;
+						}
+						else
+						{
+							Uebung12.this.lengthShape = heightCanvas - Uebung12.this.yShape;
+						}
+						Uebung12.this.canvas.repaint();
+					}
+
+				});
+
+				south.add(shapeBtn);
+				south.add(createBtn);
+
+				return south;
+			}
+
+			class Canvas extends JPanel
+			{
+				@Override
+				public void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);
+					Graphics2D g2 = (Graphics2D)g;
+
+					int widthPanel = this.getWidth();
+					int heightPanel = this.getHeight();
+
+					double xDashed,yDashed,lengthDashed;
+
+					if(widthPanel > heightPanel)
+					{
+						yDashed = heightPanel/10.0;
+						lengthDashed = heightPanel - 2.0 * yDashed;
+						xDashed = (widthPanel - lengthDashed) / 2.0;
+
+					}
+					else
+					{
+						xDashed = widthPanel/10.0;
+						lengthDashed = widthPanel - 2.0 * xDashed;
+						yDashed = (heightPanel - lengthDashed) / 2.0;
+					}
+
+					g2.setStroke(new BasicStroke(3.0f, 
+							BasicStroke.CAP_BUTT,
+							BasicStroke.JOIN_MITER,
+							10.0f, 
+							new float[] {10.0f}, 
+							0.0f));
+					Shape s = (Uebung12.this.showRectangle) ? 
+							new Rectangle2D.Double(xDashed, yDashed, lengthDashed, lengthDashed)
+							:
+								new Ellipse2D.Double(xDashed, yDashed, lengthDashed, lengthDashed);	
+					g2.draw(s);
+
+					g2.setColor(Color.GREEN);
+					Shape s1 = (Uebung12.this.showRectangle) ? 
+							new Rectangle2D.Double(
+									Uebung12.this.xShape, Uebung12.this.yShape, 
+									Uebung12.this.lengthShape, Uebung12.this.lengthShape)
+							:
+								new Ellipse2D.Double(
+										Uebung12.this.xShape, Uebung12.this.yShape, 
+										Uebung12.this.lengthShape, Uebung12.this.lengthShape);
+					g2.fill(s1);
+				}
+			}
+
+			// pruefen, ob ausgefuellte Shape in dashed Shape passt (Zusatz B)
+			boolean checkFits()
+			{
+				int widthPanel = this.canvas.getWidth();
+				int heightPanel = this.canvas.getHeight();
+				double x,y,length;
+
+				if(widthPanel > heightPanel)
+				{
+					y = heightPanel/10.0;
+					length = heightPanel - 2.0 * y;
+					x = (widthPanel - length) / 2.0;
+				}
+				else
+				{
+					x = widthPanel/10.0;
+					length = widthPanel - 2.0 * x;
+					y = (heightPanel - length) / 2.0;
+				}
+
+				final int DIST = 5;
+				if(this.xShape > (x-DIST) && this.xShape < (x+DIST) 
+						&& this.yShape > (y-DIST) && this.yShape < (y+DIST) 
+						&& this.lengthShape > (length-DIST) && this.lengthShape < (length+DIST))
+				{
+					this.xShape = x;
+					this.yShape = y;
+					this.lengthShape = length;
+					this.canvas.repaint();
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+
+
+			public static void main(String[] args) 
+			{
+				new Uebung12();
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Point here = e.getPoint();
+				double left = Uebung12.this.xShape;
+				double right = Uebung12.this.xShape + Uebung12.this.lengthShape;
+				double top = Uebung12.this.yShape;
+				double bottom = Uebung12.this.yShape + Uebung12.this.lengthShape;
+				final int DIST = 10;
+				if(here.x >= right - DIST && here.x <= right + DIST 
+						&& here.y >= bottom - DIST && here.y <= bottom + DIST ) {
+					// rechte untere Ecke
+					Uebung12.this.size = true;
+					Uebung12.this.remember = here;
+
+				} 
+				else if(here.x >= left && here.x <= right && here.y >= top && here.y <= bottom)
+				{
+					// im Shape
+					Uebung12.this.move = true;
+					Uebung12.this.remember = here;
+				}
+
+
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				if(Uebung12.this.remember != null && !Uebung12.this.checkFits())
+				{
+					Point here = e.getPoint();
+					int xDiff = here.x - Uebung12.this.remember.x;
+					int yDiff = here.y - Uebung12.this.remember.y;
+					if(move)
+					{
+						Uebung12.this.xShape += xDiff;
+						Uebung12.this.yShape += yDiff;
+					} 
+					else if(size)
+					{
+						Uebung12.this.lengthShape += (xDiff > yDiff) ? xDiff : yDiff;
+					}
+
+					Uebung12.this.remember = here;
+					Uebung12.this.canvas.repaint();	
+				}
+
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				Uebung12.this.remember = null;
+				Uebung12.this.move = false;
+				Uebung12.this.size = false;		
+			}
+
+			@Override public void mouseMoved(MouseEvent e) {}
+			@Override public void mouseClicked(MouseEvent e) {}
+			@Override public void mouseEntered(MouseEvent e) {}
+			@Override public void mouseExited(MouseEvent e) {}
+
+		}
+
+		```
 
 ##### Übung SWT (JUnit)
 
