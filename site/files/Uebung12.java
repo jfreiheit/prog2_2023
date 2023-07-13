@@ -72,21 +72,30 @@ public class Uebung12 extends JFrame
 			int widthPanel = this.getWidth();
 			int heightPanel = this.getHeight();
 			
+			double xDashed,yDashed,lengthDashed;
+			
 			if(widthPanel > heightPanel)
 			{
-				double y = heightPanel/10.0;
-				double length = heightPanel - 2.0 * y;
-				double x = (widthPanel - length) / 2.0;
-				
-				g2.setStroke(new BasicStroke(3.0f, 
-						BasicStroke.CAP_BUTT,
-                        BasicStroke.JOIN_MITER,
-                        10.0f, 
-                        new float[] {10.0f}, 
-                        0.0f));
-				Shape s = new Rectangle2D.Double(x, y, length, length);
-				g2.draw(s);
+				yDashed = heightPanel/10.0;
+				lengthDashed = heightPanel - 2.0 * yDashed;
+				xDashed = (widthPanel - lengthDashed) / 2.0;
+
 			}
+			else
+			{
+				xDashed = widthPanel/10.0;
+				lengthDashed = widthPanel - 2.0 * xDashed;
+				yDashed = (heightPanel - lengthDashed) / 2.0;
+			}
+			
+			g2.setStroke(new BasicStroke(3.0f, 
+					BasicStroke.CAP_BUTT,
+                    BasicStroke.JOIN_MITER,
+                    10.0f, 
+                    new float[] {10.0f}, 
+                    0.0f));
+			Shape s = new Rectangle2D.Double(xDashed, yDashed, lengthDashed, lengthDashed);
+			g2.draw(s);
 		}
 	}
 	
