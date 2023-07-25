@@ -54,8 +54,8 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 | 12. | 26.-30.06.2023 | [Graphics](./prog2/graphics/#graphics) | [Übung 10](./uebungen/#ubung-10-zeichnen) | [Aufgabe 10](./aufgaben/#aufgabe-10-zeichnen) | 06.07.2023 |
 | 13. | 03.-07.07.2023 | [Zeichnen mit der Maus](./mausereignisse_graphics/#mausereignisse) | [Übung 11](./uebungen/#ubung-11-mausereignisse) | - | - |
 | 14. | 10.-14.07.2023 | REST-API mit SpringBoot| Übung 12 | - | - |
-|  | 28.07.2023 14:00 Uhr| Klausur 1.PZ | Labore 6. Etage C-Gebäude| - | - |
-|  | 29.09.2023 14:00 Uhr| Klausur 2.PZ | Labore 6. Etage C-Gebäude| - | - |
+|  | 28.07.2023 12:00 Uhr| Klausur 1.PZ | C 635 und C 639| - | - |
+|  | 29.09.2023 12:00 Uhr| Klausur 2.PZ | Labore 6. Etage C-Gebäude| - | - |
 
 ### Inhalte
 
