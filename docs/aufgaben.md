@@ -2473,6 +2473,1076 @@
 
 ### Klausurvorbereitung
 
+
+##### Klausurvorbereitung (Gitter)
+
+??? "Klausurvorbereitung (Gitter)"
+
+	1. Erstellen Sie folgende graphische Nutzeroberfläche: 
+
+		![farben](./files/187_raster.png)
+
+		- In der Canvas sind zunächst `10 x 10` Rechtecke. Dazwischen jeweils graue Linien/Rahmen. Die Rechtecke können JPanels sein oder Sie zeichnen einfach die Rechtecke und die Linien.
+
+		- Die `10 x 10` Rechtecke befüllen die Canvas vollständig, d.h., wenn Sie das Fenster vergrößern, werden auch die Rechtecke jeweils größer:
+
+		![farben](./files/188_raster.png)
+
+		![farben](./files/189_raster.png)
+
+	2.	Implementieren Sie für die Buttons `-` und `+` folgende Funktionalität:
+
+		- Durch Klick der Buttons reduziert/erhöht sich die Anzahl der Zeilen und Spalten jeweils um `1`, d.h. wenn Sie `-` klicken sind es dann `9 x 9` Rechtecke, dann `8 x 8` usw. und wenn Sie `+` drücken, erhöht sich die Anzahl der Zeilen und Spalten entsprechend. 
+
+		- Das Label oben zeigt die jeweils aktuelle Dimension.
+
+		![farben](./files/190_raster.png)
+
+		- Kleiner als `1 x 1` kann es nicht werden!
+
+	3. Implementieren Sie den `MouseListener` und den `MouseMotionListener` wie folgt::
+
+		- Durch einen Mausklick (Maustaste drücken und loslassen) färbt sich das Rechteck, auf das geklickt wurde, rot. 
+
+		![farben](./files/191_raster.png)
+
+		- Durch den Mausklick beginnt das Zeichnen!
+
+		- Durch das Bewegen der Maus werden nun alle Rechtecke, über die die Maus bewegt wird (ohne gedrückte Maustaste), rot eingefärbt. 
+
+		![farben](./files/192_raster.png)
+
+		- Durch einen erneuten Mausklick wird das Zeichnen beendet.
+
+		- Durch einen weiteren Mausklick wird das Zeichnen wieder gestartet usw. 
+
+		![farben](./files/193_raster.png)
+
+	4. Erweitern Sie die GUI um drei weitere Buttons `<`, `save`, `>`:
+
+		![farben](./files/194_raster.png)
+
+		- Wird auf `save` geklickt, dann wird „das Bild“ gespeichert, z.B.
+
+		![farben](./files/195_raster.png)
+
+		- Es kann dann wieder ein neues Bild gezeichnet und gespeichert werden, beliebig viele.
+
+		- Durch Klick auf `<` bzw. `>` kann man (vorwärts `>` bzw. rückwärts `<`) durch die Liste aller gespeicherten Bilder laufen, z.B.
+
+		![farben](./files/196_raster.png)
+
+
+??? question "eine mögliche Lösung für Gitter"
+	
+	=== "Gitter.java"
+		```java linenums="1"
+		package klausurvorbereitung.gitter;
+
+		import java.awt.BasicStroke;
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.Graphics;
+		import java.awt.Graphics2D;
+		import java.awt.Point;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import java.awt.event.MouseMotionListener;
+		import java.awt.geom.Line2D;
+		import java.awt.geom.Rectangle2D;
+		import java.util.ArrayList;
+		import java.util.List;
+
+		import javax.swing.JButton;
+		import javax.swing.JFrame;
+		import javax.swing.JLabel;
+		import javax.swing.JPanel;
+
+		public class Gitter extends JFrame implements MouseListener, MouseMotionListener
+		{
+			Canvas canvas;
+			MyPanel[][] panels; 
+			boolean started = false;
+			int cols, rows;
+			JLabel label;
+			List<MyPanel[][]> allPanels;
+			int curPanelIndex = 0;
+
+			public Gitter(int cols, int rows)
+			{
+				super();
+				this.setTitle("Klausur 1.PZ");
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+				this.cols = cols;
+				this.rows = rows;
+				this.canvas = new Canvas(cols, rows);
+				this.canvas.addMouseListener(this);
+				this.canvas.addMouseMotionListener(this);
+				this.getContentPane().add(this.canvas, BorderLayout.CENTER);
+
+				// von den folgenden vier Zeilen werden eventuell eine oder mehrere oder alle auskommentiert
+				this.getContentPane().add(this.initNorth(), BorderLayout.NORTH);
+				this.getContentPane().add(this.initSouth(), BorderLayout.SOUTH);
+				this.getContentPane().add(this.initEast(), BorderLayout.EAST);
+				this.getContentPane().add(this.initWest(), BorderLayout.WEST);
+
+				this.setSize(400, 300);
+				this.setLocation(300,200);
+				this.setVisible(true);
+				this.setPanels();
+				this.allPanels = new ArrayList<>();
+			}
+
+			void setPanels()
+			{
+				this.panels = new MyPanel[cols][rows];
+				for(int col = 0; col < cols; col++)
+				{
+					for(int row = 0; row < rows; row++)
+					{
+						this.panels[col][row] = new MyPanel(col, row);
+					}
+				}
+				this.canvas.repaint();
+			}
+
+			void bigger()
+			{
+				this.cols++;
+				this.rows++;
+				this.canvas.cols++;
+				this.canvas.rows++;
+				this.setPanels();
+				this.label.setText(this.cols + " x " + this.rows);
+			}
+
+			void smaller()
+			{
+				if(cols > 1 && rows > 1)
+				{
+					this.cols--;
+					this.rows--;
+					this.canvas.cols--;
+					this.canvas.rows--;
+					this.setPanels();
+					this.label.setText(this.cols + " x " + this.rows);
+				}
+			}
+
+			private class MyPanel extends JPanel
+			{
+				boolean markiert = false;
+				int x;
+				int y;
+
+				MyPanel(int x, int y)
+				{
+					this.x = x;
+					this.y = y;
+				}
+
+				void markiere()
+				{
+					this.markiert = true;
+				}
+
+				void demarkiere()
+				{
+					this.markiert = false;
+				}
+
+				boolean getMarkiert()
+				{
+					return this.markiert;
+				}
+			}
+
+			private class Canvas extends JPanel
+			{
+				int cols;
+				int rows;
+
+				Canvas(int cols, int rows)
+				{
+					this.cols = cols;
+					this.rows = rows;
+				}
+
+				@Override
+				protected void paintComponent(Graphics g)
+				{
+					super.paintComponent(g);        // Implementierung von JPanel aufrufen
+					Graphics2D g2 = (Graphics2D)g;  // Methoden von Graphics2D nutzbar
+					// hier koennen wir zeichnen
+					int widthPanel = this.getWidth();
+					int heightPanel = this.getHeight();
+					double widthMyPanel = (double)widthPanel / this.cols;
+					double heightMyPanel = (double)heightPanel / this.rows;
+					final float LINE_THICKNESS = 4.0f;
+
+					for(int col = 0; col < this.cols; col++)
+					{
+						for(int row = 0; row < this.rows; row++)
+						{
+							if(Gitter.this.panels[col][row] != null && Gitter.this.panels[col][row].getMarkiert())
+							{
+								g2.setColor(Color.RED);
+								g2.fill(new Rectangle2D.Double(col * widthMyPanel, row* heightMyPanel, widthMyPanel, heightMyPanel));
+							}
+							else
+							{
+								g2.setColor(Color.GREEN);
+								g2.fill(new Rectangle2D.Double(col * widthMyPanel, row* heightMyPanel, widthMyPanel, heightMyPanel));
+							}
+						}
+					}
+					g2.setColor(Color.GRAY);
+					g2.setStroke(new BasicStroke(LINE_THICKNESS));
+					g2.drawRect(0, 0, widthPanel, heightPanel);
+					for(int col = 0; col < this.cols; col++)
+					{
+						g2.draw(new Line2D.Double(col * widthMyPanel, 0, col * widthMyPanel, heightPanel));
+					}
+					for(int row = 0; row < this.rows; row++)
+					{
+						g2.draw(new Line2D.Double(0, row * heightMyPanel, widthPanel, row * heightMyPanel));
+					}
+
+				}
+			}
+
+			private JPanel initNorth() 
+			{
+				JPanel north = new JPanel();
+				this.label = new JLabel(this.cols + " x " + this.rows);
+				this.label.setFont(new Font("Verdana", Font.BOLD, 20));
+				north.add(this.label);
+				return north;
+			}
+
+			private JPanel initSouth() 
+			{
+				JPanel south = new JPanel();
+
+				JButton smaller = new JButton("<");
+				smaller.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if(Gitter.this.allPanels.size() > 0)
+						{
+							int index = Gitter.this.curPanelIndex;
+							if(Gitter.this.curPanelIndex == 0)
+							{
+								index = Gitter.this.allPanels.size() - 1;
+							}
+							else index--;
+							Gitter.this.curPanelIndex = index;
+							Gitter.this.panels = Gitter.this.allPanels.get(index);
+							System.out.println(index + " --> " + Gitter.this.curPanelIndex);
+							Gitter.this.canvas.repaint();
+
+						}
+					}
+
+				});
+				south.add(smaller);
+				JButton save = new JButton("save");
+				save.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Gitter.this.allPanels.add(panels);
+						System.out.println(Gitter.this.allPanels.size());
+						Gitter.this.setPanels();
+					}
+
+				});
+				south.add(save);
+				JButton bigger = new JButton(">");
+				bigger.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if(Gitter.this.allPanels.size() > 0)
+						{
+							int index = Gitter.this.curPanelIndex;
+							if(Gitter.this.curPanelIndex == Gitter.this.allPanels.size() - 1)
+							{
+								index = 0;
+							}
+							else index++;
+							Gitter.this.curPanelIndex = index;
+							Gitter.this.panels = Gitter.this.allPanels.get(index);
+							System.out.println(index + " --> " + Gitter.this.curPanelIndex);
+							Gitter.this.canvas.repaint();
+
+						}
+					}
+
+				});
+				south.add(bigger);
+
+				return south;
+			}
+
+
+			private JPanel initWest() 
+			{
+				JPanel west = new JPanel();
+				JButton minus = new JButton("-");
+				minus.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Gitter.this.smaller();
+						Gitter.this.canvas.repaint();
+					}
+
+				});
+				west.add(minus);
+				return west;
+			}
+
+			private JPanel initEast() 
+			{
+				JPanel east = new JPanel();
+				JButton plus = new JButton("+");
+				plus.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Gitter.this.bigger();
+						Gitter.this.canvas.repaint();
+					}
+
+				});
+				east.add(plus);
+				return east;
+			}
+
+			public static void main(String[] args) 
+			{
+				new Gitter(10,10);
+			}
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				if(this.started)
+				{
+					Point here = e.getPoint();
+					int xMouse = here.x;
+					int yMouse = here.y;
+					int width = this.canvas.getWidth();
+					int height = this.canvas.getHeight();
+					int widthPanel = width / this.cols;
+					int heightPanel = height / this.rows;
+					int col = xMouse / widthPanel;
+					int row = yMouse / heightPanel;
+					if(col >= 0 && col < this.cols && row >= 0 && row < this.rows)
+					{
+						this.panels[col][row].markiere();
+						this.canvas.repaint();
+					}
+				}
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Point here = e.getPoint();
+				if(this.started)
+				{
+					this.started = false;
+				}
+				else
+				{
+					this.started = true;
+					int xMouse = here.x;
+					int yMouse = here.y;
+					int width = this.canvas.getWidth();
+					int height = this.canvas.getHeight();
+					int widthPanel = width / this.cols;
+					int heightPanel = height / this.rows;
+					int col = xMouse / widthPanel;
+					int row = yMouse / heightPanel;
+					this.panels[col][row].markiere();
+					this.canvas.repaint();
+				}
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		}   
+
+		```
+
+
+##### Klausurvorbereitung (Farbauswahl)
+
+??? "Klausurvorbereitung (Farbauswahl)"
+
+	1. Erstellen Sie folgende graphische Nutzeroberfläche: 
+
+		![farben](./files/176_farben.png)
+
+		**Tipp:** Mögliche Anordnung von Containern:
+
+		![farben](./files/177_farben.png)
+
+	2.	Implementieren Sie für den Button `save` folgende Funktionalität:
+
+		- Durch Klick des Buttons sollen alle drei Eingabefelder ausgelesen werden.
+
+		- Die Eingabefelder sollen jeweils Zahlen aus dem Bereich `0..255` enthalten. 
+
+		- Wenn ein (oder mehrere) Eingabefelde(r) keine Zahl enthält, wird die Statusmeldung `Eingabe muss eine Zahl sein!` oben im Fenster geändert, siehe folgende Abbildung:
+
+		![farben](./files/178_farben.png)
+
+		- Wenn zwar alle Eingabefelder Zahlen enthalten, aber eine oder mehrere dieser Zahlen nicht im Bereich `0` bis `255` sind, dann erscheint folgende Statusmeldung `Eingabe muss eine Zahl zwischen 0 und 255 sein!`:
+
+		![farben](./files/179_farben.png)
+
+		- Wenn alle drei Zahlen im korrekten Bereich sind, dann wird daraus ein Color-Objekt erzeugt und diese Farbe ist die Hintergrundfarbe des JPanels (welches am Anfang weiß ist):
+
+		![farben](./files/180_farben.png)
+
+		- Speichern Sie diese Color außerdem noch in einer ArrayList.
+
+	3. Implementieren Sie für den Button `reset` folgende Funktionalität:
+
+		- Die Hintergrundfarbe des JPanels in der Mitte wird wieder auf Weiß gesetzt.
+
+		- Die ArrayList wird geleert.
+
+	4. Implementieren Sie für die Buttons `<` und `>` folgende Funktionalität:
+
+		- Mit den `<`- bzw. `>`-Buttons laufen Sie durch alle in der ArrayList gespeicherten Farben, d.h. das JPanel in der Mitte nimmt die jeweils gespeicherten Farben an. 
+
+
+??? question "eine mögliche Lösung für Farbauswahl"
+	
+	=== "ColorChoser.java"
+		```java linenums="1"
+		package klausurvorbereitung.choosecolor;
+
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.GridLayout;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.util.ArrayList;
+		import java.util.List;
+
+		import javax.swing.JButton;
+		import javax.swing.JFrame;
+		import javax.swing.JLabel;
+		import javax.swing.JPanel;
+		import javax.swing.JTextField;
+
+		public class ChooseColor extends JFrame
+		{
+			JTextField inputRed, inputGreen, inputBlue;
+			JPanel mainPanel;
+			List<Color> colors; 
+			JButton last, next, save, reset;
+			JLabel statusLabel;
+			int currentIndex = 0;
+			
+			public ChooseColor()
+			{
+				super();
+				this.colors = new ArrayList<>();
+				setTitle("Farbauswahl");
+		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        
+		        JPanel upperPanel = inputRGB();
+		        this.getContentPane().add(upperPanel, BorderLayout.NORTH);
+		        
+		        this.mainPanel = new JPanel();
+		        this.mainPanel.setBackground(Color.WHITE);
+		        this.getContentPane().add(this.mainPanel, BorderLayout.CENTER);
+		        
+		        JPanel buttonPanel = createButtonPanel();
+		        this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+		        
+		        setSize(600,400);
+		        setVisible(true);
+			}
+			
+			private JPanel inputRGB()
+		    {
+				JPanel panel = new JPanel();
+				panel.setLayout(new GridLayout(2,1));
+				
+				this.statusLabel = new JLabel("Geben Sie jeweils Zahlen von 0 bis 255 ein!");
+				this.statusLabel.setHorizontalAlignment(JLabel.CENTER);
+				this.statusLabel.setFont(new Font("Verdana", Font.BOLD, 14));
+				
+		        JPanel inputPanel = new JPanel();
+		        inputPanel.setLayout(new GridLayout(3,2));
+		        JLabel labelRed = new JLabel(" Rot : ");
+		        this.inputRed = new JTextField(10);
+		        JLabel labelBlue = new JLabel(" Blau : ");
+		        this.inputBlue = new JTextField(10);
+		        JLabel labelGreen = new JLabel(" Gruen : ");
+		        this.inputGreen = new JTextField(10);
+		        
+		        inputPanel.add(labelRed);
+		        inputPanel.add(this.inputRed);
+		        inputPanel.add(labelBlue);
+		        inputPanel.add(this.inputBlue);
+		        inputPanel.add(labelGreen);
+		        inputPanel.add(this.inputGreen);
+		        
+		        panel.add(this.statusLabel);
+		        panel.add(inputPanel);
+		        return panel;
+		    }
+			
+			private JPanel createButtonPanel()
+		    {
+		        JPanel panel = new JPanel();
+		        this.last = new JButton("<");
+		        this.next = new JButton(">");
+		        this.save = new JButton("save");
+		        this.reset = new JButton("reset");
+		        panel.add(this.last);
+		        panel.add(this.reset);
+		        panel.add(this.save);
+		        panel.add(this.next);
+		        
+		        controllerSave();
+		        controllerReset();
+		        controllerLast();
+		        controllerNext();
+		        
+		        return panel;
+		    }
+			
+			private void controllerSave()
+			{
+				this.save.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("save");
+						boolean inputOk = true;
+						String redString = ChooseColor.this.inputRed.getText();
+						String blueString = ChooseColor.this.inputBlue.getText();
+						String greenString = ChooseColor.this.inputGreen.getText();
+						int red = 0, blue = 0, green = 0;
+						try {
+							red = Integer.valueOf(redString).intValue();
+							blue = Integer.valueOf(blueString).intValue();
+							green = Integer.valueOf(greenString).intValue();
+						}
+						catch(NumberFormatException nfe) {
+							ChooseColor.this.statusLabel.setText("Eingabe muss eine Zahl sein!");
+							inputOk = false;
+						}
+						if(inputOk && !checkNumbers(red, blue, green)) {
+							ChooseColor.this.statusLabel.setText("Eingabe muss eine Zahl zwischen 0 und 255 sein!");
+							inputOk = false;
+						}
+						if(inputOk) {
+							Color c = new Color(red, blue, green);
+							ChooseColor.this.mainPanel.setBackground(c);
+							ChooseColor.this.colors.add(c);
+							ChooseColor.this.currentIndex = (ChooseColor.this.colors.size() - 1);
+							ChooseColor.this.statusLabel.setText("Geben Sie jeweils Zahlen von 0 bis 255 ein!");
+							
+						}
+					}
+					
+				});
+			}
+			
+			
+			private void controllerReset()
+			{
+				this.reset.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						ChooseColor.this.reset();
+					}
+					
+				});
+			}
+			
+			private void controllerLast()
+			{
+				this.last.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						ChooseColor.this.currentIndex = (ChooseColor.this.currentIndex > 0) ? ChooseColor.this.currentIndex-1 : 0;
+						Color c = ChooseColor.this.colors.get(ChooseColor.this.currentIndex);			
+						ChooseColor.this.mainPanel.setBackground(c);
+					}
+					
+				});
+			}
+			
+			private void controllerNext()
+			{
+				this.next.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						ChooseColor.this.currentIndex = (ChooseColor.this.currentIndex < (ChooseColor.this.colors.size()-1)) ? ChooseColor.this.currentIndex+1 : ChooseColor.this.colors.size()-1;
+						Color c = ChooseColor.this.colors.get(ChooseColor.this.currentIndex);
+						ChooseColor.this.mainPanel.setBackground(c);
+					}
+					
+				});
+			}
+			
+			private void reset() {
+				this.colors.clear();
+				this.mainPanel.setBackground(Color.WHITE);
+				this.inputRed.setText(""); 
+				this.inputGreen.setText(""); 
+				this.inputBlue.setText("");
+				this.statusLabel.setText("Geben Sie jeweils Zahlen von 0 bis 255 ein!");
+				
+			}
+			
+			private boolean checkNumbers(int red, int blue, int green) {
+				return (red >= 0 && red < 256 && blue >= 0 && blue < 256 && green >= 0 && green < 256);
+			}
+			
+			public static void main(String[] args) {
+				new ChooseColor();
+
+			}
+
+		}
+
+		```
+
+
+##### Klausurvorbereitung (MemoryPanel)
+
+??? "Klausurvorbereitung (MemoryPanel)"
+
+	1. Gegeben ist die Klasse <a href="./files/MemoryPanel.java" download>`MemoryPanel.java`</a>
+
+		```java linenums="1"
+		import java.awt.Color;
+		import java.awt.event.MouseEvent;
+		import java.awt.event.MouseListener;
+		import javax.swing.JPanel;
+
+		public class MemoryPanel extends JPanel {
+			
+			enum State { SHOW, HIDE, CLICKED }
+			
+			private Color color;
+			private State state;
+			
+			public MemoryPanel(Color color) {
+				super();
+				this.color = color;
+				this.setBackground(color);
+				this.state = State.CLICKED;
+				this.addToMouseListener();
+			}
+			
+			private void addToMouseListener() {
+				this.addMouseListener(new MouseListener() {
+
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if(MemoryPanel.this.isHidden()) {
+							MemoryPanel.this.show();
+							MemoryPanel.this.state = State.CLICKED;
+						}
+					}
+					@Override public void mousePressed(MouseEvent e) {}
+					@Override public void mouseReleased(MouseEvent e) {}
+					@Override public void mouseEntered(MouseEvent e) {}
+					@Override public void mouseExited(MouseEvent e) {}
+					
+				});
+			}
+			
+			public Color getColor() {
+				return this.color;
+			}
+			
+			public void show() {
+				this.setBackground(this.color);
+				this.setStateToShow();
+			}
+			
+			public void hide() {
+				this.setBackground(Color.GRAY);
+				this.setStateToHide();
+			}
+			
+			public boolean isClicked() { 	return this.state == State.CLICKED; 	}
+			
+			public boolean isHidden() { 	return this.state == State.HIDE;	}
+			
+			public boolean isShown() { 	return this.state == State.SHOW;	}
+			
+			public void setStateToShow() {
+				this.state = State.SHOW;
+			}
+			
+			public void setStateToHide() {
+				this.state = State.HIDE;
+			}
+
+			public void refreshPanel(Color color) {
+				this.color = color;
+				this.setBackground(color);
+				this.state = State.CLICKED;
+			}
+		}
+
+		```
+
+		-	Bei einem Objekt der Klasse `MemoryPanel` handelt es sich um ein `JPanel` (mit allen Eigenschaften) plus einer eigenen `Color` und einem `State`.
+		-	Außerdem sind noch einige Methoden enthalten, die den `State` setzen bzw. abfragen und die `Color` abfragen.
+		-	Die `Color` wird als Hintergrundfarbe des Panels verwendet (oder die Farbe Grau ist die Hintergrundfarbe).
+		-	Das Panel ist an den `MouseListener` angemeldet, das Klick-Ereignis ist behandelt.
+
+	2.	Erstellen Sie folgende graphische Nutzeroberfläche: 
+
+		![colorchooser](./files/181_colorchooser.png)
+
+		- Die farbigen Panels sind `MemoryPanel`-Objekte.
+
+		- Diese werden in einem `Array` gespeichert (ob ein- oder zweidimensional bleibt Ihnen überlassen). Es sind 16 `MemoryPanel`-Objekte.
+
+		- Immer genau 2 Felder haben dieselbe Farbe! 
+
+		- Die Farben werden zufällig erzeugt (Sie benötigen 8 Farben – Sie müssen nicht überprüfen, ob genau dieselbe Farbe bereits erzeugt wurde – ist sehr unwahrscheinlich).
+
+		- Es soll zufällig bestimmt werden, welche beiden Felder jeweils welche Farbe bekommen! 
+
+		- Das Statuslabel (oben) ist fettgedruckt (Schriftart und -größe bleibt Ihnen überlassen).
+
+		- Lassen Sie ein wenig Abstand zwischen den MemoryPanels (Größe des Abstandes egal).
+
+	3. Implementieren Sie für den Button `start` folgende Funktionalität:
+
+		- Die Hintergrundfarbe aller Panels wird Grau und der Status des Panels wird auf `HIDE` gesetzt (siehe Methode `hide()` in der Klasse `MemoryPanel`).
+
+		- Der Text des Statuslabels lautet `click two panels and check`
+
+		![colorchooser](./files/182_colorchooser.png)
+
+	4. Implementieren Sie für den Button `show` folgende Funktionalität:
+
+		- Die Hintergrundfarbe aller Panels wird wieder auf ihre zugeordnete Farbe und der Status des Panels wird auf `SHOW` gesetzt (siehe Methode `show()` in der Klasse `MemoryPanel`).
+
+		- Der Text des Statuslabels lautet `click start to start`
+
+		![colorchooser](./files/183_colorchooser.png)
+
+	4. Implementieren Sie für den Button `check` folgende Funktionalität:
+
+		- Es sollen davor zwei Panels angeklickt worden sein (kann sein, dass eine andere Anzahl an Panels angeklickt wurde – siehe weiter unten 4. Unterpunkt)
+
+		- Wenn die beiden Panels dieselbe Farbe haben, dann erscheint im Statuslabel `same color – click two panels and then check` und die beiden Panels bleiben sichtbar (also mit der ihnen zugeordneten Farbe – Status `SHOW` – siehe Methode `setStateToShow()` in `MemoryPanel`)
+
+		![colorchooser](./files/184_colorchooser.png)
+
+		- Wenn die beiden Panels **nicht** dieselbe Farbe haben, dann erscheint im Statuslabel `different color – click two panels and then check` und die beiden Panels werden wieder grau (Status `HIDE` – siehe Methode `hide()` in MemoryPanel)
+
+		- Wenn nicht genau 2 (sondern weniger oder mehr) Panels angeklickt wurden, dann erscheint im Statuslabel `not two panels selected` und das oder die angeklickten Panels werden wieder grau (Status `HIDE` – siehe Methode `hide()` in `MemoryPanel`)
+
+		- Wenn alle Panels korrekt aufgedeckt wurden, dann erscheint im Statuslabel `finished!`
+
+		![colorchooser](./files/185_colorchooser.png)
+
+	5.	Implementieren Sie für den Button `new` folgende Funktionalität:
+
+		- Den Panels sollen neue Farben zugeordnet werden, so wie am Anfang, d.h. immer genau zwei Panels haben dieselbe Farbe und alle Panels haben den Status `CLICKED` (siehe Methode `refreshPanel(Color color)` in `MemoryPanel`)
+
+		- Das Statuslabel zeigt `click start to start`an.
+
+		![colorchooser](./files/186_colorchooser.png)
+
+
+??? question "eine mögliche Lösung für MemoryPanel"
+	
+	=== "Memory.java"
+		```java linenums="1"
+		package klausurvorbereitung.memorypanel;
+
+		import java.awt.BorderLayout;
+		import java.awt.Color;
+		import java.awt.Font;
+		import java.awt.GridLayout;
+		import java.awt.event.ActionEvent;
+		import java.awt.event.ActionListener;
+		import java.util.Random;
+
+		import javax.swing.JButton;
+		import javax.swing.JFrame;
+		import javax.swing.JLabel;
+		import javax.swing.JPanel;
+
+		public class Memory extends JFrame
+		{
+			private MemoryPanel[] panels;
+			private final int SIZE = 4;
+			private JLabel status;
+			
+			public Memory() {
+				super();
+				
+				setTitle("Memory");
+		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        this.createMemoryPanelsPanel();
+		        
+		        JPanel upperPanel = createLabelPanel();
+		        this.getContentPane().add(upperPanel, BorderLayout.NORTH);
+		        
+		        JPanel gamePanel = createGamePanel();
+		        this.getContentPane().add(gamePanel, BorderLayout.CENTER);
+		        
+		        JPanel buttonPanel = createButtonPanel();
+		        this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+		        
+		        setSize(600,400);
+		        setVisible(true);
+			}
+			
+			private void setColorsToMemoryPanels() {
+				Random r = new Random();
+				
+				int red = r.nextInt(256);
+				int green = r.nextInt(256);
+				int blue = r.nextInt(256);
+				Color color = new Color(red, green, blue);
+				
+				int first = r.nextInt(SIZE * SIZE);
+				int second = r.nextInt(SIZE * SIZE);
+				
+		        for (int i = 0; i < SIZE * 2; i++) 
+		        {
+					while(this.panels[first] != null) {
+						first = r.nextInt(SIZE * SIZE);
+					}
+					this.panels[first] = new MemoryPanel(color);
+					
+					while(first == second ||this.panels[second] != null) {
+						second = r.nextInt(SIZE * SIZE);
+					}
+					this.panels[second] = new MemoryPanel(color);
+					
+					red = r.nextInt(256);
+					green = r.nextInt(256);
+					blue = r.nextInt(256);
+					color = new Color(red, green, blue);		
+				}
+			}
+			
+			private void createMemoryPanelsPanel() {
+		        this.panels = new MemoryPanel[SIZE * SIZE];
+				this.setColorsToMemoryPanels();
+			}
+			
+			private void refreshMemoryPanelsPanel() {
+		        for (int i = 0; i < this.panels.length; i++) {
+		        	this.panels[i].setStateToHide();
+				}
+				Random r = new Random();
+				
+				int red = r.nextInt(256);
+				int green = r.nextInt(256);
+				int blue = r.nextInt(256);
+				Color color = new Color(red, green, blue);
+				
+				int first = r.nextInt(SIZE * SIZE);
+				int second = r.nextInt(SIZE * SIZE);
+				
+		        for (int i = 0; i < SIZE * 2; i++) 
+		        {
+					while(this.panels[first].isClicked()) {
+						first = r.nextInt(SIZE * SIZE);
+					}
+					this.panels[first].refreshPanel(color);
+					
+					while(first == second || this.panels[second].isClicked()) {
+						second = r.nextInt(SIZE * SIZE);
+					}
+					this.panels[second].refreshPanel(color);
+					
+					red = r.nextInt(256);
+					green = r.nextInt(256);
+					blue = r.nextInt(256);
+					color = new Color(red, green, blue);		
+				}
+			}
+			
+			private JPanel createLabelPanel() {
+				JPanel panel = new JPanel();
+				
+				this.status = new JLabel("Click start to start");
+				this.status.setFont(new Font("Verdana", Font.BOLD, 18));
+				panel.add(this.status);
+				return panel;
+			}
+			
+			
+			private JPanel createGamePanel() {
+				JPanel panel = new JPanel();
+				panel.setLayout(new GridLayout(SIZE, SIZE, 10, 10));
+				for (int i = 0; i < this.panels.length; i++) {
+					panel.add(this.panels[i]);
+				}
+				return panel;
+			}
+			
+			private JPanel createButtonPanel() {
+				JPanel panel = new JPanel();
+				JButton showBtn = new JButton("show");
+				showBtn.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						for (int i = 0; i < Memory.this.panels.length; i++) {
+							Memory.this.panels[i].show();
+						}
+						Memory.this.status.setText("Click start to start");
+					}
+					
+				});
+				JButton startBtn = new JButton("start");
+				startBtn.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						for (int i = 0; i < Memory.this.panels.length; i++) {
+							Memory.this.panels[i].hide();	
+						}
+						Memory.this.status.setText("click two panels and check");
+						
+					}
+					
+				});
+				JButton checkBtn = new JButton("check");
+				checkBtn.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						MemoryPanel one = null;
+						MemoryPanel two = null;
+						int nrClicked = 0;
+						for (int i = 0; i < Memory.this.panels.length; i++) {
+							if(Memory.this.panels[i].isClicked()) {
+								if(one == null) {
+									one = Memory.this.panels[i];
+									nrClicked++;
+								}
+								else {
+									two = Memory.this.panels[i];
+									nrClicked++;
+								}
+							}
+						}
+						if(nrClicked != 2) {
+							Memory.this.status.setText("not two panels selected");
+							for (int i = 0; i < Memory.this.panels.length; i++) {
+								if(Memory.this.panels[i].isClicked()) {
+									Memory.this.panels[i].hide();
+								}
+							}
+						} else if(one.getColor().equals(two.getColor())) {
+							Memory.this.status.setText("same color - click two panels and then check");
+							one.setStateToShow();
+							two.setStateToShow();
+						} else {
+							Memory.this.status.setText("different color - click two panels and then check");
+							one.hide();
+							two.hide();
+						}
+						if(Memory.this.gewonnen()) {
+							Memory.this.status.setText("finished!");
+						}
+					}
+					
+				});
+				JButton newBtn = new JButton("new");
+				newBtn.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Memory.this.refreshMemoryPanelsPanel();
+						Memory.this.status.setText("Click start to start");
+					}
+					
+				});
+				panel.add(showBtn);
+				panel.add(startBtn);
+				panel.add(checkBtn);
+				panel.add(newBtn);
+				return panel;
+			}
+			
+			public boolean gewonnen() {
+				boolean gewonnen = true;
+				for (int i = 0; i < this.panels.length && gewonnen; i++) {
+					if(!Memory.this.panels[i].isShown()) {
+						gewonnen = false;
+					}
+				}
+				return gewonnen;
+			}
+
+			public static void main(String[] args) {
+				new Memory();
+
+			}
+
+		}
+
+		```
+
+
+
+
+
+
 ##### Klausurvorbereitung (Quadrat zeichnen)
 
 ??? "Klausurvorbereitung (Quadrat zeichnen)"
