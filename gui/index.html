@@ -1,0 +1,1786 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Lehrmaterial, Übungen, Aufgaben und Hilfen für Programmieren II">
+      
+      
+        <meta name="author" content="Jörn Freiheit">
+      
+      
+        <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/prog2/gui/">
+      
+      
+        <link rel="prev" href="../interfaces/">
+      
+      
+        <link rel="next" href="../ereignisse/">
+      
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.5">
+    
+    
+      
+        <title>GUI Einführung - Programmieren II</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#graphical-user-interfaces" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="Programmieren II" class="md-header__button md-logo" aria-label="Programmieren II" data-md-component="logo">
+      
+  <img src="../img/fiw.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Programmieren II
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GUI Einführung
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jfreiheit/prog2_2023" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    prog2
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Programmieren II" class="md-nav__button md-logo" aria-label="Programmieren II" data-md-component="logo">
+      
+  <img src="../img/fiw.jpg" alt="logo">
+
+    </a>
+    Programmieren II
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jfreiheit/prog2_2023" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    prog2
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wiederholung/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Wiederholung
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aufzählungstypen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../einstieg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Einstieg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wrapper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Wrapper-Klassen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exceptions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exceptions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Maps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abstrakt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Abstrakte Klassen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interfaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interfaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    GUI Einführung
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    GUI Einführung
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elemente-einer-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elemente einer GUI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ein-erstes-fenster-mit-swing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ein erstes Fenster mit Swing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ein erstes Fenster mit Swing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setdefaultcloseoperation" class="md-nav__link">
+    <span class="md-ellipsis">
+      setDefaultCloseOperation()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kurzer-uberblick-jframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kurzer Überblick JFrame
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unsere-klasse-ist-selbst-ein-fenster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unsere Klasse ist selbst ein Fenster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#die-content-pane-des-fensters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Die Content Pane des Fensters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Die Content Pane des Fensters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#container-komponenten" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container-Komponenten
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inhalt-der-content-pane" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inhalt der Content Pane
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erweitern-des-fensters-um-ein-jpanel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erweitern des Fensters um ein JPanel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erweitern-der-initcontent-methode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erweitern der initContent()-Methode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Layout-Manager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Layout-Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flowlayout" class="md-nav__link">
+    <span class="md-ellipsis">
+      FlowLayout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gridlayout" class="md-nav__link">
+    <span class="md-ellipsis">
+      GridLayout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borderlayout" class="md-nav__link">
+    <span class="md-ellipsis">
+      BorderLayout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verschachteln-von-layout-managern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verschachteln von Layout-Managern
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ereignisse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GUI Ereignisse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mausereignisse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mausereignisse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GUI Graphics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mausereignisse_graphics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mausereignisse (in Graphics)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../klausurvorbereitung/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Klausurvorbereitung
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../junit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JUnit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uebungen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Übungen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aufgaben/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aufgaben
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elemente-einer-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elemente einer GUI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ein-erstes-fenster-mit-swing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ein erstes Fenster mit Swing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ein erstes Fenster mit Swing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setdefaultcloseoperation" class="md-nav__link">
+    <span class="md-ellipsis">
+      setDefaultCloseOperation()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kurzer-uberblick-jframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kurzer Überblick JFrame
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unsere-klasse-ist-selbst-ein-fenster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unsere Klasse ist selbst ein Fenster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#die-content-pane-des-fensters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Die Content Pane des Fensters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Die Content Pane des Fensters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#container-komponenten" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container-Komponenten
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inhalt-der-content-pane" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inhalt der Content Pane
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erweitern-des-fensters-um-ein-jpanel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erweitern des Fensters um ein JPanel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erweitern-der-initcontent-methode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erweitern der initContent()-Methode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Layout-Manager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Layout-Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flowlayout" class="md-nav__link">
+    <span class="md-ellipsis">
+      FlowLayout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gridlayout" class="md-nav__link">
+    <span class="md-ellipsis">
+      GridLayout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borderlayout" class="md-nav__link">
+    <span class="md-ellipsis">
+      BorderLayout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verschachteln-von-layout-managern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verschachteln von Layout-Managern
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/jfreiheit/prog2_2023/edit/master/docs/gui.md" title="Seite editieren" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/jfreiheit/prog2_2023/raw/master/docs/gui.md" title="Quellcode der Seite anzeigen" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="graphical-user-interfaces">Graphical User Interfaces<a class="headerlink" href="#graphical-user-interfaces" title="Permanent link">&para;</a></h1>
+<p>Bis jetzt haben wir unsere Ein- und Ausgaben über die Konsole erledigt oder wir haben Testklassen geschrieben, um Funktionalitäten unserer Programme zu testen. Nun wollen wir grafische Nutzeroberflächen (<em>Graphical User Interfaces (GUI)</em>) erstellen, also Fenster, die Steuerelemente enthalten. Steuerelemente sind Ein- und Ausgabeelemente, Labels (also Text), Buttons, Checkboxes, Radiobuttons usw. </p>
+<p>Das Java Developement Kit (JDK) beinhaltet verschiedene Bibliotheken zum Erstellen grafischer Nutzeroberflächen:</p>
+<ul>
+<li>AWT (abstract window toolkit) <code>java.awt</code>; alt, aber noch viele Sachen, die man heute noch nutzt: Farben, Listener für Maus und Tastur, Grafiken, ...</li>
+<li>Swing <code>javax.swing</code>; das verwenden wir zum Erstellen von Fenstern, auch nicht mehr ganz neu</li>
+<li>JavaFX <code>javafx</code>; sollte eigentlich Swing ablösen, hat sich aber nicht durchgesetzt, seit Java 11 nicht mehr Bestandteil des Standard-JDK</li>
+</ul>
+<p>Swing ist, wie bereits gesagt, auch nicht mehr neu und wird häufig als veraltet bezeichnet. Allerdings gibt es auch keine Alternativen. JavaFX sollte Swing ablösen, hat sich jedoch noch nicht durchgesetzt. Wir verwenden Swing aus zwei Gründen:</p>
+<ul>
+<li>erstens ist es immer noch das am meisten verwendete Framework für die Erstellung von GUIs in nativen Desktopanwendungen (also alles, was nicht "Web" und was nicht "mobile" ist), bspw. wurde IntelliJ mit Swing aufgebaut und</li>
+<li>zweitens geht es uns um die <em>Konzepte</em>, d.h. um den hierarchischen Aufbau der Oberflächen, um Nutzereignisse und die Behandlung dieser. Wir werden uns im 3. Semester in "Webtechnologien" mit der Erstellung moderner Weboberflächen beschäftigen und dabei auf die Grundlagen aufbauen, die wir hier legen. Die Konzepte sind nämlich dieselben. </li>
+</ul>
+<h3 id="elemente-einer-gui">Elemente einer GUI<a class="headerlink" href="#elemente-einer-gui" title="Permanent link">&para;</a></h3>
+<p>Eine GUI besteht aus verschiedenen Elementen, deren Zusammenspiel erst die <em>Benutzbarkeit</em> der Oberfläche ermöglichen. Unter <em>Benutzbarkeit</em> ist dabei die einfache, intuitive und übersichtliche Ein- und Ausgabe von Daten gemeint. Im 6. Semester gibt es eine ganze Lehrveranstaltung zum Thema <em>Usability</em> in unserem Studiengang. </p>
+<p><img alt="gui" src="../files/48_gui.png" /></p>
+<p>Folgende Elemente sind in einer GUI von Bedeutung:</p>
+<ul>
+<li>Das <strong>Fenster</strong> stellt den äußeren Rahmen einer grafischen Anwendung dar. Es enthält typischerweise einen Rahmen und eine Titelleiste, in der der Name des Fensters bzw. der Anwendung (in der oberen Abbildung <code>Window</code>) und drei Buttons zum Schließen des Fensters bzw. der Anwendung (das rote Kreuz in der oberen Abbildung), zum Vollbildmodus (das Quadrat) und zum Verkleinern des Fensters in die Taskleiste (der Unterstrich) enthalten sind. Der Rahmen, genau wie die Titelleiste mit den drei Buttons, sind aber optional. Ein Fenster enthält <strong>Komponenten</strong>.</li>
+<li><strong>Komponenten</strong> sind alle Oberflächen- bzw. Steuerelemente, d.h. Buttons (siehe oben <code>&lt; Back</code> und <code>Next &gt;</code>), Labels (Texte, z.B. <code>Checkbox</code>), Checkboxes (die Quadrate, die ein Häkchen haben können oder auch nicht), Ein- und Ausgabefelder, Auswahllisten usw. <em>Steuerelemente</em> sind also alle Elemente, die direkt der Ein- und Ausgabe dienen. Darüber hinaus gibt es noch die Komponente <em>Container</em>. Ein <em>Container</em> kann selbst wieder <em>Container</em>  enhalten oder <em>Steuerelemente</em>. <em>Container</em> sind nicht direkt sichtbar, sondern sie dienen der Strukturierung einer grafischen Oberfläche. </li>
+<li><strong>Layoutmanager</strong> organisieren die Positionierung von Komponenten. Mithilfe von Layoutmanagern kann man Container unter- und/oder nebeneinander positionieren und organisiert somit die Anordnung der Steuerelemente. </li>
+<li><strong>Menüs</strong> sind einblendbare Befehlsleisten. Es gibt die Menüs, die meistens oben in der Menüleiste verankert sind und <em>Kontextmenüs</em>, die dort erscheinen, wo man, meistens mit der rechten, Maustaste hinklickt. </li>
+<li><strong>Events</strong> (<em>Ereignisse</em>) haben zunächst nichts mit der Darstellung selbst zu tun. Sie sind aber für die Benutzbarkeit sehr wichtig, denn jede Nutzeraktion löst ein Ereignis aus, welches wir im Programm behandeln können, z.B. Mausklicks, Mausbewegungen, Tastatureingaben, Bewegen, Vergrößern, Verkleinern des Fensters usw. Wir werden uns sehr ausführlich mit der <em>Behandlung von Ereignissen</em> beschäftigen.</li>
+<li><strong>Zeichenoperationen</strong> dienen der Erstellung von Punkten, Linien, Text usw. in Fenstern. Während die Steuerelemente ein festes Aussehen besitzen (anpassbar, je nach Betriebssystem und unterschiedlichen <em>Look&amp;Feel</em>-Frameworks), können mit Zeichenoperationen beliebige Elemente erstellt und dargestellt werden, z.B. Grafiken, Kurven oder Diagramme.</li>
+</ul>
+<p>Wir werden auf alle diese Elemente eingehen und starten jetzt aber mit unserem ersten Fenster. </p>
+<h3 id="ein-erstes-fenster-mit-swing">Ein erstes Fenster mit Swing<a class="headerlink" href="#ein-erstes-fenster-mit-swing" title="Permanent link">&para;</a></h3>
+<p>Wir erstellen uns eine Klasse <code>MyFirstWindow</code>. Von dieser Klasse erzeugen wir uns ein Objekt. Dazu implementieren wir den parameterlosen Konstruktor dieser Klasse. In diesem Konstruktor wird ein <code>JFrame</code> erzeugt - das ist das <strong>Fenster</strong> bei Swing. Wir haben in dieser Klasse auch eine <code>main()</code>-Methode. Das ist nicht ganz sauber, da die <code>main()</code>-Methode ja eigentlich keine Eigenschaft unserer Klasse ist, deren <em>Responsibility</em> die Erstellung eines Fensters ist, aber wir vereinfachen hier zu Anfang:</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyFirstWindow</span><span class="w"> </span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="p">{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MyFirstWindow</span><span class="p">()</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">        </span><span class="n">JFrame</span><span class="w"> </span><span class="n">window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JFrame</span><span class="p">();</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">        </span><span class="n">window</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;My first window&quot;</span><span class="p">);</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">        </span><span class="n">window</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">        </span><span class="n">window</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">);</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">        </span><span class="n">window</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">        </span><span class="n">window</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MyFirstWindow</span><span class="p">();</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Wenn wir diese Klasse ausführen, erscheint folgendes Fenster:</p>
+<p><img alt="gui" src="../files/49_gui.png" /></p>
+<p>Das Aussehen ist betriebssystemabhängig. Probieren Sie die drei "Knöpfe" in der Titelleiste aus, sie funktionieren bereits, d.h. das Fenster lässt sich in die Taskleiste verkleinern, es lässt sich in den Vollbildmodus umschalten und es kann geschlossen werden (und damit das ganze Programm). Sie können es auch bereits in der Größe verändern. </p>
+<p>Wir betrachten das Programm im Detail:</p>
+<ul>
+<li>In Zeile <code>8</code> wird ein Objekt der Klasse <code>JFrame</code> erzeugt. Diese Klasse muss aus dem <code>javax.swing</code>-Paket importiert werden (Zeile <code>1</code>). Sollte der Import bei Ihnen nicht funktionieren, müssen Sie in Ihre <code>module-info.java</code> noch <code>requires java.desktop;</code> einfügen, um dieses Modul zu laden. Die Klasse <code>JFrame</code> repräsentiert ein Fenster im Swing-Paket. Das bedeutet, dass wir, wenn wir in Zukunft eine GUI mithilfe von Swing erstellen, immer damit beginnen, ein Objekt der Klasse <code>JFrame</code> zu erzeugen - nämlich ein Fenster. </li>
+<li>Die Klasse <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.desktop/javax/swing/JFrame.html">JFrame</a> stellt eine Unmenge an Objektmethoden zur Verfügung, um das Fenster zu verändern. Viele dieser Methoden sind auch aus Klassen des <code>java.awt</code>-Pakets geerbt, z.B. von <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.desktop/java/awt/Frame.html">Frame</a>, von <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.desktop/java/awt/Component.html">Component</a>, von <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.desktop/java/awt/Container.html">Container</a> oder von <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.desktop/java/awt/Window.html">Window</a>, aber dazu kommen wir später. Wir wenden einige dieser Methoden bereits an:</li>
+<li>In Zeile <code>9</code> setzen wir mithilfe der Objektmethode <code>setTitle()</code> einen Titel für unser Fenster, hier <code>"My first window"</code>. Um den Titel zu setzen, gibt es auch einen parametrisierten Konstruktor von <code>JFrame</code>, dem dieser Titel übergeben werden kann. </li>
+<li>In Zeile <code>10</code> definieren wir, was passieren soll, wenn wir auf den <code>Schließen</code>-Buttons des Fensters klicken (also auf das rote Kreuz oder den roten Kreis in der Titelleiste). Mit der statischen Konstanten <code>EXIT_ON_CLOSE</code> aus der Klasse <code>JFrame</code> legen wir fest, dass sowohl das Fenster geschlossen als auch das Programm beendet werden soll, wenn wir den <code>Schließen</code>-Button anklicken. Diese Option ist auch die einzig empfohlene Option für das Schließen des (Haupt-)Fensters. Leider ist sie nicht Standard, so dass wir das immer mitprogrammieren müssen. Sollten Sie diese Anweisung vergessen, so schließt sich zwar das Fenster, nicht jedoch das Programm. </li>
+<li>In Zeile <code>11</code> legen wir die Größe des Fensters in Pixeln fest. Hier wird die Breite mit <code>400</code>Pixeln und die Höhe mit <code>300</code> Pixeln festgelegt. Die Größe des Fensters ist somit abhängig von der Auflösung Ihres Monitors. Wenn Sie diese Angabe "vergessen", erscheint das Fenster genau so groß, wie es nötig ist, um alle Steuerelemente in dem Fenster darzustellen. Sie würden also nur die drei Knöpfe in der Titelleiste sehen. Diese "minimal erforderliche" Größe eines Fensters erreicht man auch mit der Objektmethode <code>pack()</code>, die das Fenster genau so groß darstellt, dass alle Steuerelemente sichtbar sind. </li>
+<li>In Zeile <code>12</code> legen wir fest, <em>wo</em> das Fenster auf unserem Monitor erscheint. Die linke obere Ecke des Monitors hat die Koordinaten <code>(0,0)</code>. Der erste Parameterwert in <code>setLocation()</code> legt fest, wie weit nach <em>rechts</em> der linke obere Punkt des Fensters auf unserem Monitor verschoben wird und der zweite Parameterwert legt fest, wie weit nach <em>unten</em> der linke obere Punkt des Fensters verschoben wird. Hier verschieben wir also das Fenster um <code>300</code> Pixel nach rechts und um <code>200</code> Pixel nach unten. Wenn Sie diese Angabe nicht treffen, erscheint das Fenster in der linken oberen Ecke des Monitors. </li>
+<li>In Zeile <code>13</code> setzen wir das Fenster auf <em>sichtbar</em>. Diese Anweisung sollten wir nicht vegessen, denn ansonsten sieht man das Fenster nicht und Sie wundern sich. </li>
+</ul>
+<h4 id="setdefaultcloseoperation">setDefaultCloseOperation()<a class="headerlink" href="#setdefaultcloseoperation" title="Permanent link">&para;</a></h4>
+<p>Mit der Objektmethode <code>setDefaultCloseOperation()</code> wird das Verhalten bei Schließen des Fensters definiert. Dafür wurden Konstanten in der Klasse <code>JFrame</code> definiert (genauer gesagt in der Klasse <code>javax.swing.WindowConstants</code>). Es wird empfohlen, dass wir für unser Hauptfenster stets <code>JFrame.EXIT_ON_CLOSE</code>) verwenden, da dann beim Schließen des Fensters auch das Programm beendet wird. Das ist aber leider nicht der Standardwert, deshalb müssen wir es immer explizit angeben. Hier eine Übersicht der vordefinierten Konstanten und ihrer Bedeutung:</p>
+<table>
+<thead>
+<tr>
+<th>Konstante</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DO_NOTHING_ON_CLOSE</td>
+<td>Es wird keine Aktion ausgeführt. Die Reaktion auf das Schließen muss vom Benutzer selbst über einen WindowListener realisiert werden. (windowClosing)</td>
+</tr>
+<tr>
+<td>HIDE_ON_CLOSE</td>
+<td>Versteckt das Fenster vor dem Benutzer. Alle Objekte und Ressourcen bleiben im Speicher erhalten und das Fenster kann jederzeit wieder sichtbar gemacht werden.</td>
+</tr>
+<tr>
+<td>DISPOSE_ON_CLOSE</td>
+<td>Das Fenster wird vom Bildschirm entfernt und alle Objekte und Ressourcen freigegeben. Wenn das letzte Fenster mit dieser Eigenschaft geschlossen wird verhält sich die Anwendung wie bei EXIT_ON_CLOSE.</td>
+</tr>
+<tr>
+<td>EXIT_ON_CLOSE</td>
+<td>Beendet die Anwendung und alle Fenster werden geschlossen und Ressourcen freigegeben. (System.exit(0))</td>
+</tr>
+</tbody>
+</table>
+<h4 id="kurzer-uberblick-jframe">Kurzer Überblick JFrame<a class="headerlink" href="#kurzer-uberblick-jframe" title="Permanent link">&para;</a></h4>
+<p>Ein <code>JFrame</code> ist der äußere Rahmen einer Swing-Anwendung. Die Klasse befindet sich im Paket <code>javax.swing</code>. Ein Fenster (<code>JFrame</code>) hat </p>
+<ul>
+<li>eine Titelleiste mit den drei bekannten Schaltflächen (<code>decorated</code>);  <code>setUndecorated(boolean v)</code></li>
+<li>einen Rahmen (<code>javax.swing.Border</code>) </li>
+<li>Sichtbarkeit; <code>setVisible(boolean v)</code></li>
+<li>Transparenz;  <code>setOpacity(float f)</code> (0 durchsichtig; 1.0 undurchsichtig)</li>
+<li>eine Größe;   <code>setSize(int b, int h)</code></li>
+<li>eine Position; <code>setLocation(int x, int y)</code></li>
+<li>eine Form; <code>setShape(Shape s)</code></li>
+</ul>
+<p>und kann </p>
+<ul>
+<li>im Vordergrund sein;  <code>toFront()</code></li>
+<li>im Hintergrund sein;  <code>toBack()</code></li>
+</ul>
+<h3 id="unsere-klasse-ist-selbst-ein-fenster">Unsere Klasse ist selbst ein Fenster<a class="headerlink" href="#unsere-klasse-ist-selbst-ein-fenster" title="Permanent link">&para;</a></h3>
+<p>Ehe wir weitere Methoden für <code>JFrame</code> ausprobieren, ändern wir die Implementierung unserer Klasse leicht. Derzeit haben wir <strong>in</strong> unserer Klasse ein Fenster erzeugt. Nun soll unsere Klasse <strong>selbst</strong> (besser gesagt: ein Objekt unserer Klasse) ein Fenster sein. Dazu lassen wir unsere Klasse von <code>JFrame</code> erben:</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="hll"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyFirstWindow</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JFrame</span>
+</span></span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MyFirstWindow</span><span class="p">()</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="hll"><span class="w">        </span><span class="kd">super</span><span class="p">();</span><span class="w">    </span><span class="c1">// Konstruktor von JFrame</span>
+</span></span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;My first window&quot;</span><span class="p">);</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">);</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MyFirstWindow</span><span class="p">();</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Die wesentlichen Änderungen sind:</p>
+<ul>
+<li>Die Klasse <code>MyFirstWindow</code> erbt von <code>JFrame</code> (Zeile <code>3</code>). Jedes Objekt der Klasse <code>MyFirstWindow</code> ist also (auch) ein Objekt der Klasse <code>JFrame</code> - und damit selbst ein Fenster. </li>
+<li>Im Konstruktor von <code>MyFirstWindow</code> rufen wir mit <code>super();</code> den Konstruktor von <code>JFrame</code> auf (Zeile <code>8</code>). Damit wird das Fenster erstellt. </li>
+<li>Die Objektmethoden von <code>JFrame</code> werden jetzt alle von der Referenz <code>this</code> aufgerufen, dem Fenster-Objekt.</li>
+</ul>
+<p>Wir werden auf diesem <em>Grundgerüst</em> für die Erstellung eines Fensters aufbauen, d.h. wir verwenden in Zukunft diese zweite Variante und ziehen sie der ersten vor. </p>
+<h3 id="die-content-pane-des-fensters">Die Content Pane des Fensters<a class="headerlink" href="#die-content-pane-des-fensters" title="Permanent link">&para;</a></h3>
+<p>Bevor wir dem Fenster nun Komponenten hinzufügen, ist es noch erwähnenswert, dass ein Fenster aus verschiedenen "Schichten" besteht, sogenannten <em>panes</em>. Die folgende Abbildung zeigt die <em>panes</em> eines JFrames. </p>
+<p><img alt="gui" src="../files/50_gui.png" /></p>
+<p>Um dies besser zu erläutern, versuchen wir, die Hintergrundfarbe des Fensters neu zu setzen. Dazu steht in der Klasse <code>JFrame</code> die Methode <code>setBackground(Color)</code> zur Verfügung. Diese Methode erwartet ein <code>Color</code>, welche im <code>java.awt</code>-Paket zur Verfügung steht. Der erste Implementierungsversuch wäre deshalb wie folgt:</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
+</span></span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyFirstWindow</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JFrame</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="p">{</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MyFirstWindow</span><span class="p">()</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">        </span><span class="kd">super</span><span class="p">();</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;My first window&quot;</span><span class="p">);</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="hll"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">CYAN</span><span class="p">);</span>
+</span></span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">);</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MyFirstWindow</span><span class="p">();</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Wir wollen unseren Fesnterhintergrund also mit der vorderfinierten Farbe <code>CYAN</code> einfärben. Wenn wir dieses Programm ausführen, erhalten wir folgendes Fenster:</p>
+<p><img alt="gui" src="../files/51_gui.png" /></p>
+<p>Zwar färbt sich die Titelleiste des Fensters, aber der Rest bleibt offensichtlich grau. Das liegt daran, dass die <em>Content Pane</em> des Fensters vor dem Hintergrund liegt. </p>
+<blockquote>
+<p>Alle Komponenten fügen wir der Content Pane des Fensters hinzu! Das gilt auch für Färbungen des Hintergrunds. </p>
+</blockquote>
+<p>Die <em>Content Pane</em> ist dazu da, die Komponenten hinzuzufügen und darzustellen. Wenn wir einen anderen Hintergrund für das Fenster (unterhalb der Titelleiste) wünschen, dann müssen wir den Hintergrund der <em>Content Pane</em> einfärben. </p>
+<p>Den Zugriff auf die <em>Content Pane</em> erhalten wir mithilfe der Objektmethode </p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">.</span><span class="na">getContentPane</span><span class="p">()</span>
+</span></code></pre></div>
+<p>Unser Beispiel des Einfärbens des Hintergrundes sieht also korrekt so aus:</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyFirstWindow</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JFrame</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="p">{</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MyFirstWindow</span><span class="p">()</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">        </span><span class="kd">super</span><span class="p">();</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;My first window&quot;</span><span class="p">);</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="hll"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">CYAN</span><span class="p">);</span>
+</span></span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">);</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17"></a>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MyFirstWindow</span><span class="p">();</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22"></a>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Beachten Sie, dass die <em>Content Pane</em> des Fensters zwar nun <code>CYAN</code> ist, dafür aber nicht mehr die Titelleiste. Wenn wir diese auch färben sollen, dann gehen wir auch noch wie oben vor. </p>
+<p><img alt="gui" src="../files/52_gui.png" /></p>
+<h4 id="container-komponenten">Container-Komponenten<a class="headerlink" href="#container-komponenten" title="Permanent link">&para;</a></h4>
+<p>Ehe wir Steuerelemente zu unserem Fenster hinzufügen, wollen wir auf die Unterscheidung zwischen <em>Steuerelementen</em> und <em>Containern</em> eingehen. Ein Fenster enthält <em>Komponenten</em> (<code>JComponent</code>). <em>Komponenten</em> können sein:</p>
+<ul>
+<li><em>Steuerelemente</em>; das sind die sichtbaren Teile im Fenster, d.h. Buttons, Eingabefelder, Checkboxen usw. und</li>
+<li><em>Container</em>; diese sieht man nicht direkt, sie dienen der Strukturierung der GUI. </li>
+</ul>
+<p><em>Container</em> können weitere <em>Komponenten</em> (also <em>Container</em> oder <em>Steuerelemente</em>) enthalten. <em>Steuerelemente</em> enthalten aber <strong>keine</strong> weiteren <em>Komponenten</em>. Durch das Verschachteln von <em>Containern</em> in <em>Containern</em> entsteht eine "Hierarchie" (oder besser gesagt: eine "Baumstruktur") in unserer GUI:</p>
+<p><img alt="gui" src="../files/53_gui.png" /></p>
+<p>Wichtig ist: </p>
+<ul>
+<li>die Knoten des Baumes sind <em>Container</em> und</li>
+<li>die Blätter des Baumes sind <em>Steuerelemente</em> </li>
+</ul>
+<h4 id="inhalt-der-content-pane">Inhalt der Content Pane<a class="headerlink" href="#inhalt-der-content-pane" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Die <em>Content Pane</em> ist selbst ein <em>Container</em>. </li>
+<li>Zur <em>Content Pane</em> können neue <em>Komponenten</em> (<em>Container</em> oder <em>Steuerelemente</em>) hinzugefügt werden. </li>
+<li>Zum Hinzufügen neuer <em>Komponenten</em> wird die Objektmethode <code>add()</code> verwendet.</li>
+<li>Eine typische Klasse für einen <em>Container</em> ist die Klasse <code>JPanel</code>. <code>JPanels</code> können also ineinander verschachtelt werden, d.h. ein <code>JPanel</code> kann selbst wieder anderer <code>JPanels</code> entahlten (oder <em>Steuerelemente</em>).</li>
+<li>Typische <em>Steuerelemente</em> (die in der Baumstruktur die “Blätter“ bilden), sind <code>JButton</code>, <code>JLabel</code>, <code>JCheckBox</code>, <code>JRadioButton</code>, ...</li>
+</ul>
+<h4 id="erweitern-des-fensters-um-ein-jpanel">Erweitern des Fensters um ein JPanel<a class="headerlink" href="#erweitern-des-fensters-um-ein-jpanel" title="Permanent link">&para;</a></h4>
+<p>Wir fügen unserer <em>Content Pane</em> nun ein <code>JPanel</code> (einen <em>Container</em>) hinzu und werden dieses <code>JPanel</code> danach mit weiteren <em>Komponenten</em> befüllen. Unser neues <strong>Grundgerüst eines Fensters</strong> sieht nun so aus:</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span>
+<span class="normal"><a href="#__codelineno-5-25">25</a></span>
+<span class="normal"><a href="#__codelineno-5-26">26</a></span>
+<span class="normal"><a href="#__codelineno-5-27">27</a></span>
+<span class="normal"><a href="#__codelineno-5-28">28</a></span>
+<span class="normal"><a href="#__codelineno-5-29">29</a></span>
+<span class="normal"><a href="#__codelineno-5-30">30</a></span>
+<span class="normal"><a href="#__codelineno-5-31">31</a></span>
+<span class="normal"><a href="#__codelineno-5-32">32</a></span>
+<span class="normal"><a href="#__codelineno-5-33">33</a></span>
+<span class="normal"><a href="#__codelineno-5-34">34</a></span>
+<span class="normal"><a href="#__codelineno-5-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.awt.Color</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JFrame</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">javax.swing.JPanel</span><span class="p">;</span>
+</span></span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyFirstWindow</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JFrame</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="p">{</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MyFirstWindow</span><span class="p">()</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">        </span><span class="kd">super</span><span class="p">();</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;My first window&quot;</span><span class="p">);</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setDefaultCloseOperation</span><span class="p">(</span><span class="n">JFrame</span><span class="p">.</span><span class="na">EXIT_ON_CLOSE</span><span class="p">);</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">CYAN</span><span class="p">);</span><span class="w">    </span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="hll"><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">initContent</span><span class="p">();</span>
+</span></span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="hll"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">getContentPane</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
+</span></span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">);</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22"></a>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23"></a><span class="hll"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">JPanel</span><span class="w"> </span><span class="nf">initContent</span><span class="p">()</span>
+</span></span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24"></a><span class="hll"><span class="w">    </span><span class="p">{</span>
+</span></span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25"></a><span class="hll"><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">mainPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span></span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26"></a><span class="hll"><span class="w">        </span><span class="c1">// hier weitere Container oder Steuerelemente hinzufuegen</span>
+</span></span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27"></a><span class="hll"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">mainPanel</span><span class="p">;</span>
+</span></span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28"></a><span class="hll"><span class="w">    </span><span class="p">}</span>
+</span></span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29"></a>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32"></a><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">MyFirstWindow</span><span class="p">();</span>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34"></a>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>In Zeile <code>15</code> deklarieren wir eine Referenzvariable namens <code>content</code> vom Typ <code>JPanel</code>. Dazu muss die Klasse <code>JPanel</code> aus dem <code>javax.swing</code>-Paket importiert werden (Zeile <code>3</code>). </li>
+<li>Dieses <code>JPanel</code> wird durch die Methode <code>initContent()</code> erzeugt, welche ein <code>JPanel</code> zurückgibt (Zeile <code>27</code>).</li>
+<li>In der Methode <code>initContent()</code> wird dieses <code>JPanel</code> erzeugt (Zeile <code>25</code>) unter Verwendung des parameterlosen Konstruktors von <code>JPanel</code>. </li>
+</ul>
+<p>Das so erzeugte Fenster sieht so aus:</p>
+<p><img alt="gui" src="../files/54_gui.png" /></p>
+<p><strong>Beachten Sie</strong>, dass der Hintergrund nun nicht mehr <code>CYAN</code> gefärbt ist! Deshalb werden wir diese Anweisung auch gleich entfernen. Der Grund dafür ist, dass zwar die <em>Content Pane</em> cyan ist, aber <strong>davor</strong> befindet sich jetzt ein <code>JPanel</code> (<code>content</code>), welches grau (Standardwert) ist. Dieses <code>JPanel</code> befüllt die gesamte <em>Content Pane</em>. Diese ist also gar nicht mehr zu sehen. </p>
+<h4 id="erweitern-der-initcontent-methode">Erweitern der initContent()-Methode<a class="headerlink" href="#erweitern-der-initcontent-methode" title="Permanent link">&para;</a></h4>
+<p>Wir werden die <code>initContent()</code>-Methode nun sukzessive erweitern, indem wir <em>Steuerelemente</em> (und später auch weitere <em>Container</em>, also <code>JPanel</code>) hinzufügen. Dabei ist das generelle Vorgehen stets gleich:</p>
+<ol>
+<li>Steuerelement-Objekt erzeugen</li>
+<li>Steuerelement-Objekt dem Container (dem <code>JPanel</code>) hinzufügen</li>
+</ol>
+<p>Wir betrachten nur die <code>initContent()</code>-Methode (die erforderlichen Klassen müssen aus dem <code>javax.swing</code>-Paket importiert werden - oder Sie wählen <code>import javax.swing.*;</code>):</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span>
+<span class="normal"><a href="#__codelineno-6-25">25</a></span>
+<span class="normal"><a href="#__codelineno-6-26">26</a></span>
+<span class="normal"><a href="#__codelineno-6-27">27</a></span>
+<span class="normal"><a href="#__codelineno-6-28">28</a></span>
+<span class="normal"><a href="#__codelineno-6-29">29</a></span>
+<span class="normal"><a href="#__codelineno-6-30">30</a></span>
+<span class="normal"><a href="#__codelineno-6-31">31</a></span>
+<span class="normal"><a href="#__codelineno-6-32">32</a></span>
+<span class="normal"><a href="#__codelineno-6-33">33</a></span>
+<span class="normal"><a href="#__codelineno-6-34">34</a></span>
+<span class="normal"><a href="#__codelineno-6-35">35</a></span>
+<span class="normal"><a href="#__codelineno-6-36">36</a></span>
+<span class="normal"><a href="#__codelineno-6-37">37</a></span>
+<span class="normal"><a href="#__codelineno-6-38">38</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">JPanel</span><span class="w"> </span><span class="nf">initContent</span><span class="p">()</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25"></a><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">mainPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26"></a>
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27"></a><span class="hll"><span class="w">        </span><span class="c1">// Steuerlement-Objekte erstellen</span>
+</span></span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28"></a><span class="hll"><span class="w">        </span><span class="n">JLabel</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">(</span><span class="s">&quot;Name: &quot;</span><span class="p">);</span>
+</span></span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29"></a><span class="hll"><span class="w">        </span><span class="n">JTextField</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JTextField</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30"></a><span class="hll"><span class="w">        </span><span class="n">JButton</span><span class="w"> </span><span class="n">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Klick mich!&quot;</span><span class="p">);</span>
+</span></span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31"></a><span class="hll">
+</span></span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32"></a><span class="hll"><span class="w">        </span><span class="c1">// Steuerlement-Objekte dem Container (JPanel) hinzufuegen</span>
+</span></span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33"></a><span class="hll"><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">label</span><span class="p">);</span>
+</span></span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34"></a><span class="hll"><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+</span></span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35"></a><span class="hll"><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">button</span><span class="p">);</span>
+</span></span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36"></a>
+</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">mainPanel</span><span class="p">;</span>
+</span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Das Fenster sieht nun so aus:</p>
+<p><img alt="gui" src="../files/55_gui.png" /></p>
+<p>Wir haben also ein <code>JLabel</code> (einen Text) hinzugefügt ("Name"), ein <code>JTextField</code> (ein Eingabefeld, für das die Breite <code>10</code> Zeichen definiert wurde) sowie ein <code>JButton</code> (ein Button, auf dem "Klick mich!" steht). Bei allen drei Elementen handelt es sich um <em>Steuerelemente</em>. </p>
+<p>Beachten Sie, dass die Elemente nebeneinander angeordnet sind. Das ist die Standardeinstellung für ein <code>JPanel</code>. Solche Einstellungen können später mit einem <em>Layout-Manager</em> geändert werden. Die Steuerelemente werden solange nebeneinander angeordnet, solange sie nebeneinander passen. Wenn Sie die Fensterbreite schmaler gestalten (mit der Maus zusammenschieben), schieben sich die Steuerelemente untereinander. Um aber Kontrolle über die Anordnung der Steuerelemente zu gelangen, betrachten wir nun <em>Layout-Manager</em>. </p>
+<h3 id="layout-manager">Layout-Manager<a class="headerlink" href="#layout-manager" title="Permanent link">&para;</a></h3>
+<p><em>Layout-Manager</em> dienen der Anordnung von Komponenten. Es gibt viele Layout-Manager (<code>FlowLayout</code>, <code>BorderLAyout</code>, <code>CardLayout</code>, <code>OverlayLayout</code>, <code>GridLayout</code>, <code>GridBagLayout</code>, <code>BoxLayout</code>, <code>GroupLayout</code>, ...). Wir werden aber nicht alle betrachten, da dies erstens auf Dauer langweilig ist und zweitens <a href="./#verschachteln-von-layout-managern">Layout-Manager ineinander verschachtelt</a> werden können. Vielmehr können <em>Container</em> ineinander verschachtelt werden und diesen <em>Containern</em> unterschiedliche Layout-Manager zugewiesen werden. </p>
+<p>Es wird also einem <em>Container</em> ein Layout-Manager zugewiesen und die <em>Komponenten</em> in diesem <em>Container</em> sind dann so angeordnet, wie der Layout-Manager es definiert (nebeneinander oder untereinander oder übereinander ...). Das Zuweisen 
+eines Layout-Managers zu einem <em>Container</em> erfolgt mithilfe von</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Layoutmanager</span><span class="p">())</span><span class="w"> </span><span class="c1">// Layoutmanager durch entsprechenden Namen ersetzen</span>
+</span></code></pre></div>
+<p>Wir betrachten im Folgenden drei Layout-Manager und diese genügen völlig für alle GUIs, die wir erstellen wollen:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/uiswing/layout/flow.html">FlowLayout</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/uiswing/layout/grid.html">GridLayout</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/uiswing/layout/border.html">BorderLayout</a></li>
+</ul>
+<p>Alle drei LayoutManager bedinden sich im <code>java.awt</code>-Paket, also <code>java.awt.FlowLayout</code>, <code>java.awt.GridLayout</code> und <code>java.awt.BorderLayout</code>.</p>
+<h4 id="flowlayout">FlowLayout<a class="headerlink" href="#flowlayout" title="Permanent link">&para;</a></h4>
+<p><code>FlowLayout</code> ist der Standard-Layout-Manager für ein <code>JPanel</code>. Das heißt, wenn wir einem <code>JPanel</code> keinen (anderen) Layout-Manager zuweisen, ist es im <code>FlowLayout</code>. <code>FlowLayout</code> ordnet die Komponenten nebeneinander in einer Zeile an (wenn sie in eine Zeile passen – ansonsten weitere Zeile).</p>
+<p>Das Zuweisen eines <em>Containers</em> zum <code>FlowLayout</code> erfolgt mittels <code>setLayout(new FlowLayout());</code>.</p>
+<p>Für <code>FlowLayout</code> steht aber nicht nur der parameterlose Konstruktor zur Verfügung, sondern auch </p>
+<ul>
+<li>
+<p><code>FlowLayout(int align)</code>, wobei für <code>align</code> folgende vordefinierte Konstanten verwendet werden können:</p>
+<ul>
+<li><code>FlowLayout.CENTER</code> ; ordnet alle Komponenten mittig an, ist der Standard-Wert</li>
+<li><code>FlowLayout.LEFT</code> ; ordnet alle Komponenten linksbündig an</li>
+<li><code>FlowLayout.RIGHT</code> ; ordnet alle Komponenten rechtsbündig an</li>
+</ul>
+</li>
+<li>
+<p><code>FlowLayout(int align, int hgap, int vgap)</code> , wobei <code>align</code> wie oben und </p>
+<ul>
+<li><code>hgap</code> den horizontalen Abstand zwischen den Komponenten und</li>
+<li><code>vgap</code> den vertikalen Abstand zwischen den Komponenten beschreibt</li>
+</ul>
+</li>
+</ul>
+<p>Beispiele:</p>
+<p><img alt="gui" src="../files/56_gui.png" /></p>
+<p>Beim <code>FlowLayout</code> bleiben die Steuerelemente stets in ihrer Standardgröße!</p>
+<div class="admonition übung">
+<p class="admonition-title">Übung</p>
+<p>Fügen Sie in Ihre <code>initContent()</code>-Methode 6 Buttons ein (wie in der oberen Abbildung). Lassen Sie das <code>mainPanel</code> im <code>FlowLayout</code>. Probieren Sie ruhig mal die verschiedenen <code>align</code>-Werte. Verändern Sie mit der Maus die Größe des Fensters. Beachten Sie, dass sich die Größe der Buttons <strong>nicht</strong> ändert. </p>
+</div>
+<h4 id="gridlayout">GridLayout<a class="headerlink" href="#gridlayout" title="Permanent link">&para;</a></h4>
+<p><code>GridLayout</code> ordnet Komponenten innerhalb eines rechteckigen Gitters (einem <em>grid</em>) an. Das Zuweisen eines <em>Containers</em> zum <code>GridLayout</code> erfolgt mittels <code>setLayout(new GridLayout(int rows, int columns));</code>. Dabei geben <code>rows</code> die Anzahl der Zeilen des Gitters und <code>columns</code> die Anzahl der Spalten des Gitters an. Dabei wird aber immmer zuerst versucht, <strong>ein Rechteck</strong> zur erzeugen mit der Zeilenanzahl als <strong>maßgeblichem Wert</strong>! Das verdeutlichen die folgenden Beispiele:</p>
+<p><img alt="gui" src="../files/57_gui.png" /></p>
+<p>Für <code>GridLayout</code> gibt es noch einen weiteren parametrisierten Konstruktor, nämlich <code>GridLayout(int rows, int columns, int hgap, int vgap)</code>, wobei <code>hgap</code> und <code>vgap</code> die gleiche Bedutung haben, wie beim <code>FlowLayout</code>.</p>
+<p><img alt="gui" src="../files/58_gui.png" /></p>
+<p><strong>Wichtig</strong> ist, dass sich die Größe der Komponenten der Größe des Containes anpasst, in der die Komponenten enthalten sind. das bedeutet, dass mit der Größe des Containers auch die Steuerelemente größer werden! Das bedeutet, dass im Gegensatz zum <code>FlowLayout</code> z.B. Buttons in diesem Layout-Manager keine feste Größe haben!</p>
+<div class="admonition übung">
+<p class="admonition-title">Übung</p>
+<p>Verwenden Sie die <code>initContent()</code>-Methode aus der <code>FlowLayout</code>-Übung (mit den 6 Buttons). Weisen Sie dem <code>mainPanel</code> das <code>GridLayout</code> zu. Probieren Sie ruhig mal verschiedene <code>rows</code>, <code>columns</code>, <code>hgap</code>, <code>vgap</code>-Werte. Verändern Sie mit der Maus die Größe des Fensters. Beachten Sie, dass sich die Größe der Buttons <strong>ändert</strong>! </p>
+</div>
+<h4 id="borderlayout">BorderLayout<a class="headerlink" href="#borderlayout" title="Permanent link">&para;</a></h4>
+<p><code>BorderLayout</code> ist der Standard-Layout-Manager für ein <code>JFrame</code>. <code>BorderLayout</code> ordnet Komponenten in fünf Felder (<code>North</code>, <code>South</code>, <code>East</code>, <code>West</code>) und die Mitte (<code>Center</code>) an. <code>BorderLayout</code> besitzt</p>
+<ul>
+<li>einen parameterlosen Konstruktor <code>BoderLayout()</code> und</li>
+<li>einen parametrisierten Konstruktor <code>BorderLayout(int hgap, int vgap)</code> mit <code>hgap</code> und <code>vgap</code> wie zuvor.</li>
+</ul>
+<p>Um Komponenten zu einem Container im <code>BoderLayout</code> hinzuzufügen, gibt es nun zwei verschiedene <code>add()</code>-Methoden:</p>
+<ul>
+<li><code>add(Component comp)</code> fügt die Komponente <code>comp</code> dem <strong>Center</strong> hinzu (entspricht <code>add(comp, BorderLayout.CENTER)</code>),</li>
+<li>
+<p><code>add(Component comp, Object constraints)</code>, wobei <code>constraints</code> eine der folgenden vordefinierten Werte annehmen kann:</p>
+<ul>
+<li><code>BorderLayout.NORTH</code>; fügt <code>comp</code> dem oberen Feld hinzu, </li>
+<li><code>BorderLayout.SOUTH</code>; fügt <code>comp</code> dem unteren Feld hinzu, </li>
+<li><code>BorderLayout.EAST</code>; fügt <code>comp</code> dem linken Feld hinzu, </li>
+<li><code>BorderLayout.WEST</code>; fügt <code>comp</code> dem rechten Feld hinzu, </li>
+<li><code>BorderLayout.CENTER</code>; fügt <code>comp</code> der Mitte hinzu.</li>
+</ul>
+</li>
+</ul>
+<p>Angenommen, die <code>initContent()</code>-Methode sieht so aus:</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span>
+<span class="normal"><a href="#__codelineno-8-29">29</a></span>
+<span class="normal"><a href="#__codelineno-8-30">30</a></span>
+<span class="normal"><a href="#__codelineno-8-31">31</a></span>
+<span class="normal"><a href="#__codelineno-8-32">32</a></span>
+<span class="normal"><a href="#__codelineno-8-33">33</a></span>
+<span class="normal"><a href="#__codelineno-8-34">34</a></span>
+<span class="normal"><a href="#__codelineno-8-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">JPanel</span><span class="w"> </span><span class="nf">initContent</span><span class="p">()</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25"></a><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">mainPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">());</span>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27"></a>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;NORTH&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;SOUTH&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;EAST&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">EAST</span><span class="p">);</span>
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;WEST&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">WEST</span><span class="p">);</span>
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;CENTER&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33"></a>
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">mainPanel</span><span class="p">;</span>
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>, dann wird folgendes Fenster erzeugt:</p>
+<p><img alt="gui" src="../files/59_gui.png" /></p>
+<p><strong>Beachten Sie:</strong></p>
+<ul>
+<li>die Nord-, Süd-Buttons behalten ihre Höhe, skalieren auf Fensterbreite</li>
+<li>die Ost-, West-Buttons behalten ihre Breite, skalieren auf Fensterhöhe (minus Höhe für Norden und Süden)</li>
+<li>der Center-Button wird eingepasst (könnte z.B. auch ganz verschwinden)</li>
+</ul>
+<div class="admonition übung">
+<p class="admonition-title">Übung</p>
+<p>Verwenden Sie die <code>initContent()</code>-Methode von oben (mit den 5 Buttons). Lassen Sie einzelne Buttons weg. Erklären Sie jeweils das Ergebnis!</p>
+</div>
+<h4 id="verschachteln-von-layout-managern">Verschachteln von Layout-Managern<a class="headerlink" href="#verschachteln-von-layout-managern" title="Permanent link">&para;</a></h4>
+<p>Eigentlich ist die Überschrift irreführend, denn es werden nicht die Layout-Manger verschachtelt, sondern die Container, denen jeweils andere Layout-Manager zugewiesen werden können. Wir wollen das an einem Beispiel demonstrieren. Wir betrachten dazu wieder nur die <code>initContent()</code>-Methode. Alles andere bleibt in unserem "Grundgerüst", das wir in der Klasse <code>MyFirstWindow</code> erstellt haben, gleich. </p>
+<ul>
+<li>Wir beginnen damit, dass das <code>mainPanel</code> im <code>BorderLayout</code> ist und dass diesem <code>mainPanel</code> drei weitere <code>JPanel</code> hinzugefügt werden. </li>
+<li>Das erste <code>JPanel</code> heißt <code>oben</code>, ist im <code>FlowLayout</code> und wird dem Norden des <code>mainPanel</code>s hinzugefügt. </li>
+<li>Das zweite <code>JPanel</code> heißt <code>mitte</code>, ist im <code>GridLayout</code> und wird dem Center des <code>mainPanel</code>s hinzugefügt. </li>
+<li>Das dritte <code>JPanel</code> heißt <code>unten</code>, ist im <code>FlowLayout</code> und wird dem Süden des <code>mainPanel</code>s hinzugefügt. </li>
+</ul>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span>
+<span class="normal"><a href="#__codelineno-9-30">30</a></span>
+<span class="normal"><a href="#__codelineno-9-31">31</a></span>
+<span class="normal"><a href="#__codelineno-9-32">32</a></span>
+<span class="normal"><a href="#__codelineno-9-33">33</a></span>
+<span class="normal"><a href="#__codelineno-9-34">34</a></span>
+<span class="normal"><a href="#__codelineno-9-35">35</a></span>
+<span class="normal"><a href="#__codelineno-9-36">36</a></span>
+<span class="normal"><a href="#__codelineno-9-37">37</a></span>
+<span class="normal"><a href="#__codelineno-9-38">38</a></span>
+<span class="normal"><a href="#__codelineno-9-39">39</a></span>
+<span class="normal"><a href="#__codelineno-9-40">40</a></span>
+<span class="normal"><a href="#__codelineno-9-41">41</a></span>
+<span class="normal"><a href="#__codelineno-9-42">42</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">JPanel</span><span class="w"> </span><span class="nf">initContent</span><span class="p">()</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">mainPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">());</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27"></a>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28"></a><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">oben</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29"></a><span class="w">        </span><span class="n">oben</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FlowLayout</span><span class="p">(</span><span class="n">FlowLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">));</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30"></a>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31"></a><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">mitte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32"></a><span class="w">        </span><span class="n">mitte</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GridLayout</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">));</span>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33"></a>
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34"></a><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">unten</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35"></a><span class="w">        </span><span class="n">unten</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FlowLayout</span><span class="p">(</span><span class="n">FlowLayout</span><span class="p">.</span><span class="na">RIGHT</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">));</span>
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36"></a>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">oben</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">mitte</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">unten</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40"></a>
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">mainPanel</span><span class="p">;</span>
+</span><span id="__span-9-42"><a id="__codelineno-9-42" name="__codelineno-9-42"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Die einzelnen <code>JPanel</code> sind nicht unterscheidbar, da sie keinen Rand (<code>Border</code>) besitzen und alle einen grauen Hintergrund haben. Es sind "nur" <em>Container</em>, die uns helfen, die GUI zu strukturieren. Sichtbar sind erst die Steuerelemente, die wir nun den einzelnen <code>JPanel</code> hinzufügen:</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-23">23</a></span>
+<span class="normal"><a href="#__codelineno-10-24">24</a></span>
+<span class="normal"><a href="#__codelineno-10-25">25</a></span>
+<span class="normal"><a href="#__codelineno-10-26">26</a></span>
+<span class="normal"><a href="#__codelineno-10-27">27</a></span>
+<span class="normal"><a href="#__codelineno-10-28">28</a></span>
+<span class="normal"><a href="#__codelineno-10-29">29</a></span>
+<span class="normal"><a href="#__codelineno-10-30">30</a></span>
+<span class="normal"><a href="#__codelineno-10-31">31</a></span>
+<span class="normal"><a href="#__codelineno-10-32">32</a></span>
+<span class="normal"><a href="#__codelineno-10-33">33</a></span>
+<span class="normal"><a href="#__codelineno-10-34">34</a></span>
+<span class="normal"><a href="#__codelineno-10-35">35</a></span>
+<span class="normal"><a href="#__codelineno-10-36">36</a></span>
+<span class="normal"><a href="#__codelineno-10-37">37</a></span>
+<span class="normal"><a href="#__codelineno-10-38">38</a></span>
+<span class="normal"><a href="#__codelineno-10-39">39</a></span>
+<span class="normal"><a href="#__codelineno-10-40">40</a></span>
+<span class="normal"><a href="#__codelineno-10-41">41</a></span>
+<span class="normal"><a href="#__codelineno-10-42">42</a></span>
+<span class="normal"><a href="#__codelineno-10-43">43</a></span>
+<span class="normal"><a href="#__codelineno-10-44">44</a></span>
+<span class="normal"><a href="#__codelineno-10-45">45</a></span>
+<span class="normal"><a href="#__codelineno-10-46">46</a></span>
+<span class="normal"><a href="#__codelineno-10-47">47</a></span>
+<span class="normal"><a href="#__codelineno-10-48">48</a></span>
+<span class="normal"><a href="#__codelineno-10-49">49</a></span>
+<span class="normal"><a href="#__codelineno-10-50">50</a></span>
+<span class="normal"><a href="#__codelineno-10-51">51</a></span>
+<span class="normal"><a href="#__codelineno-10-52">52</a></span>
+<span class="normal"><a href="#__codelineno-10-53">53</a></span>
+<span class="normal"><a href="#__codelineno-10-54">54</a></span>
+<span class="normal"><a href="#__codelineno-10-55">55</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">JPanel</span><span class="w"> </span><span class="nf">initContent</span><span class="p">()</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25"></a><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">mainPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">());</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27"></a>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28"></a><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">oben</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29"></a><span class="w">        </span><span class="n">oben</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FlowLayout</span><span class="p">(</span><span class="n">FlowLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">));</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30"></a><span class="w">        </span><span class="n">oben</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JLabel</span><span class="p">(</span><span class="s">&quot;Name : &quot;</span><span class="p">));</span>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31"></a><span class="w">        </span><span class="n">oben</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JTextField</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32"></a><span class="w">        </span><span class="n">oben</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">LIGHT_GRAY</span><span class="p">);</span>
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33"></a>
+</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34"></a><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">mitte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35"></a><span class="w">        </span><span class="n">mitte</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">GridLayout</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">));</span>
+</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36"></a><span class="w">        </span><span class="n">mitte</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button 1&quot;</span><span class="p">));</span>
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37"></a><span class="w">        </span><span class="n">mitte</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button 2&quot;</span><span class="p">));</span>
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38"></a><span class="w">        </span><span class="n">mitte</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button 3&quot;</span><span class="p">));</span>
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39"></a><span class="w">        </span><span class="n">mitte</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button 4&quot;</span><span class="p">));</span>
+</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40"></a><span class="w">        </span><span class="n">mitte</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button 5&quot;</span><span class="p">));</span>
+</span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41"></a><span class="w">        </span><span class="n">mitte</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Button 6&quot;</span><span class="p">));</span>
+</span><span id="__span-10-42"><a id="__codelineno-10-42" name="__codelineno-10-42"></a><span class="w">        </span><span class="n">mitte</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">GREEN</span><span class="p">);</span>
+</span><span id="__span-10-43"><a id="__codelineno-10-43" name="__codelineno-10-43"></a>
+</span><span id="__span-10-44"><a id="__codelineno-10-44" name="__codelineno-10-44"></a><span class="w">        </span><span class="n">JPanel</span><span class="w"> </span><span class="n">unten</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JPanel</span><span class="p">();</span>
+</span><span id="__span-10-45"><a id="__codelineno-10-45" name="__codelineno-10-45"></a><span class="w">        </span><span class="n">unten</span><span class="p">.</span><span class="na">setLayout</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FlowLayout</span><span class="p">(</span><span class="n">FlowLayout</span><span class="p">.</span><span class="na">RIGHT</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">));</span>
+</span><span id="__span-10-46"><a id="__codelineno-10-46" name="__codelineno-10-46"></a><span class="w">        </span><span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;Abbruch&quot;</span><span class="p">));</span>
+</span><span id="__span-10-47"><a id="__codelineno-10-47" name="__codelineno-10-47"></a><span class="w">        </span><span class="n">unten</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">JButton</span><span class="p">(</span><span class="s">&quot;OK&quot;</span><span class="p">));</span>
+</span><span id="__span-10-48"><a id="__codelineno-10-48" name="__codelineno-10-48"></a><span class="w">        </span><span class="n">unten</span><span class="p">.</span><span class="na">setBackground</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">LIGHT_GRAY</span><span class="p">);</span>
+</span><span id="__span-10-49"><a id="__codelineno-10-49" name="__codelineno-10-49"></a>
+</span><span id="__span-10-50"><a id="__codelineno-10-50" name="__codelineno-10-50"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">oben</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">NORTH</span><span class="p">);</span>
+</span><span id="__span-10-51"><a id="__codelineno-10-51" name="__codelineno-10-51"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">mitte</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+</span><span id="__span-10-52"><a id="__codelineno-10-52" name="__codelineno-10-52"></a><span class="w">        </span><span class="n">mainPanel</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">unten</span><span class="p">,</span><span class="w"> </span><span class="n">BorderLayout</span><span class="p">.</span><span class="na">SOUTH</span><span class="p">);</span>
+</span><span id="__span-10-53"><a id="__codelineno-10-53" name="__codelineno-10-53"></a>
+</span><span id="__span-10-54"><a id="__codelineno-10-54" name="__codelineno-10-54"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">mainPanel</span><span class="p">;</span>
+</span><span id="__span-10-55"><a id="__codelineno-10-55" name="__codelineno-10-55"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Zur besseren Erkennung wurde den einzelnen <code>JPanel</code> auch noch jeweils eine Hintergrundfarbe zugeordnet (Zeilen <code>32</code>, <code>42</code> und <code>48</code>). Somit ergibt sich folgende Ansicht: </p>
+<p><img alt="gui" src="../files/60_gui.png" /></p>
+<ul>
+<li>Das <code>JPanel oben</code> ist im <code>FlowLayout</code>. Diesem Panel werden zwei Steuerelemente hinzugefügt: ein <code>JLabel</code> (<code>"Name"</code>) und ein <code>JTextField</code> der Breite 10 (Zeichen). Da das Panel im <code>FlowLayout</code> ist, erscheinen beide Steuerelemente nebeneinander (weil sie nebeneinander passen). Die Steuerelemente sind zentriert angeordnet (<code>FlowLayout.CENTER</code>) und haben einen horizontalen und vertikalen Abstand zu den Nachbarn von <code>10</code> Pixeln. Dem Panel wurde die Hintergrundfarbe <code>LIGHT-GRAY</code> zugewiesen. </li>
+<li>Das <code>JPanel mitte</code> ist im <code>GridLayout</code> mit 3 Zeilen und 2 Spalten. Diesem Panel werden 6 <code>JButton</code> zugeordnet. Die Buttons haben einen vertikalen und horizontalen Abstand von jeweils 10 Pixeln (zwischen den Buttons ist der Abstand also 20). Beachten Sie, dass die Größe der Buttons an die Fenstergröße angepasst sind. Mit wachsender Fenstergröße wachsen auch die Button-Größen. Dem Panel wurde die Hintergrundfarbe <code>GREEN</code> zugewiesen. </li>
+<li>Das <code>JPanel unten</code> ist im <code>FlowLayout</code>. Diesem Panel werden zwei <code>JButton</code> hinzugefügt. Das das Panel im <code>FlowLayout</code> ist, erscheinen beide Steuerelemente nebeneinander (weil sie nebeneinander passen). Die Steuerelemente sind rechtsbündig angeordnet (<code>FlowLayout.RIGHT</code>) und haben einen horizontalen und vertikalen Abstand zu den Nachbarn von jeweils <code>5</code> Pixeln. Beachten Sie, dass die Buttons in ihrer Standardgröße sind (und stets bleiben). Dem Panel wurde die Hintergrundfarbe <code>LIGHT-GRAY</code> zugewiesen.</li>
+</ul>
+<p>Noch ein Wort zu den Größen:</p>
+<ul>
+<li>Die Größe des Fensters ist mit <code>300</code>x<code>200</code> vorgegeben. </li>
+<li>Der "Norden" geht über die gesamte Breite. Die Höhe des "Nordens" ergibt sich aus den Standardhöhen von <code>JLabel</code> und <code>JTextField</code> plus den vertikalen Abständen nach oben und unten von jeweils <code>10</code> Pixeln.  </li>
+<li>Der "Süden" geht ebenfalls über die gesamte Breite. Die Höhe des "Südens" ergibt sich aus der Standardhöhe von <code>JButton</code> plus den vertikalen Abständen nach oben und unten von jeweils <code>5</code> Pixeln. </li>
+<li>Das <code>Center</code>-Feld geht ebenfalls über die gesamte Breite, da es kein <code>EAST</code>- und kein <code>WEST</code>-Feld gibt. Die Höhe des <code>Center</code>-Feldes ergibt sich aus der Fensterhöhe minus der Höhe für die Titelleiste, minus der Höhe für den "Norden" und minus der Höhe für den "Süden". Das <code>Center</code>-Feld füllt also den verbleibenden Rest des Platzes im Fenster aus. </li>
+</ul>
+<p>Sie können beliebig viele Container in beliebiger Tiefe ineinanderschachteln und den Containern unterschiedliche Layout_Manager zuweisen. Damit gelingt ihnen jede denkbare Gestaltung grafischer Nutzeroberflächen. Weitere Anregungen zur Verwendung von Layout-Managern finden Sie z.B. <a href="https://docs.oracle.com/javase/tutorial/uiswing/layout/visual.html">hier</a>. </p>
+<div class="admonition übung">
+<p class="admonition-title">Übung</p>
+<p>Ändern Sie ausschließlich die Höhe des Fensters und dann einmal ausschließlich die Breite des Fensters und begründen Sie das jeweilige Ergebnis!</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Wir haben unser erstes Fenster erstellt! Außerdem können wir dem Fenster Steuerelemente hinzufügen. Diese können wir mithilfe von <em>Containern</em>  und Layout-Manager positionieren, so dass wir ordentlich positionierte Grafische Nutzeroberflächen erstellen können. Im nächsten Schritt schauen wir uns an, wie wir auf <em>Ereignisse</em> reagieren können, z.B. auf das Klicken eines Buttons. </p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+        
+          
+          <a href="../interfaces/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Interfaces">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              <div class="md-ellipsis">
+                Interfaces
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ereignisse/" class="md-footer__link md-footer__link--next" aria-label="Weiter: GUI Ereignisse">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Weiter
+              </span>
+              <div class="md-ellipsis">
+                GUI Ereignisse
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Jörn Freiheit
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["instant", "tabs", "navigation.footer", "navigation.instant", "content.action.edit", "content.action.view", "content.code.copy", "content.code.select", "content.tabs.link"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c18c5fb9.min.js"></script>
+      
+    
+  </body>
+</html>
