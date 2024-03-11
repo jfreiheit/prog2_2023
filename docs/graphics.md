@@ -31,7 +31,7 @@ Die `Graphics`-Klasse gibt es schon seit Java 1.0. Allerdings hat man bereits se
 
 ### Eigene geometrische Objekte zeichnen
 
-Bevor wir eigene geometrische Objekte zeichnen können, schauen wir zunächst nochmal auf unser "Grundgerüst" für eine GUI (siehe Kapitel [GUI Einführung](../gui/#erweitern-des-fensters-um-ein-jpanel)):
+Bevor wir eigene geometrische Objekte zeichnen können, schauen wir zunächst nochmal auf unser "Grundgerüst" für eine GUI (siehe Kapitel [GUI Einführung](gui.md#erweitern-des-fensters-um-ein-jpanel)):
 
 
 ```java linenums="1"

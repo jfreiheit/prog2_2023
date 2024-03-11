@@ -26,9 +26,9 @@ Der Plan zur Durchführung der Veranstaltung ist derzeit wie folgt:
 
 Zur erfolgreichen Durchführung der Veranstaltung sollten Sie die **Aufgaben** lösen und zu den jeweiligen Fristen auf [Moodle](https://moodle.htw-berlin.de/course/view.php?id=42543) hochladen. Es werden insgesamt wahrscheinlich 10 Aufgaben sein, die Sie selbständig lösen und hochladen. Sie können die Aufgaben auch zu zweit lösen. Sollte Ihre Lösung der Lösung entsprechen, die im Tutorium erarbeitet wurde, brauchen Sie diese Lösung **nicht** hochzuladen. Am Ende des Semesters schreiben wir eine **Klausur** (am Rechner). Diese Klausur wird bewertet und entspricht der Note für das gesamte "Programmieren"-Modul. Bitte beachten Sie, dass das Modul erfahrungsgemäß nur dann bestanden werden kann, wenn Sie die Übungen und Aufgaben selbstständig lösen können. Selbst wenn Ihnen zunächst eine eigene Lösung schwerfällt, müssen Sie es irgendwann im Laufe des Semsters - am besten, jeweils so schnell wie möglich - schaffen, diese Aufgaben selbstständig zu implementieren.
 
-Unter [**Aufgaben**](./aufgaben/#aufgaben) sind die Aufgaben beschrieben, die Sie in jeder Woche ausführen sollen. Damit Sie dies erfolgreich erledigen können, ist jeweils angegeben, welche Themen Sie dafür durcharbeiten müssen. Das Durcharbeiten der jeweiligen Themen entspricht jeweils einer Vorlesung. Diese wird also selbständig durchgeführt. 
+Unter [**Aufgaben**](aufgaben.md#aufgaben) sind die Aufgaben beschrieben, die Sie in jeder Woche ausführen sollen. Damit Sie dies erfolgreich erledigen können, ist jeweils angegeben, welche Themen Sie dafür durcharbeiten müssen. Das Durcharbeiten der jeweiligen Themen entspricht jeweils einer Vorlesung. Diese wird also selbständig durchgeführt. 
 
-Daneben gibt es jede Woche (zu jedem Thema) **Übungen**, die wir in den Übungszeiten besprechen. Diese dienen der Anwendung und der Festigung der erlangten Kenntnisse. Die [**Übungen**](./uebungen/#ubungsblatter-wochenweise) sind kleine Aufgaben, an denen Sie das neue Wissen anwenden sollen. Die Übungen dienen der Befähigung, die (größeren) Aufgaben lösen zu können.  
+Daneben gibt es jede Woche (zu jedem Thema) **Übungen**, die wir in den Übungszeiten besprechen. Diese dienen der Anwendung und der Festigung der erlangten Kenntnisse. Die [**Übungen**](uebungen.md#ubungsblatter-wochenweise) sind kleine Aufgaben, an denen Sie das neue Wissen anwenden sollen. Die Übungen dienen der Befähigung, die (größeren) Aufgaben lösen zu können.  
 
 Für die Kommunikation untereinander verwenden wir [**Slack**](https://slack.com/intl/de-de/). Dort können Sie alle inhaltlichen und organisatorischen Fragen stellen. Ich fände es gut, wenn ich dort möglichst wenig Fragen - zumindest die inhaltlichen - beantworten müsste, sondern eine Art internes Diskussionsforum entsteht. Es ist sehr gewünscht, dort Fragen zu stellen und noch mehr gewünscht, diese von Ihnen dort beantwortet zu sehen. Damit wäre allen geholfen und ich kann besser erkennen, wo noch Nachhol- bzw. Erläuterungsbedarf bei den meisten besteht. Außerdem lernen Sie beim Beantworten der Fragen nochmals deutlich mehr. Das wäre super, wenn das klappt!
 
@@ -40,19 +40,19 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 | | Woche | Themen (Vorlesung) | Übung | Aufgabe | Abgabe Aufgabe bis | 
 |-|-------|--------------------|-------|-----------------|------------------|
-| 1. | 10.-14.04.2023 | [Organisatorisches](#), [Wiederholung](./wiederholung/#datentypen), [Aufzählungstypen](./enum/#aufzahlungstypen-enum), [Einstieg](./einstieg/#einstieg) | - | - | - | 
-| 1. | 17.-21.04.2023 | [Wrapper-Klassen (boxing und unboxing)](./wrapper/#wrapper-klassen)<br/>[Exceptions I](./exceptions/#exceptions)| [Übung 1](./uebungen/#ubung-1-wiederholung-und-codereview) |[Aufgabe 1](./aufgaben/#aufgabe-1-wurfelspiel) | 27.04.2023 | 
-| 2. | 24.-28.04.2023 | [Exceptions II](./exceptions/#die-vererbungshierarchie-der-klasse-exception) | [Übung 2](./uebungen/#ubung-2-string-und-algorithmisches-denken) |[Aufgabe 2](./aufgaben/#aufgabe-2-myinteger) | 04.05.2023 | 
-| 3. | 01.-05.05.2023 | [Collections (List und Set)](./collections/#collections) | [Übung 3](./#ubung-3-exceptions) |[Aufgabe 3](./aufgaben/#aufgabe-3-solitaire) | 18.05.2023 | 
-| 4. | 08.-12.05.2023 | [Collections (Map)](./maps/#maps) und [Abstrakte Klassen](./abstrakt/#abstrakte-klassen)| [Übung 4](./uebungen/#ubung-4-listen-und-mengen) |[Aufgabe 4](./aufgaben/#aufgabe-4-operationen-uber-mengen) | 25.05.2023 | 
+| 1. | 10.-14.04.2023 | [Organisatorisches](#organisatorisches), [Wiederholung](wiederholung.md#datentypen), [Aufzählungstypen](enum.md#aufzahlungstypen-enum), [Einstieg](einstieg.md#einstieg) | - | - | - | 
+| 1. | 17.-21.04.2023 | [Wrapper-Klassen (boxing und unboxing)](wrapper.md#wrapper-klassen)<br/>[Exceptions I](exceptions.md#exceptions)| [Übung 1](uebungen.md#ubung-1-wiederholung-und-codereview) |[Aufgabe 1](aufgaben.md#aufgabe-1-wurfelspiel) | 27.04.2023 | 
+| 2. | 24.-28.04.2023 | [Exceptions II](exceptions.md#die-vererbungshierarchie-der-klasse-exception) | [Übung 2](uebungen.md#ubung-2-string-und-algorithmisches-denken) |[Aufgabe 2](aufgaben.md#aufgabe-2-myinteger) | 04.05.2023 | 
+| 3. | 01.-05.05.2023 | [Collections (List und Set)](collections.md#collections) | [Übung 3](uebungen.md#ubung-3-exceptions) |[Aufgabe 3](aufgaben.md#aufgabe-3-solitaire) | 18.05.2023 | 
+| 4. | 08.-12.05.2023 | [Collections (Map)](maps.md#maps) und [Abstrakte Klassen](abstrakt.md#abstrakte-klassen)| [Übung 4](uebungen.md#ubung-4-listen-und-mengen) |[Aufgabe 4](aufgaben.md#aufgabe-4-operationen-uber-mengen) | 25.05.2023 | 
 | 5. | 15.-19.05.2023 | - | - | - | - | 
-| 6. | 22.-26.05.2023 | [Interfaces](./interfaces/#interfaces) | [Übung 5](./uebungen/#ubung-5-maps) |[Aufgabe 5](./aufgaben/#aufgabe-5-maps) | 01.06.2023 | 
-| 7. | 29.-02.06.2023 | [GUI Einführung](./gui/#graphical-user-interfaces) | [Übung 6](./uebungen/#ubung-6-interfaces) |[Aufgabe 6](./aufgaben/#aufgabe-6-interfaces) | 08.06.2023 | 
-| 8. | 05.-09.06.2023 | [GUI Ereignisse](./ereignisse/#ereignisse) | [Übung 7](./uebungen/#ubung-7-gui) |[Aufgabe 7](./aufgaben/#aufgabe-7-gui) | 15.06.2023 | 
-| 9. | 12.-16.06.2023 | [ActionListener](./ereignisse/#erstes-beispiel-actionlistener)  | [Übung 8](./uebungen/#ubung-8-ereignisbehandlung-actionlistener) |[Aufgabe 8](./aufgaben/#aufgabe-8-ereignisbehandlung) | 22.06.2023 | 
-| 10. | 19.-23.06.2023 | [Mausereignisse](./mausereignisse/#mausereignisse) | [Übung 9](./uebungen/#ubung-9-tictactoe) |[Aufgabe 9](./aufgaben/#aufgabe-9-schiebepuzzle) | 29.06.2023 | 
-| 12. | 26.-30.06.2023 | [Graphics](./prog2/graphics/#graphics) | [Übung 10](./uebungen/#ubung-10-zeichnen) | [Aufgabe 10](./aufgaben/#aufgabe-10-zeichnen) | 06.07.2023 |
-| 13. | 03.-07.07.2023 | [Zeichnen mit der Maus](./mausereignisse_graphics/#mausereignisse) | [Übung 11](./uebungen/#ubung-11-mausereignisse) | - | - |
+| 6. | 22.-26.05.2023 | [Interfaces](interfaces.md#interfaces) | [Übung 5](uebungen.md#ubung-5-maps) |[Aufgabe 5](aufgaben.md#aufgabe-5-maps) | 01.06.2023 | 
+| 7. | 29.-02.06.2023 | [GUI Einführung](gui.md#graphical-user-interfaces) | [Übung 6](uebungen.md#ubung-6-interfaces) |[Aufgabe 6](aufgaben.md#aufgabe-6-interfaces) | 08.06.2023 | 
+| 8. | 05.-09.06.2023 | [GUI Ereignisse](ereignisse.md#ereignisse) | [Übung 7](uebungen.md#ubung-7-gui) |[Aufgabe 7](aufgaben.md#aufgabe-7-gui) | 15.06.2023 | 
+| 9. | 12.-16.06.2023 | [ActionListener](ereignisse.md#erstes-beispiel-actionlistener)  | [Übung 8](uebungen.md#ubung-8-ereignisbehandlung-actionlistener) |[Aufgabe 8](aufgaben.md#aufgabe-8-ereignisbehandlung) | 22.06.2023 | 
+| 10. | 19.-23.06.2023 | [Mausereignisse](mausereignisse.md#mausereignisse) | [Übung 9](uebungen.md#ubung-9-tictactoe) |[Aufgabe 9](aufgaben.md#aufgabe-9-schiebepuzzle) | 29.06.2023 | 
+| 12. | 26.-30.06.2023 | [Graphics](graphics.md#graphics) | [Übung 10](uebungen.md#ubung-10-zeichnen) | [Aufgabe 10](aufgaben.md#aufgabe-10-zeichnen) | 06.07.2023 |
+| 13. | 03.-07.07.2023 | [Zeichnen mit der Maus](mausereignisse_graphics.md#mausereignisse) | [Übung 11](uebungen.md#ubung-11-mausereignisse) | - | - |
 | 14. | 10.-14.07.2023 | REST-API mit SpringBoot| Übung 12 | - | - |
 |  | 28.07.2023 12:00 Uhr| Klausur 1.PZ | C 635 und C 639| - | - |
 |  | 29.09.2023 12:00 Uhr| Klausur 2.PZ | Labore 6. Etage C-Gebäude| - | - |
@@ -61,11 +61,11 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "14.04.2023 - Einführung und Organisatorisches + Wiederholung + enum + Einstieg"
-	- siehe [**Organisatorisches**](./#organisatorisches)
-	- siehe [**Wiederholung**](./wiederholung/#wiederholung)
-	- siehe [**Aufzählungstypen**](./enum/#aufzahlungstypen-enum)
-	- siehe [**Einstieg**](./einstieg/#einstieg)
-	- siehe [**Aufgabe 1**](./aufgaben/#aufgabe-1-wurfelspiel)
+	- siehe [**Organisatorisches**](#organisatorisches)
+	- siehe [**Wiederholung**](wiederholung.md#wiederholung)
+	- siehe [**Aufzählungstypen**](enum.md#aufzahlungstypen-enum)
+	- siehe [**Einstieg**](einstieg.md#einstieg)
+	- siehe [**Aufgabe 1**](aufgaben.md#aufgabe-1-wurfelspiel)
 
 ??? "Code aus der Vorlesung"
 
@@ -217,9 +217,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "21.04.2023 - Wrapper-Klassen und Exceptions I"
-	- siehe [**Wrapper-Klassen**](./wrapper/#wrapper-klassen)
-	- siehe [**Exceptions I**](./exceptions/#exceptions)
-	- siehe [**Aufgabe 2**](./aufgaben/#aufgabe-2-myinteger)
+	- siehe [**Wrapper-Klassen**](wrapper.md#wrapper-klassen)
+	- siehe [**Exceptions I**](exceptions.md#exceptions)
+	- siehe [**Aufgabe 2**](aufgaben.md#aufgabe-2-myinteger)
 
 
 ??? "Code aus der Vorlesung"
@@ -314,8 +314,8 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "28.04.2023 - Exceptions II"
-	- siehe [**Exceptions II**](./exceptions/#exceptions)
-	- siehe [**Aufgabe 3**](./aufgaben/#aufgabe-3-solitaire)
+	- siehe [**Exceptions II**](exceptions.md#exceptions)
+	- siehe [**Aufgabe 3**](aufgaben.md#aufgabe-3-solitaire)
 
 
 ??? "Code aus der Vorlesung"
@@ -531,9 +531,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "12.05.2023 - Maps und Abstrakte Klassen"
-	- siehe [**Collections (Map)**](./maps/#maps)
-	- siehe [**Abstrakte Klassen**](./abstrakt/#abstrakte-klassen)
-	- siehe [**Aufgabe 5**](./aufgaben/#aufgabe-5-maps)
+	- siehe [**Collections (Map)**](maps.md#maps)
+	- siehe [**Abstrakte Klassen**](abstrakt.md#abstrakte-klassen)
+	- siehe [**Aufgabe 5**](aufgaben.md#aufgabe-5-maps)
 
 
 ??? "Code aus der Vorlesung"
@@ -672,9 +672,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "26.05.2023 - Interfaces"
-	- siehe [**Interfaces**](./interfaces/#interfaces)
-	- siehe [**Übung 6**](./uebungen/#ubung-6-interfaces)
-	- siehe [**Aufgabe 6**](./aufgaben/#aufgabe-6-interfaces)
+	- siehe [**Interfaces**](interfaces.md#interfaces)
+	- siehe [**Übung 6**](uebungen.md#ubung-6-interfaces)
+	- siehe [**Aufgabe 6**](aufgaben.md#aufgabe-6-interfaces)
 
 
 ??? "Code aus der Vorlesung"
@@ -893,9 +893,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "02.06.2023 - Graphical User Interfaces"
-	- siehe [**GUI Einführung**](./gui/#graphical-user-interfaces)
-	- siehe [**Übung 7**](./uebungen/#ubung-7-gui)
-	- siehe [**Aufgabe 7**](./aufgaben/#aufgabe-7-gui)
+	- siehe [**GUI Einführung**](gui.md#graphical-user-interfaces)
+	- siehe [**Übung 7**](uebungen.md#ubung-7-gui)
+	- siehe [**Aufgabe 7**](aufgaben.md#aufgabe-7-gui)
 
 
 ??? "Code aus der Vorlesung"
@@ -980,9 +980,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "09.06.2023 - Ereignisbehandlung"
-	- siehe [**GUI Ereignisse**](./ereignisse/#ereignisse)
-	- siehe [**Übung 8**](./uebungen/#ubung-8-ereignisbehandlung-actionlistener)
-	- siehe [**Aufgabe 8**](./aufgaben/#aufgabe-8-ereignisbehandlung)
+	- siehe [**GUI Ereignisse**](ereignisse.md#ereignisse)
+	- siehe [**Übung 8**](uebungen.md#ubung-8-ereignisbehandlung-actionlistener)
+	- siehe [**Aufgabe 8**](aufgaben.md#aufgabe-8-ereignisbehandlung)
 
 ??? "Code aus der Vorlesung"
 
@@ -1107,9 +1107,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "16.06.2023 - Ereignisbehandlung"
-	- siehe [**ActionListener**](./ereignisse/#ereignisse) und [**Mausereignisse**](./mausereignisse/#mausereignisse)
-	- siehe [**Übung 9**](./uebungen/#ubung-9-tictactoe)
-	- siehe [**Aufgabe 9**](./aufgaben/#aufgabe-9-schiebepuzzle)
+	- siehe [**ActionListener**](ereignisse.md#ereignisse) und [**Mausereignisse**](mausereignisse.md#mausereignisse)
+	- siehe [**Übung 9**](uebungen.md#ubung-9-tictactoe)
+	- siehe [**Aufgabe 9**](aufgaben.md#aufgabe-9-schiebepuzzle)
 
 
 ??? "Code aus der Vorlesung"
@@ -1368,9 +1368,9 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "23.06.2023 - Graphics"
-	- siehe [**Mausereignisse**](./mausereignisse/#mausereignisse) und [**Graphics**](./graphics/#graphics) 
-	- siehe [**Übung 10**](./uebungen/#ubung-10-zeichnen)
-	- siehe [**Aufgabe 10**](./aufgaben/#aufgabe-10-zeichnen)
+	- siehe [**Mausereignisse**](mausereignisse.md#mausereignisse) und [**Graphics**](graphics.md#graphics) 
+	- siehe [**Übung 10**](uebungen.md#ubung-10-zeichnen)
+	- siehe [**Aufgabe 10**](aufgaben.md#aufgabe-10-zeichnen)
 
 
 ??? "Code aus der Vorlesung"
@@ -1629,8 +1629,8 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 
 
 ??? question "30.06.2023 - Zeichnen mit der Maus"
-	- siehe [**Mausereignisse (in Graphics)**](./mausereignisse_graphics/#mausereignisse) 
-	- siehe [**Übung 11**](./uebungen/#ubung-10-zeichnen)
+	- siehe [**Mausereignisse (in Graphics)**](mausereignisse_graphics.md#mausereignisse) 
+	- siehe [**Übung 11**](uebungen.md#ubung-10-zeichnen)
 
 
 ??? "Code aus der Vorlesung"

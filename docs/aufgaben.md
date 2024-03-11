@@ -4,12 +4,12 @@
 
 ??? "Aufgabe 1"
 
-	**Vorbereitung (siehe [Einstieg](../einstieg/#einstieg))**
+	**Vorbereitung (siehe [Einstieg](einstieg.md#einstieg))**
 
 	1. Informieren Sie sich über die Klasse `JOptionPane` aus dem Paket `javax.swing` (z.B. [hier](https://docs.oracle.com/javase/10/docs/api/javax/swing/JOptionPane.html) oder [hier](https://www.java-tutorial.org/joptionpane.html) oder [hier](https://de.wikibooks.org/wiki/Java_Standard:_Grafische_Oberfl%C3%A4chen_mit_Swing:_Top_Level_Container:_javax_swing_JOptionPane)) <br/>
 	*Sollten Sie mit dem Java-Modulsystem arbeiten, d.h. sollten Sie in Ihrem Java-Projekt eine Datei `module-info.java` haben, dann müssen Sie in diese Datei (in den Anweisungsblock) die Anweisung `requires java.desktop;` einfügen - das ist das Modul, in dem sich das Paket `javax.swing` befindet.* 
 	3. Erstellen Sie insbesondere folgenden Dialog (in den Buttons kann auch `Yes` und `No` stehen) und prüfen Sie, ob der `Nein`- oder der `Ja`-Button gedrückt wurde (im Beispiel steht `A` für den Namen eines Spielers – siehe Aufgabe unten):
-		![aufgabe1](./files/19_aufgabe1.png)
+		![aufgabe1](files/19_aufgabe1.png)
 
 	**Aufgabe**
 
@@ -24,7 +24,7 @@
 		- Hat der Spieler den Versuch freiwillig beendet, wird die in dem *Versuch* erzielte Summe aus sein Punktekonto addiert (gespeichert).
 	2. Der Spieler, der zuerst eine bestimmte Punktzahl (z.B. `20`) erreicht hat, hat gewonnen. <br/>
 		Beispiel mit zwei Spielern `A` und `B` bis Gesamtpunktzahl `20`:
-		![aufgabe1](./files/20_aufgabe1.png)
+		![aufgabe1](files/20_aufgabe1.png)
 	3. Laden Sie Ihr Lösung in Moodle hoch! Viel Spaß und viel Erfolg!
 
 
@@ -65,7 +65,7 @@
 
  	**Information und Vorbereitung**
 
- 	Wir wenden [Aufzählungstypen](../enum/#aufzahlungstypen-enum) und mehrdimensionale Arrays an. 
+ 	Wir wenden [Aufzählungstypen](enum.md#aufzahlungstypen-enum) und mehrdimensionale Arrays an. 
 
  	Wir beginnen, ein [Englisches Solitär](https://de.wikipedia.org/wiki/Solit%C3%A4r_(Brettspiel)) zu programmieren. Einige kennen es auch als Steckhalma. Ziel des Spiels ist, alle Steine bis auf einen (der am besten in der Mitte übrig bleibt), zu entfernen. Ein Zug ist wie folgt: ein Stein springt über einen anderen Stein und der übersprungene Stein wird entfernt. Es gibt viele [Lösungen](https://github.com/Clg9100/Peg-Puzzle) dafür. 
 
@@ -930,16 +930,16 @@
 	Gestalten Sie die Ausgabe so, dass die drei Mengen `numbers1`, `numbers2` und `both` nebeneinander auf der Konsole erscheinen. 
 	7. Testen Sie alle drei Methoden `fillBothUnion()`, `fillBothIntersection()` und `fillBothDifference()`. Die Ausgabe könnte wie folgt sein (`A` stellt die Menge `numbers1` dar, `B` die Menge `numbers2` und rechts ist jeweils die `both`-Menge dargestellt): 
 
-		![aufgabe5](./files/39_aufgabe5.png)
+		![aufgabe5](files/39_aufgabe5.png)
 
-		![aufgabe5](./files/40_aufgabe5.png)
+		![aufgabe5](files/40_aufgabe5.png)
 
-		![aufgabe5](./files/41_aufgabe5.png)
+		![aufgabe5](files/41_aufgabe5.png)
 
 	**Tipps**: 
 
 	- Für die schwarzen Punkte habe ich das Character `'\u25cf'` verwendet (ein passendes Leerzeichen dazu ist `'\u2009'`). Das Zeichen für die Vereinigung ist `'\u222a'` und für den Schnitt `'\u2229'`. 
-	- Schauen Sie sich auch im Skript [Mengenoperationen](./collections/#mengenoperationen) an. 
+	- Schauen Sie sich auch im Skript [Mengenoperationen](collections.md#mengenoperationen) an. 
 
 
 ##### Aufgabe 5 (Maps)
@@ -947,7 +947,7 @@
 ??? "Aufgabe 5"
 
 
-	1. Gegeben ist die Klasse `StringPi`. Sie enthält nur eine einzige Konstante `PI` vom Typ `String`. Dieser String enthält die ersten `100 000` Nachkommastellen von π. Die Klasse `StringPi.java` können Sie <a href="../files/StringPi.java" download > hier herunterladen</a>. Sie können den Wert der Variable in Ihrer IDE an der linken Seite "zuklappen" (wie Methoden). Dann stört er sie nicht die ganze Zeit. 
+	1. Gegeben ist die Klasse `StringPi`. Sie enthält nur eine einzige Konstante `PI` vom Typ `String`. Dieser String enthält die ersten `100 000` Nachkommastellen von π. Die Klasse `StringPi.java` können Sie <a href="files/StringPi.java" download > hier herunterladen</a>. Sie können den Wert der Variable in Ihrer IDE an der linken Seite "zuklappen" (wie Methoden). Dann stört er sie nicht die ganze Zeit. 
 
 		??? "Klasse StringPi mit der Konstanten PI"
 			```java
@@ -2396,7 +2396,7 @@
 
 	1. Erstellen Sie die GUI für einen solchen Taschenrechner:
 
-		![uebung8](./files/61_uebung8.png)
+		![uebung8](files/61_uebung8.png)
 
 		Kann auch schicker sein :-) Viel Spaß!
 
@@ -2419,11 +2419,11 @@
 
 	1. Implementieren Sie folgendes Puzzle: 
 		
-		![schachbrett](./files/115_puzzle.png)
+		![schachbrett](files/115_puzzle.png)
 
 		- obige Abbildung zeigt den Anfangszustand des Puzzles (`2` über `1` links)
 
-		![schachbrett](./files/116_puzzle.png)
+		![schachbrett](files/116_puzzle.png)
 
 		- obige Abbildung zeigt den Endzustand des Puzzles (`1` über `2` links)
 
@@ -2433,7 +2433,7 @@
 
 		- Die Programmierung bleibt ganz Ihnen überlassen. Zum Schieben einer Kachel auf das leere Feld, klickt man auf die Kachel selbst. Diese „bewegt“ sich dann auf das leere (graue) Feld und hinterlässt ein leeres (graues) Feld (siehe folgende Abb.)
 
-		![schachbrett](./files/117_puzzle.png)
+		![schachbrett](files/117_puzzle.png)
 
 	2. **Tipps:** 
 
@@ -2456,11 +2456,11 @@
 
 	1. Wir berechnen PI mithilfe der [Monte-Carlo-Methode](https://groups.uni-paderborn.de/reiss/AnalyseBuch/Grundlagen/Geometrie/pi/area.html). Dazu zeichnen wir ein Quadrat und darin einen Kreisbogen (einen Viertelkreis), dessen Radius der Seitenlänge des Quadrats entspricht:
 
-		![aufgabe10](./files/85_aufgabe10.png)
+		![aufgabe10](files/85_aufgabe10.png)
 
 	2. Nun zeichnen wir in dieses Quadrat viele kleine ausgefüllte Kreise (Durchmesser z.B. `2` Pixel). Die Positionen dieser Kreise werden zufällig ermittelt. Wenn die zufällig ermittelte Position für diesen Kreis **im Kreisbogen** liegt, dann sind die kleinen Kreise rot, wenn die Position außerhalb liegt, dann sind die Kreise blau. Es entsteht bei ganz vielen (z.B. `50000`) Punkten so ein Bild:
 
-		![aufgabe10](./files/86_aufgabe10.png)
+		![aufgabe10](files/86_aufgabe10.png)
 
 	3. **Tipp:** Ob ein Punkt mit den Koordinaten `(x,y)` in einem (Viertel-)Kreis liegt, ermitteln Sie mithilfe der [Kreisgleichung](https://studyflix.de/mathematik/kreisgleichung-1867). Sei `(xm, ym)` der Mittelpunkt und `r` der Radius des Kreises, dann gilt `(x-xm)^2 + (y-ym)^2 = r^2` für alle Punkte auf dem Kreis (für Punkte im Kreis gilt <= und für Punkte außerhalb des Kreises >).
 
@@ -2480,15 +2480,15 @@
 
 	1. Erstellen Sie folgende graphische Nutzeroberfläche: 
 
-		![farben](./files/187_raster.png)
+		![farben](files/187_raster.png)
 
 		- In der Canvas sind zunächst `10 x 10` Rechtecke. Dazwischen jeweils graue Linien/Rahmen. Die Rechtecke können JPanels sein oder Sie zeichnen einfach die Rechtecke und die Linien.
 
 		- Die `10 x 10` Rechtecke befüllen die Canvas vollständig, d.h., wenn Sie das Fenster vergrößern, werden auch die Rechtecke jeweils größer:
 
-		![farben](./files/188_raster.png)
+		![farben](files/188_raster.png)
 
-		![farben](./files/189_raster.png)
+		![farben](files/189_raster.png)
 
 	2.	Implementieren Sie für die Buttons `-` und `+` folgende Funktionalität:
 
@@ -2496,7 +2496,7 @@
 
 		- Das Label oben zeigt die jeweils aktuelle Dimension.
 
-		![farben](./files/190_raster.png)
+		![farben](files/190_raster.png)
 
 		- Kleiner als `1 x 1` kann es nicht werden!
 
@@ -2504,33 +2504,33 @@
 
 		- Durch einen Mausklick (Maustaste drücken und loslassen) färbt sich das Rechteck, auf das geklickt wurde, rot. 
 
-		![farben](./files/191_raster.png)
+		![farben](files/191_raster.png)
 
 		- Durch den Mausklick beginnt das Zeichnen!
 
 		- Durch das Bewegen der Maus werden nun alle Rechtecke, über die die Maus bewegt wird (ohne gedrückte Maustaste), rot eingefärbt. 
 
-		![farben](./files/192_raster.png)
+		![farben](files/192_raster.png)
 
 		- Durch einen erneuten Mausklick wird das Zeichnen beendet.
 
 		- Durch einen weiteren Mausklick wird das Zeichnen wieder gestartet usw. 
 
-		![farben](./files/193_raster.png)
+		![farben](files/193_raster.png)
 
 	4. Erweitern Sie die GUI um drei weitere Buttons `<`, `save`, `>`:
 
-		![farben](./files/194_raster.png)
+		![farben](files/194_raster.png)
 
 		- Wird auf `save` geklickt, dann wird „das Bild“ gespeichert, z.B.
 
-		![farben](./files/195_raster.png)
+		![farben](files/195_raster.png)
 
 		- Es kann dann wieder ein neues Bild gezeichnet und gespeichert werden, beliebig viele.
 
 		- Durch Klick auf `<` bzw. `>` kann man (vorwärts `>` bzw. rückwärts `<`) durch die Liste aller gespeicherten Bilder laufen, z.B.
 
-		![farben](./files/196_raster.png)
+		![farben](files/196_raster.png)
 
 
 ??? question "eine mögliche Lösung für Gitter"
@@ -2914,11 +2914,11 @@
 
 	1. Erstellen Sie folgende graphische Nutzeroberfläche: 
 
-		![farben](./files/176_farben.png)
+		![farben](files/176_farben.png)
 
 		**Tipp:** Mögliche Anordnung von Containern:
 
-		![farben](./files/177_farben.png)
+		![farben](files/177_farben.png)
 
 	2.	Implementieren Sie für den Button `save` folgende Funktionalität:
 
@@ -2928,15 +2928,15 @@
 
 		- Wenn ein (oder mehrere) Eingabefelde(r) keine Zahl enthält, wird die Statusmeldung `Eingabe muss eine Zahl sein!` oben im Fenster geändert, siehe folgende Abbildung:
 
-		![farben](./files/178_farben.png)
+		![farben](files/178_farben.png)
 
 		- Wenn zwar alle Eingabefelder Zahlen enthalten, aber eine oder mehrere dieser Zahlen nicht im Bereich `0` bis `255` sind, dann erscheint folgende Statusmeldung `Eingabe muss eine Zahl zwischen 0 und 255 sein!`:
 
-		![farben](./files/179_farben.png)
+		![farben](files/179_farben.png)
 
 		- Wenn alle drei Zahlen im korrekten Bereich sind, dann wird daraus ein Color-Objekt erzeugt und diese Farbe ist die Hintergrundfarbe des JPanels (welches am Anfang weiß ist):
 
-		![farben](./files/180_farben.png)
+		![farben](files/180_farben.png)
 
 		- Speichern Sie diese Color außerdem noch in einer ArrayList.
 
@@ -3159,7 +3159,7 @@
 
 ??? "Klausurvorbereitung (MemoryPanel)"
 
-	1. Gegeben ist die Klasse <a href="./files/MemoryPanel.java" download>`MemoryPanel.java`</a>
+	1. Gegeben ist die Klasse <a href="files/MemoryPanel.java" download>`MemoryPanel.java`</a>
 
 		```java linenums="1"
 		import java.awt.Color;
@@ -3244,7 +3244,7 @@
 
 	2.	Erstellen Sie folgende graphische Nutzeroberfläche: 
 
-		![colorchooser](./files/181_colorchooser.png)
+		![colorchooser](files/181_colorchooser.png)
 
 		- Die farbigen Panels sind `MemoryPanel`-Objekte.
 
@@ -3266,7 +3266,7 @@
 
 		- Der Text des Statuslabels lautet `click two panels and check`
 
-		![colorchooser](./files/182_colorchooser.png)
+		![colorchooser](files/182_colorchooser.png)
 
 	4. Implementieren Sie für den Button `show` folgende Funktionalität:
 
@@ -3274,7 +3274,7 @@
 
 		- Der Text des Statuslabels lautet `click start to start`
 
-		![colorchooser](./files/183_colorchooser.png)
+		![colorchooser](files/183_colorchooser.png)
 
 	4. Implementieren Sie für den Button `check` folgende Funktionalität:
 
@@ -3282,7 +3282,7 @@
 
 		- Wenn die beiden Panels dieselbe Farbe haben, dann erscheint im Statuslabel `same color – click two panels and then check` und die beiden Panels bleiben sichtbar (also mit der ihnen zugeordneten Farbe – Status `SHOW` – siehe Methode `setStateToShow()` in `MemoryPanel`)
 
-		![colorchooser](./files/184_colorchooser.png)
+		![colorchooser](files/184_colorchooser.png)
 
 		- Wenn die beiden Panels **nicht** dieselbe Farbe haben, dann erscheint im Statuslabel `different color – click two panels and then check` und die beiden Panels werden wieder grau (Status `HIDE` – siehe Methode `hide()` in MemoryPanel)
 
@@ -3290,7 +3290,7 @@
 
 		- Wenn alle Panels korrekt aufgedeckt wurden, dann erscheint im Statuslabel `finished!`
 
-		![colorchooser](./files/185_colorchooser.png)
+		![colorchooser](files/185_colorchooser.png)
 
 	5.	Implementieren Sie für den Button `new` folgende Funktionalität:
 
@@ -3298,7 +3298,7 @@
 
 		- Das Statuslabel zeigt `click start to start`an.
 
-		![colorchooser](./files/186_colorchooser.png)
+		![colorchooser](files/186_colorchooser.png)
 
 
 ??? question "eine mögliche Lösung für MemoryPanel"
@@ -3550,7 +3550,7 @@
 	1. Zeichnen Sie ein Quadrat. Passen Sie dieses Quadrat möglichst passend in das Fenster. Da es sich um ein Quadrat handelt, kann es sich nur der Höhe oder der Breite des Fensters anpassen, je nachdem, was kleiner ist. Wenn die Höhe kleiner ist, als die Breite, dann soll das Quadrat ausgefüllt sein. Wenn die Breite kleiner als die Höhe ist, dann soll das Quadrat nicht ausgefüllt sein, aber die Linienstärke auf `5.0f` gesetzt werden. 
 	2. Die Zeichenfarbe soll zufällig erzeugt werden - jedes Mal, wenn die `paintComponent()`-Methode aufgerufen wird.
 
-		![uebung10](./files/84_uebung10.png)
+		![uebung10](files/84_uebung10.png)
 
 	3. Beobachten Sie anhand des Farbwechsels, wie oft die `paintComponent()`-Methode aufgerufen wird. 
 
@@ -3637,13 +3637,13 @@
 		- beachten Sie, dass das Zeichnen eines Rechtecks nicht nur von links oben nach rechts unten, sondern in alle Richtungen möglich sein soll
 		
 	2. **Tipps:** 
-		- studieren Sie dieses [Beispiel](../mausereignisse/#beispiel-2-linien-zeichnen)
+		- studieren Sie dieses [Beispiel](mausereignisse.md#beispiel-2-linien-zeichnen)
 		- behandeln Sie die Mausereignisse in den Methoden `mousePressed()`, `mouseReleased()` (`MouseListener`) sowie aus dem `MouseMotionListener` `mouseDragged()`
 		- erstellen Sie sich zunächst eine Klasse, die Rechtecke repräsentiert (Objektvariablen `x`, `y`, `width`, `height`, jweils `int`)
 		- speichern Sie die Rechtecke zusammen mit ihrer Farbe in einer `Map` (untersuchen Sie den Unterschied zwischen `HashMap` und `LinkedHashMap`)
 		- zeichnen Sie in `paintComponent()` alle Rechtecke aus der `Map` und das aktuelle Rechteck (das Sie gerade zeichnen)
 
-		![uebung11](./files/89_uebung11.png)
+		![uebung11](files/89_uebung11.png)
 
 
 
@@ -3848,7 +3848,7 @@
 
 	1. Erstellen Sie ein Fenster zum Zeichnen. Implementieren Sie den Mauslistener so, dass für jeden Mausklick an der Stelle des Mausklicks ein schwarzer ausgefüllter Kreis mit dem `DURCHMESSER = 30` angezeigt wird:
 
-		![uebung13](./files/125_uebung13.png)
+		![uebung13](files/125_uebung13.png)
 
 		- Für das *Model* genügt es, sich die Punkte in einer Collection zu merken (am einfachsten ist wohl eine `ArrayList`). 
 
@@ -3856,7 +3856,7 @@
 
 	2. Passen Sie die *View* nun so an, dass die Punkte durch Linien der Strichstärke `2.0f` miteinander verbunden werden. 
 
-		![uebung13](./files/126_uebung13.png)
+		![uebung13](files/126_uebung13.png)
 
 		- Sie können auch gleich (oder später) den ersten und letzten Punkt mit einer Linie verbinden (so wie in der Abbildung).
 
@@ -4002,15 +4002,15 @@
 
 	1. Erstellen Sie ein Fenster zum Zeichnen. Passen Sie zunächst ein Quadrat mit Strichstärke `3.0f` in das Fenster ein und zwar so, dass es 1/3 von entweder der Breite der `canvas` oder der Höhe der `canvas` groß ist, je nachdem, was **kleiner** ist. Es muss aber nicht mittig sein:
 
-		![uebung13](./files/132_uebung14.png)
+		![uebung13](files/132_uebung14.png)
 
 		- In der folgenden Abbildung ist die Höhe kleiner als die Breite. Also ist die Höhe korrekt gedrittelt, aber die gleiche Länge wurde für `x` verwendet, also für den Abstand vom linken Rand zum Quadrat. Deshalb ist der Abstand vom Quadrat zum rechten Rand größer. Sie können aber das Quadrat auch gerne komplett in die Mitte setzen.  
 
-		![uebung13](./files/133_uebung14.png)
+		![uebung13](files/133_uebung14.png)
 
 	2. Wenn der `create square`-Button gedrückt wird, erscheint ein farbiges Quadrat, das genau so groß ist, wie das zuvor gezeichnete nichtausgefüllte schwarze Quadrat. 
 
-		![uebung13](./files/134_uebung14.png)
+		![uebung13](files/134_uebung14.png)
 
 		- Die Position des Quadrates wird zufällig bestimmt. Es passt aber auf jeden Fall vollständig in die Canvas!
 
@@ -4018,7 +4018,7 @@
 
 	3. Das farbige Quadrat kann nun durch Bewegen der Maus bei gedrückter Maustaste bewegt werden. Wenn das Quadrat (fast) vollständig in dem schwarzen Quadrat ist, dann bleibt es genau dort und kann nicht weiter bewegt werden.   
 
-		![uebung13](./files/132_uebung14.png)
+		![uebung13](files/132_uebung14.png)
 
 
 ??? question "eine mögliche Lösung zu Klausurvorbereitung (Quadrat)"
@@ -4283,13 +4283,13 @@
 
 	1. Erstellen Sie folgendes Fenster zum Zeichnen:
 
-		![uebung13](./files/148_quadrat.png)
+		![uebung13](files/148_quadrat.png)
 
 		Dabei sind folgende Dinge zu beachten:
 
 		- Oben im Fenster ist ein `JPanel` dessen Hintergrundfarbe `LIGHT_GRAY` ist und das ein `JLabel` enthält. Die Beschriftung des `JLabels` sollten Sie in der `paintComponent()`-Methode vornehmen, denn das `JLabel` zeigt an, ob die Zeichenfläche (Canvas) breiter als hoch ist (`breiter`) oder umgedreht (`hoeher`) und die Breite der Canvas sowie die Höhe (`breite, hoehe`). Es gibt also diese beiden Möglichkeiten:
 
-			![uebung13](./files/149_quadrat.png)
+			![uebung13](files/149_quadrat.png)
 
 			Achten Sie auch darauf, dass der Text des `JLabels` angepasst wird, wenn Sie die Größe des Fensters ändern (ergibt sich aber automatisch, wenn Sie den Text des `JLabels` in der `paintComponent()`-Methode setzen).
 
@@ -4307,7 +4307,7 @@
 
 			Es gibt also diese beiden Möglichkeiten:
 
-			![uebung13](./files/150_quadrat.png)
+			![uebung13](files/150_quadrat.png)
 
 		- Unten im Fenster ist ein `JPanel`, 
 
@@ -4341,7 +4341,7 @@
 
 			Außerdem sollen die beiden Figuren möglichst mittig in ihrer jeweiligen Hälfte angeordnet sein.
 
-			![uebung13](./files/151_quadrat.png)
+			![uebung13](files/151_quadrat.png)
 
 			Wenn Sie die Größe des Fensters ändern, dann müssen sich Quadrat und Kreis nicht mitändern! Wenn Sie dann aber wieder auf den `new`-Button klicken, dann werden die beiden Figuren wieder an die neuen Canvas-Dimensionen angepasst.
 
@@ -4351,11 +4351,11 @@
 
 		Sie können Kreis und Quadrat jeweils auch mehrmals hintereinander bewegen und/oder abwechselnd. Sie können nur nie beide Figuren zugleich bewegen (selbst wenn sie übereinander sind). In der folgenden Abbildung wurde sowohl der Kreis als auch das Quadrat bereits (evtl. mehrfach) bewegt:
 
-		![uebung13](./files/152_quadrat.png)		
+		![uebung13](files/152_quadrat.png)		
 
 	4. Wenn Sie den Kreis fast vollständig über das Quadrat bewegt haben oder das Quadrat fast vollständig über den Kreis, dann wird das erkannt und der Kreis wird exakt in das Quadrat fixiert. Das bedeutet, es entsteht z.B. folgendes Bild:
 
-		![uebung13](./files/153_quadrat.png)		
+		![uebung13](files/153_quadrat.png)		
 
 		- **Fast** vollständig bedeutet, dass sich die `x`- und `y`-Koordinaten der beiden Figuren um jeweils höchsten `30` Punkte unterscheiden.
 
@@ -4709,7 +4709,7 @@
 
 	1. Erstellen Sie folgendes Fenster zum Zeichnen:
 
-		![uebung13](./files/136_ellipse.png)
+		![uebung13](files/136_ellipse.png)
 
 		Dabei ist zu beachten, dass es sich bei `Ellipse`, `-`, `+`, `Löschen` und `Farbe aendern` um Buttons handelt. Wählen Sie die Layoutmanager der jeweiligen JPanels so, dass das gleiche Aussehen entsteht, also z.B. der Button `Ellipse` über die gesamte Breite des Fensters geht und die Buttons `–` und `+` jeweils die angezeigte Höhe ausfüllen.  Abstände zwischen den Buttons müssen nicht beachtet werden. In der Mitte des Fensters ist die Zeichenfläche (Canvas). 
 
@@ -4724,7 +4724,7 @@
 
 		Die Idee der Objektvariablen ist in der folgenden Abbildung dargestellt (`color` ist nicht gezeigt, damit soll die `Figure` ausgefüllt werden):
 
-		![uebung13](./files/137_ellipse.png)
+		![uebung13](files/137_ellipse.png)
 
 		- Implementieren Sie eine Objektmethode `public void changeColor()`, in der der Wert von `color` zufällig (mithilfe von `Random`) auf einen neuen Wert gesetzt wird. 
 
@@ -4740,25 +4740,25 @@
 
 		- Wenn `xDiff` und `yDiff` postiv sind, dann verhält sich die Sache relativ einfach, denn dann werden die Werte einfach auf die jeweiligen Seitenlängen addiert (siehe folgende Abbildung):
 
-			![uebung13](./files/138_ellipse.png)
+			![uebung13](files/138_ellipse.png)
 
 		- Wenn `xDiff` und/oder `yDiff` negativ sind/ist, dann ist es komplizierter, denn dann ändern sich nicht nur die Seitenlängen, sondern es verschiebt sich auch der Startpunkt der `Figure` (siehe folgende Abbildung für den Fall, dass `xDiff` und `yDiff` negativ sind):
 
-			![uebung13](./files/139_ellipse.png)
+			![uebung13](files/139_ellipse.png)
 
 		- Implementieren Sie eine Objektmethode `public void bigger()`, in der die `Figure` größer skaliert werden soll (ca 10% abhängig von der aktuellen Breite und Länge nach allen Seiten):
 
-			![uebung13](./files/140_ellipse.png)
+			![uebung13](files/140_ellipse.png)
 
  		- Implementieren Sie eine Objektmethode `public void smaller()`, in der die `Figure` kleiner skaliert werden soll (ca 10% abhängig von der aktuellen Breite und Länge nach allen Seiten):
 
-			![uebung13](./files/141_ellipse.png)
+			![uebung13](files/141_ellipse.png)
 
 	3. Implementieren Sie `MouseListener` und `MouseMotionListener` so, dass Sie bei gedrückter Maustaste ein Objekt der Klasse `Figure` zeichnen können, d.h. bei Mausklick in die Canvas wird der `start`-Punkt der `Figure` erzeugt und bei gedrückter Maustaste vergrößern Sie die `Figure`. 
 
 		In der folgenden Abbildung steht der Pfeil für die gedrückte Maus:
 
-		![uebung13](./files/142_ellipse.png)
+		![uebung13](files/142_ellipse.png)
 
 		Wenn Sie die Maustaste loslassen, ist die `Figure fertig gezeichnet. Am Anfang handelt es sich bei der `Figure` um ein `RECTANGLE`.
 
@@ -4766,23 +4766,23 @@
 
 		Die Beschriftung des Buttons wechselt auf `Rechteck`. Wenn Sie den Button erneut drücken, erscheint wieder das Rechteck und auf dem Button erscheint `Ellipse`. 
 
-		![uebung13](./files/143_ellipse.png)
+		![uebung13](files/143_ellipse.png)
 
 		- Implementieren Sie das Klick-Ereignis des Buttons `+` so, dass sich die `Figure` vergrößert. Nutzen Sie dazu die Methode `bigger()` aus der `Figure`-Klasse. 
 
-			![uebung13](./files/144_ellipse.png)
+			![uebung13](files/144_ellipse.png)
 
 		- Implementieren Sie das Klick-Ereignis des Buttons `-` so, dass sich die `Figure` verkleinert. Nutzen Sie dazu die Methode `smaller()` aus der `Figure`-Klasse. 
 
-			![uebung13](./files/145_ellipse.png)
+			![uebung13](files/145_ellipse.png)
 
 		- Implementieren Sie das Klick-Ereignis des Buttons `Farbe aendern` so, dass sich die Farbe der `Figure` ändert. Nutzen Sie dazu die Methode `changeColor()` aus der `Figure`-Klasse. 
 
-			![uebung13](./files/146_ellipse.png)
+			![uebung13](files/146_ellipse.png)
 
 		- Implementieren Sie das Klick-Ereignis des Buttons `Loeschen` so, dass keine `Figure` mehr existiert und angezeigt wird.  
 
-			![uebung13](./files/147_ellipse.png)
+			![uebung13](files/147_ellipse.png)
 
 
 ??? question "eine mögliche Lösung zu Klausurvorbereitung (Figure)"

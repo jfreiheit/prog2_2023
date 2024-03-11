@@ -2466,7 +2466,7 @@
 		- beachten Sie, dass das Zeichnen eines Rechtecks nicht nur von links oben nach rechts unten, sondern in alle Richtungen möglich sein soll
 		
 	2. **Tipps:** 
-		- studieren Sie dieses [Beispiel](../mausereignisse/#beispiel-2-linien-zeichnen)
+		- studieren Sie dieses [Beispiel](mausereignisse.md#beispiel-2-linien-zeichnen)
 		- behandeln Sie die Mausereignisse in den Methoden `mousePressed()`, `mouseReleased()` (`MouseListener`) sowie aus dem `MouseMotionListener` `mouseDragged()`
 		- erstellen Sie sich zunächst eine Klasse, die Rechtecke repräsentiert (Objektvariablen `x`, `y`, `width`, `height`, jweils `int`)
 		- speichern Sie die Rechtecke zusammen mit ihrer Farbe in einer `Map` (untersuchen Sie den Unterschied zwischen `HashMap` und `LinkedHashMap`)
@@ -3110,7 +3110,7 @@
 ##### Übung SWT (JUnit)
 
 ??? "Übung SWT (JUnit)"
-	- Probieren Sie sich mit `JUnit` aus! Schreiben Sie Unit-Tests für Ihre `MyInteger`-Klasse aus [Aufgabe 2](../aufgaben/#aufgabe-2-myinteger).  
+	- Probieren Sie sich mit `JUnit` aus! Schreiben Sie Unit-Tests für Ihre `MyInteger`-Klasse aus [Aufgabe 2](aufgaben.md#aufgabe-2-myinteger).  
 	- Testen Sie z.B. für `parseInt()`:
 		```
 			"1234" 			-> 1234

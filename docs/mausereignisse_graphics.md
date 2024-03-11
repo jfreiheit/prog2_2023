@@ -1,6 +1,6 @@
 # Mausereignisse
 
-In der letzten [Lektion](../graphics/#graphics) haben wir uns angeschaut, wie wir eigene geometrische Objekte in einer GUI erzeugen können, d.h. wie haben "Zeichnen" in einer GUI gelernt. Um Zeichnen zu können, haben wir
+In der letzten [Lektion](graphics.md#graphics) haben wir uns angeschaut, wie wir eigene geometrische Objekte in einer GUI erzeugen können, d.h. wie haben "Zeichnen" in einer GUI gelernt. Um Zeichnen zu können, haben wir
 
 - eine innere Klasse erstellt, die von `JPanel` geerbt hat,
 - darin die Methode `paintComponent()` überschrieben und

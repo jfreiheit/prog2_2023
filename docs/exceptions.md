@@ -1,7 +1,7 @@
 # Exceptions
 
 !!! success "Motivation"
-	Wir wissen nun, wie wir einen `String` in ein `int` umwandeln. Nämlich mithilfe der `parseInt(String)`-Methode der Klasse `Integer`. Was aber passiert, wenn der `String` gar keiner Zahl entspricht? Dann wird eine [Exception](../exceptions/#exceptions) geworfen und das Programm sofort beendet. Wir können aber gar nichts dafür, dass die Nutzerin keine Zahl eingegeben hat. Unser Programm ist eigentlich korrekt. Wie können wir den Programmabsturz verhindern? Wie können wir die Nutzerin solange bitten, eine Zahl einzugeben, bis sie wirklich eine Zahl eingibt?
+	Wir wissen nun, wie wir einen `String` in ein `int` umwandeln. Nämlich mithilfe der `parseInt(String)`-Methode der Klasse `Integer`. Was aber passiert, wenn der `String` gar keiner Zahl entspricht? Dann wird eine [Exception](exceptions.md#exceptions) geworfen und das Programm sofort beendet. Wir können aber gar nichts dafür, dass die Nutzerin keine Zahl eingegeben hat. Unser Programm ist eigentlich korrekt. Wie können wir den Programmabsturz verhindern? Wie können wir die Nutzerin solange bitten, eine Zahl einzugeben, bis sie wirklich eine Zahl eingibt?
 
 *Exceptions* kennen wir schon, denn sie passieren uns häufiger. Wenn wir z.B. auf einen Index in einem Array zugreifen, dieser Index aber gar nicht existiert, wird eine `ArrayIndexOutOfBounds`-Exception geworfen. Wenn wir auf eine Objekteigenschaft zugreifen wollen, z.B. eine Objektmethode, die dafür verwendete Referenzvariable aber gar nicht auf ein Objekt zeigt, sondern auf `null`, erhalten wir eine `NullPointerException`. Wenn bei einer Nutzereingabe eine Zahl erwartet wird, um damit weiterrechnen zu können, die Nutzerin gibt aber etwas anderes als eine Zahl ein, dann wird ebenfalls eine Exception *geworfen*. 
 
@@ -279,7 +279,7 @@ Zeile `12` wird nur genau dann erreicht, wenn `parseInt()` **keine** Exception w
 
 ### Beispiel mit mehreren Exceptions
 
-Wir betrachten jetzt einmal an einem Besipiel die bei [Ablauf einer Ausnahmesituation](./#ablauf-einer-ausnahmesituation) unter Punkt 4 beschriebene Situation, dass die *nächstpassende* `catch`-Klausel gesucht wird. Wir erweitern dazu unsere Klasse `Ausnahmen` um eine weitere Methode `mehrereExceptions()`:
+Wir betrachten jetzt einmal an einem Besipiel die bei [Ablauf einer Ausnahmesituation](#ablauf-einer-ausnahmesituation) unter Punkt 4 beschriebene Situation, dass die *nächstpassende* `catch`-Klausel gesucht wird. Wir erweitern dazu unsere Klasse `Ausnahmen` um eine weitere Methode `mehrereExceptions()`:
 
 ```java linenums="1"
 public static void mehrereExceptions()
@@ -353,7 +353,7 @@ Wir sehen, dass es offensichtlich auch eine `IndexOutOfBoundsException`-Klasse g
 
 Wenn Sie sich die Klasse `Exception` in der [Java-Dokumentation](https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html) einmal anschauen, dann sehen Sie, dass diese Klasse ein Unmenge von Kindklassen hat. Wir betrachten hier einmal die für uns wichtigsten Klassen:
 
-![exceptions](./files/21_exceptions.png)
+![exceptions](files/21_exceptions.png)
 
 Alle Exception-Klassen erben von der Klasse `Exception`, die im `java.lang`-Paket definiert ist. Grundsätzlich werden zwei Arten von Exceptions unterschieden:
 
@@ -433,7 +433,7 @@ public static void main(String[] args)
 
 Obwohl die Methode eine kritische Anweisung enthält (`field[index]`), ist diese Anweisung nicht in einen `try-catch`-Block eingebunden. Es kann nun also sein, dass bei Aufruf der Methode eine Exception (eine `ArrayIndexOutOfBoundsException`) geworfen wird. Wir geben das im Methodenkopf mithilfe von `throws ArrayIndexOutOfBoundsException` bekannt. Die aufrufende Methode (`main`) kann nun selbst den Aufruf der Methode `getValueAtIndex()` in einen `try-catch`-Block ummanteln und somit die Exception selbst abfangen und behandeln. Nur wenn keine Exception geworfen wird, wird der von der Methode `getValueAtIndex()` zurückgegebene Wert ausgegeben. 
 
-Wenn wir an unsere [einleitenden Beispiele](./#beispiel-mit-try-catch) denken (Methoden `charAt()` und `divide()`), dann erinnern wir uns, dass wir dort festegestellt haben, dss die Implementierung so nicht günstig war, da sie Nebeneffekte erzeugt hat, sobald eine Exception geworfen wurde. Diese Nebeneffekte werden bei der Implementierung von `getValueAtIndex()` vermieden, obwohl die grundsätzliche Idee die gleiche ist, wie bei `charAt()`. Der Nachteil ist, dass man die aufrufende Methode "zwingt", die Exception selbst zu behandeln. 
+Wenn wir an unsere [einleitenden Beispiele](#beispiel-mit-try-catch) denken (Methoden `charAt()` und `divide()`), dann erinnern wir uns, dass wir dort festegestellt haben, dss die Implementierung so nicht günstig war, da sie Nebeneffekte erzeugt hat, sobald eine Exception geworfen wurde. Diese Nebeneffekte werden bei der Implementierung von `getValueAtIndex()` vermieden, obwohl die grundsätzliche Idee die gleiche ist, wie bei `charAt()`. Der Nachteil ist, dass man die aufrufende Methode "zwingt", die Exception selbst zu behandeln. 
 
 ### Schöner Code
 

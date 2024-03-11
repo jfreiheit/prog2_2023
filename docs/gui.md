@@ -337,7 +337,7 @@ Beachten Sie, dass die Elemente nebeneinander angeordnet sind. Das ist die Stand
 
 ### Layout-Manager
 
-*Layout-Manager* dienen der Anordnung von Komponenten. Es gibt viele Layout-Manager (`FlowLayout`, `BorderLAyout`, `CardLayout`, `OverlayLayout`, `GridLayout`, `GridBagLayout`, `BoxLayout`, `GroupLayout`, ...). Wir werden aber nicht alle betrachten, da dies erstens auf Dauer langweilig ist und zweitens [Layout-Manager ineinander verschachtelt](./#verschachteln-von-layout-managern) werden können. Vielmehr können *Container* ineinander verschachtelt werden und diesen *Containern* unterschiedliche Layout-Manager zugewiesen werden. 
+*Layout-Manager* dienen der Anordnung von Komponenten. Es gibt viele Layout-Manager (`FlowLayout`, `BorderLAyout`, `CardLayout`, `OverlayLayout`, `GridLayout`, `GridBagLayout`, `BoxLayout`, `GroupLayout`, ...). Wir werden aber nicht alle betrachten, da dies erstens auf Dauer langweilig ist und zweitens [Layout-Manager ineinander verschachtelt](#verschachteln-von-layout-managern) werden können. Vielmehr können *Container* ineinander verschachtelt werden und diesen *Containern* unterschiedliche Layout-Manager zugewiesen werden. 
 
 Es wird also einem *Container* ein Layout-Manager zugewiesen und die *Komponenten* in diesem *Container* sind dann so angeordnet, wie der Layout-Manager es definiert (nebeneinander oder untereinander oder übereinander ...). Das Zuweisen 
 eines Layout-Managers zu einem *Container* erfolgt mithilfe von

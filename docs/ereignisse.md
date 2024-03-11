@@ -1,7 +1,7 @@
 # Ereignisse
 
 
-Im vorangegangenen Kapitel haben wir gelernt, wie wir Grafische Nutzeroberflächen (GUI) erstellen können. Nun wollen wir uns anschauen, wie auf *Ereignisse* reagiert werden kann, die die Nutzerin auf dieser Grafischen Oberfläche auslöst. Wenn wir beispielsweise in unserem [Taschenrechner](../aufgaben/#aufgabe-7-gui) auf einen Button klicken, dann soll entweder die Ziffer in dem Textfeld oben erscheinen oder es soll die Operation ausgeführt werden, auf die wir geklickt haben. In grafischen Nutzeroberflächen gibt es nicht nur Buttons, auf deren Klick-Ereignisse wir reagieren wollen, es gibt auch Eingaben über die Tastatur, das Fenster kann mit der Maus bewegt, vergrößert oder verkleinert werden, es können Kontextdialoge durch das Drücken der rechten Maustaste geöffnet werden usw. Wir lernen hier, welche unterschiedlichen Ereignisse es gibt und wie wir diese *behandeln* können, d.h. wie wir die Reaktion auf diese Ereignisse implementieren. 
+Im vorangegangenen Kapitel haben wir gelernt, wie wir Grafische Nutzeroberflächen (GUI) erstellen können. Nun wollen wir uns anschauen, wie auf *Ereignisse* reagiert werden kann, die die Nutzerin auf dieser Grafischen Oberfläche auslöst. Wenn wir beispielsweise in unserem [Taschenrechner](aufgaben.md#aufgabe-7-gui) auf einen Button klicken, dann soll entweder die Ziffer in dem Textfeld oben erscheinen oder es soll die Operation ausgeführt werden, auf die wir geklickt haben. In grafischen Nutzeroberflächen gibt es nicht nur Buttons, auf deren Klick-Ereignisse wir reagieren wollen, es gibt auch Eingaben über die Tastatur, das Fenster kann mit der Maus bewegt, vergrößert oder verkleinert werden, es können Kontextdialoge durch das Drücken der rechten Maustaste geöffnet werden usw. Wir lernen hier, welche unterschiedlichen Ereignisse es gibt und wie wir diese *behandeln* können, d.h. wie wir die Reaktion auf diese Ereignisse implementieren. 
 
 Zunächst überlegen wir uns, wie es überhaupt möglich sein kann, dass *Ereignisse* (also Aktionen der Nutzerin) auf unserer grafischen Oberfläche erkannt werden und auf diese Ereignisse entsprechend reagiert werden kann. Man könnte (in einer Schleife) permanent bei der Maus oder der Tastatur anfragen, ob eine Taste gedrückt oder ob die Maus bewegt wurde. Das ist aber viel zu imperformant und würde das Programm blockieren. Diese Aufgabe wird nämlich von der Laufzeitumgebung automatisch übernommen. Im Hintergrund geschieht genau so etwas, aber wir müssen uns gar nicht darum kümmern. Wenn z.B. eine Maustaste gedrückt wird, dann wird im Hintergrund durch die Laufzeitumgebung eine bestimmte Methode aufgerufen (`mouseClicked()`). Woher wissen wir, wie diese Methode heißt? Die Antwort sind natürlich: **Interfaces**!
 
@@ -17,7 +17,7 @@ Die Idee ist die Folgende:
 
 Das Vorgehen kann man sich wie in der Abbildung gezeigt vorstellen:
 
-![ereignisse](./files/63_ereignisse.png)
+![ereignisse](files/63_ereignisse.png)
 
 Der *Listener* lauscht permanent auf Ereignisse. Sobald ein Ereignis aufritt, auf das der *Listener* lauscht, ruft er eine entsprechende Methode auf. Damit wir im Programm auf dieses Ereignis reagieren können (die Ereignisbehandlung implementieren), müssen wir zwei Dinge tun:
 
@@ -76,7 +76,7 @@ public class Ereignisbehandlung extends JFrame{
 
 Die Ausführung des Programms zeigt folgendes kleines Fenster:
 
-![ereignisse](./files/64_ereignisse.png)
+![ereignisse](files/64_ereignisse.png)
 
 Es soll nun implementiert werden, dass sich durch einen Klick auf den Button die dargestellte Zahl um `1` erhöht. Die Methode, die ausgelöst wird, wenn ein Button geklickt wird, heißt `actionPerformed()`. Diese ist in dem Interface `ActionListener` implementiert. Wir müssen nun also
 
@@ -253,7 +253,7 @@ public class Ereignisbehandlung extends JFrame implements ActionListener
 
 Nun ändert sich mit jedem Button-Klick der angezeigte Wert.
 
-![ereignisse](./files/65_ereignisse.png)
+![ereignisse](files/65_ereignisse.png)
 
 
 #### Mehrere Buttons - `ActionEvent`
@@ -285,7 +285,7 @@ Wir ändern unsere GUI, indem wir die `init()`-Methode ändern:
 
 Die GUI sieht dadurch nun so aus:
 
-![ereignisse](./files/66_ereignisse.png)
+![ereignisse](files/66_ereignisse.png)
 
 Das heißt, wir haben zwei Buttons und wollen für diese Buttons das Klick-Ereignis unterschiedlich behandeln. Bei Klick auf den `-`-Button soll der Wert der Zahl dekrementiert werden, bei Klick auf den `+`-Button inkrementiert. Wir müssen nun also innerhalb der `actionPerformed()`-Methode unterscheiden, welcher Button gedrückt wurde, d.h. durch welchen Button das `ActionEvent` ausgelöst wurde, welches wir behandeln. Dabei hilft uns das `ActionEvent`-Objekt, das der `actionPerformed(ActionEvent e)`-Methode übergeben wird. Die Klasse [ActionEvent](https://docs.oracle.com/en/java/javase/15/docs/api/java.desktop/java/awt/event/ActionEvent.html) hat einige nützliche Methoden. Wir verwenden jetzt zunächst eine Methode, die die Klasse `ActionEvent` von der Klasse [EventObject](https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/util/EventObject.html#getSource()) geerbt hat, die `getSource()`-Methode:
 
@@ -513,7 +513,7 @@ public class Ereignisbehandlung extends JFrame implements ActionListener
 
 
 !!! success
-	Wir kennen nun das Konzept, das hinter der Behandlung von Ereignissen steckt. Wir melden die Komponente, für die wir eine Ereignisbehandlung für ein Ereignis implementieren wollen, an den entsprechenden *Listener* an und wir implementieren das zugehörige Interface. Wir haben Buttons erfolgreich an den `ActionListener` angemeldet und das `ActionListener`-Interface implementiert. Dieses Interface enthält nur genau eine Methode, `actionPerformed()`. Wir können in dieser Methode auch bereits ermitteln, welche Komponente das `ActionEvent` ausgelöst hat, das gerade behandelt wird. Dadurch können wir in derselben `actionPerformed()`-Methode die (unterschiedliche) Ereignisbehandlung für mehrere Buttons implementieren. Damit können wir nun schonmal einen funktionsfähigen Taschenrechner bauen! Der Lösung für [Aufgabe 8](../aufgaben/#aufgabe-8-ereignisbehandlung) steht nichts mehr im Wege!
+	Wir kennen nun das Konzept, das hinter der Behandlung von Ereignissen steckt. Wir melden die Komponente, für die wir eine Ereignisbehandlung für ein Ereignis implementieren wollen, an den entsprechenden *Listener* an und wir implementieren das zugehörige Interface. Wir haben Buttons erfolgreich an den `ActionListener` angemeldet und das `ActionListener`-Interface implementiert. Dieses Interface enthält nur genau eine Methode, `actionPerformed()`. Wir können in dieser Methode auch bereits ermitteln, welche Komponente das `ActionEvent` ausgelöst hat, das gerade behandelt wird. Dadurch können wir in derselben `actionPerformed()`-Methode die (unterschiedliche) Ereignisbehandlung für mehrere Buttons implementieren. Damit können wir nun schonmal einen funktionsfähigen Taschenrechner bauen! Der Lösung für [Aufgabe 8](aufgaben.md#aufgabe-8-ereignisbehandlung) steht nichts mehr im Wege!
 
 
 ## Innere Klassen

@@ -263,7 +263,7 @@ Wir implementieren nun die `mouseClicked()`-Methode, um die Farbe des JPanels zu
 
 ## Jedes JPanel einzeln anmelden
 
-Wir haben den `MouseListener` an das `panel`-Objekt angemeldet, das alle `JPanels` enthält. Wir ändern dies nun und melden stattdessen jedes einzelne `JPanel` aus dem `panels`-Array an den `MouseListener` an. Dies erledigen wir mithilfe einer [anonymen Klasse](../ereignisse/#ereignisbehandlung-mit-anonymer-klasse), die den `MouseListener` implementiert. 
+Wir haben den `MouseListener` an das `panel`-Objekt angemeldet, das alle `JPanels` enthält. Wir ändern dies nun und melden stattdessen jedes einzelne `JPanel` aus dem `panels`-Array an den `MouseListener` an. Dies erledigen wir mithilfe einer [anonymen Klasse](ereignisse.md#ereignisbehandlung-mit-anonymer-klasse), die den `MouseListener` implementiert. 
 
 
 ```java linenums="1"

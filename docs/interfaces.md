@@ -28,7 +28,7 @@ Die Methode `this.compareTo(Object obj)` gibt ein `int` zurück, für dessen Wer
 - ist der zurückgegebene `int`-Wert negativ (`< 0`), dann ist `this` **kleiner** als `obj`,
 - ist der zurückgegebene `int`-Wert `0`, dann ist `this` **gleich** `obj`.
 
-Angenommen, wir wollen für die folgende Klasse `Rectangle` (aus dem Abschnitt [Abstrakte Klassen](../abstrakt/#rectangle-erbt-von-shape)) festlegen, dass die Rechtecke der Größe nach geordnet werden können. Gegeben ist also zunächst folgende Klasse (wir verwenden hier auch `Shape` aus [Abstrakte Klassen](../abstrakt/#ein-beispiel-die-abstrakte-klasse-shape)):
+Angenommen, wir wollen für die folgende Klasse `Rectangle` (aus dem Abschnitt [Abstrakte Klassen](abstrakt.md#rectangle-erbt-von-shape)) festlegen, dass die Rechtecke der Größe nach geordnet werden können. Gegeben ist also zunächst folgende Klasse (wir verwenden hier auch `Shape` aus [Abstrakte Klassen](abstrakt.md#ein-beispiel-die-abstrakte-klasse-shape)):
 
 ```java linenums="1"
 public class Rectangle extends Shape

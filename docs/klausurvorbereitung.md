@@ -9,7 +9,7 @@ Wir beginnen aber noch kurz mit allgemeinen Betrachtungen zum Grundgerüst. Eine
 
 ### Mögliche Grundgerüste
 
-Wie Sie wissen, ist das Fenster (`JFrame`) im [BorderLayout](../gui/#borderlayout). Das bedeutet, dass das Fenster in fünf Bereiche (`Container`) unterteilt ist. Sie müssen sich bei der Konfiguration überlegen,
+Wie Sie wissen, ist das Fenster (`JFrame`) im [BorderLayout](gui.md#borderlayout). Das bedeutet, dass das Fenster in fünf Bereiche (`Container`) unterteilt ist. Sie müssen sich bei der Konfiguration überlegen,
 
 - ob "gezeichnet" werden soll, d.h. ob das `JPanel` im `CENTER` des Fensters eine eigene Klasse ist, oder ob es mithilfe einer Methode erzeugt werden kann und
 - welche der fündf Bereiche Sie benötigen. 
@@ -173,7 +173,7 @@ Ein Grundgerüst **ohne** `Canvas`, also ohne Zeichnen, könnte dann so aussehen
 	}
 	```
 
-Beachten Sie, dass `JPanel` ohne Angabe eines LayoutManagers im [FlowLayout](../gui/#flowlayout) sind. Das können Sie [ändern](../gui/#layout-manager) und die einzelnen `JPanel` auch noch [weiter verschachteln](../gui/#verschachteln-von-layout-managern).
+Beachten Sie, dass `JPanel` ohne Angabe eines LayoutManagers im [FlowLayout](gui.md#flowlayout) sind. Das können Sie [ändern](gui.md#layout-manager) und die einzelnen `JPanel` auch noch [weiter verschachteln](gui.md#verschachteln-von-layout-managern).
 
 Eines dieser beiden Grundgerüste können wir nun stets verwenden. Es muss dann jeweils "nur" noch angepasst werden. Wir beginnen mal mit einer Aufgabe. 
 

@@ -5,8 +5,8 @@
 
 ***Diese Vorlesung (5.5.2023) findet nicht in Präsenz statt! <br>Arbeiten Sie diese Abschnitte***
 
-- [**Mengen**](/#mengen-sets) und
-- [**Listen**](./#listen)
+- [**Mengen**](#mengen-sets) und
+- [**Listen**](#listen)
 
 ***selbständig durch. Hier auch noch ein Video zu diesem Thema:***
 
@@ -146,7 +146,7 @@
 		```
 
 
-***Das Thema [Mengenoperationen](./#mengenoperationen) ist außerdem für [Aufgabe 4](../aufgaben/#aufgabe-4-operationen-uber-mengen) nützlich! <br>[Stack und Queue](./#stack-und-queue) sind nur für weiteres Interesse.***
+***Das Thema [Mengenoperationen](#mengenoperationen) ist außerdem für [Aufgabe 4](aufgaben.md#aufgabe-4-operationen-uber-mengen) nützlich! <br>[Stack und Queue](#stack-und-queue) sind nur für weiteres Interesse.***
 
 
 ---
@@ -218,13 +218,13 @@ Eine `Map` kann man sich wie eine Tablle aus zwei Spalten vorstellen. In der lin
 
 Eine kurze Entscheidungshilfe, welche Collection verwendet wird, zeigt die folgende Abbildung:
 
-![collections](./files/36_collection.png)
+![collections](files/36_collection.png)
 
 ## Der Collection-Klassenbaum
 
 Leider ist die Verwaltung von Collections in Java nicht einheitlich. Das liegt daran, dass (unverständlicherweise) Listen und Mengen in einer anderen Vererbungshierarchie verwaltet werden, als Maps. Wir schauen uns die Vererbungshierarchie von `Collection` einaml an. Darin kommen die Listen und Mengen vor, aber nicht Maps.
 
-![collections](./files/37_collection.png)
+![collections](files/37_collection.png)
 
 Die "Mutter-Klasse" der Collections `List` und `Set` ist `Collection`. In der Abbildung fallen unterschiedliche Farben auf. Die grüngefärbten Klassen sind sogenannte *Interfaces*. Interfaces lernen wir später noch kennen. Ebenso wie die rotgefärbten Klassen, bei denen es sich um *abstrakte* Klassen handelt. Das soll uns zunächst nicht besonders interessieren, aber wir können uns merken, dass wir die grüngefärbten Klassen als Typen verwenden (insb. den Typ `List` für die Listen und den Typ `Set` für die Mengen). Wir können aber keine konkreten `List`-Objekte bzw. keine konkreten `Set`-Objekte erzeugen. Das geht nur mit dem blaugefärbten Klassen. Das bedeutet, dass wir z.B. ein konkretes `ArrayList`-Objekt erzeugen werden oder ein konkretes `HashSet`-Objekt. Hier einige Beispiele:
 
@@ -632,7 +632,7 @@ Die Methode `printList()` hätte anstelle den Iterator zu verwenden auch mit der
 
 Angenommen, wir haben drei Mengen `A`, `B` und `C`, wobei alle Elemente aus `C` auch Elemente in `A` sind. Mithilfe der Methoden `addAll()`, `removeAll()`, `retainAll()`  und `containsAll()` lassen sich [Operationen über Mengen](https://mathepedia.de/Mengenoperationen.html) beschreiben, wie die folgende Abbildung zeigt:
 
-![collection](./files/38_collection.png)
+![collection](files/38_collection.png)
 
 ## Stack und Queue
 

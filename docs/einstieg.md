@@ -60,7 +60,7 @@ int auswahl = JOptionPane.showConfirmDialog(
 
 erzeugt z.B. folgendes Dialogfenster:
 
-![einstieg](./files/100_einstieg.png)
+![einstieg](files/100_einstieg.png)
 
 Wenn Sie nun auf einen der beiden Button `No` oder `Yes` klicken, dann schließt sich das Fenster wieder und in dem `int` `auswahl` ist der Wert gespeichert, der dem von Ihnen gedrückten Button entspricht. Diesen Wert können Sie wie folgt auswerten:
 
@@ -99,7 +99,7 @@ else if(auswahl == JOptionPane.CANCEL_OPTION)
 
 erzeugt folgendes Dialogfenster:
 
-![einstieg](./files/101_einstieg.png)
+![einstieg](files/101_einstieg.png)
 
 
 ## Beispiel `showInputDialog()`
@@ -123,7 +123,7 @@ System.out.println("Sie haben " + eingabe + " eingegeben");
 
 erzeugt folgendes Dialogfenster:
 
-![einstieg](./files/102_einstieg.png)
+![einstieg](files/102_einstieg.png)
 
 Die Implementierung
 
@@ -134,7 +134,7 @@ System.out.println("Sie haben " + eingabe + " eingegeben");
 
 erzeugt folgendes Dialogfenster:
 
-![einstieg](./files/103_einstieg.png)
+![einstieg](files/103_einstieg.png)
 
 Die Ansicht der Fenster und auch der `messageType`-Icons sind betriebssystemabhängig. 
 
@@ -144,11 +144,11 @@ Angenommen, wir wollen `JOptionPane.showInputDialog()` verwenden, um eine Zahl e
 
 1. **Problem**: Wie wandeln wir einen `String` zu einem `int` (oder `double`) um? 
 
-	**Antwort**: mit der Hilfe von [Wrapper-Klassen](../wrapper/#wrapper-klassen){ .md-button } 
+	**Antwort**: mit der Hilfe von [Wrapper-Klassen](wrapper.md#wrapper-klassen){ .md-button } 
 
 2. **Problem**: Angenommen, wir haben eine Lösung, `String` nach `int` umzuwandeln. Wie stellen wir dann sicher, dass unser Programm nicht abstürzt, wenn wir gar keine Zahl eingeben, sondern z.B. `hallo`? Das lässt sich ja gar nicht in eine Zahl umwandeln.
 
-	**Antwort**: mit der Behandlung von [Exceptions](../exceptions/#exceptions){ .md-button }
+	**Antwort**: mit der Behandlung von [Exceptions](exceptions.md#exceptions){ .md-button }
 
 
 
